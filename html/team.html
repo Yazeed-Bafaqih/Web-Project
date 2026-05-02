@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Hub - TechPath</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <style>
+        .team-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+            height: calc(100vh - 120px);
+        }
+        
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: var(--spacing-md);
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-input-area {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        @media (max-width: 768px) {
+            .team-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            .chat-container {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body class="page-load">
+    <div class="bg-mesh"></div>
+    
+    <nav class="navbar navbar-glass">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
+            <a href="teams.html" class="logo" style="font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.5rem;">⬅️</span> Back to Teams
+            </a>
+            <h2 id="team-name" style="margin: 0;" class="gradient-text">Loading Team...</h2>
+        </div>
+    </nav>
+
+    <main class="container" style="padding: 1rem 2rem; max-width: 1400px; margin: 0 auto;">
+        
+        <div class="team-layout">
+            <!-- Left Side: Chat & Main Content -->
+            <div class="card-glass chat-container">
+                <div style="border-bottom: 1px solid var(--dark-border); padding-bottom: 12px; margin-bottom: 12px;">
+                    <h3 style="margin:0;">💬 <span style="color:var(--primary);">Team Chat</span></h3>
+                </div>
+                
+                <div id="chat-messages" class="chat-messages">
+                    <div style="display:flex; justify-content:center; align-items:center; height:100%;">
+                        <div class="loader-primary"></div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-area">
+                    <input type="text" id="message-input" class="form-input" placeholder="Type a message..." style="border-radius: var(--radius-full);">
+                    <button id="send-btn" class="btn-primary" style="border-radius: var(--radius-full); padding: 0 24px;">Send</button>
+                </div>
+            </div>
+            
+            <!-- Right Side: Members & Stats -->
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-md);">
+                
+                <!-- Stats Card -->
+                <div class="card-glass stagger-item" style="--i: 1;">
+                    <h4 style="margin-bottom: 16px; border-bottom: 1px solid var(--dark-border); padding-bottom: 8px;">📊 Team Stats</h4>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="color: var(--dark-muted);">Members</span>
+                        <span id="team-members-count" style="font-weight: bold;">-</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <span style="color: var(--dark-muted);">Active Streak</span>
+                        <span style="font-weight: bold; display: flex; align-items: center; gap: 4px;">
+                            <span id="team-streak" style="color: var(--warning);">-</span> <span style="color: var(--warning);">Days</span> <span class="streak-fire">🔥</span>
+                        </span>
+                    </div>
+                    
+                    <div class="team-progress-container" style="border-top: 1px solid var(--dark-border); padding-top: 12px;">
+                        <div class="team-progress-header">
+                            <span>Overall Progress</span>
+                            <span id="overall-progress-text" style="color: var(--primary); font-weight: 600;">72%</span>
+                        </div>
+                        <div class="team-progress-bg">
+                            <div id="overall-progress-fill" class="team-progress-fill" style="width: 72%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Motivation Card -->
+                <div class="card-glass stagger-item" style="--i: 2; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 10px; display: flex; justify-content: center; gap: 10px;">
+                        👨‍💻 🙌 👩‍💻
+                    </div>
+                    <p id="motivational-quote" style="font-style: italic; color: var(--primary); font-size: 0.95rem; margin-bottom: 0; line-height: 1.5;">
+                        "Alone we can do so little; together we can do so much."
+                    </p>
+                </div>
+                
+                <!-- Members Card -->
+                <div class="card-glass stagger-item" style="--i: 3; flex-grow: 1;">
+                    <h4 style="margin-bottom: 16px; border-bottom: 1px solid var(--dark-border); padding-bottom: 8px;">👥 Members</h4>
+                    <div id="members-list" style="overflow-y: auto; max-height: 300px;">
+                        <div class="skeleton" style="height: 40px; margin-bottom: 8px;"></div>
+                        <div class="skeleton" style="height: 40px; margin-bottom: 8px;"></div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </main>
+
+    <script src="../js/chat.js"></script>
+</body>
+</html>

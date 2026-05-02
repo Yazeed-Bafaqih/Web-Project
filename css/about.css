@@ -1,0 +1,214 @@
+/* ============================================================
+   TechPath — about.css (About Us Page)
+   CCSW321 Web Development — University of Jeddah 2025-2026
+   ============================================================ */
+
+/* ── Team Cards ────────────────────────────────────────────── */
+.team-cards-section {
+    padding: 5rem 0 0;
+}
+
+.team-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.member-card {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.member-card:hover {
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 24px rgba(91, 141, 246, 0.12);
+    transform: translateY(-2px);
+}
+
+.member-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--clr-accent), var(--clr-accent-2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.member-avatar--2 {
+    background: linear-gradient(135deg, #34d399, #059669);
+}
+
+.member-avatar--3 {
+    background: linear-gradient(135deg, #fb923c, #dc2626);
+}
+
+.member-card h3 {
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+.member-role {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-accent);
+}
+
+.member-bio {
+    font-size: 0.88rem;
+    color: var(--clr-muted);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.member-links {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.member-link {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 99px;
+    color: var(--clr-muted);
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.member-link:hover {
+    color: var(--clr-accent);
+    border-color: var(--clr-accent);
+    background: rgba(91, 141, 246, 0.08);
+}
+
+/* ── Team Table ────────────────────────────────────────────── */
+.team-table-section {
+    padding: 5rem 0 6rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    background: var(--clr-surface);
+}
+
+.team-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 640px;
+}
+
+.team-table caption {
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-size: 0.8rem;
+    color: var(--clr-muted);
+    border-bottom: 1px solid var(--clr-border);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.team-table thead th {
+    padding: 0.9rem 1.25rem;
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--clr-muted);
+    border-bottom: 1px solid var(--clr-border);
+    background: var(--clr-surface-2);
+    white-space: nowrap;
+}
+
+.team-table thead th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+.team-table thead th:last-child  { border-radius: 0 var(--radius-sm) 0 0; }
+
+.team-table tbody td {
+    padding: 1rem 1.25rem;
+    color: var(--clr-text);
+    border-bottom: 1px solid var(--clr-border);
+    vertical-align: middle;
+}
+
+.team-table tbody tr:last-child td { border-bottom: none; }
+
+.team-table tbody tr {
+    transition: background var(--transition);
+}
+
+.team-table tbody tr:hover {
+    background: rgba(91, 141, 246, 0.04);
+}
+
+.team-table tfoot td {
+    padding: 0.9rem 1.25rem;
+    font-size: 0.8rem;
+    color: var(--clr-muted);
+    border-top: 1px solid var(--clr-border);
+    background: var(--clr-surface-2);
+    text-align: center;
+}
+
+/* Role badges */
+.role-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: 99px;
+    white-space: nowrap;
+}
+
+.role-badge--frontend {
+    background: rgba(91, 141, 246, 0.15);
+    color: var(--clr-accent);
+}
+
+.role-badge--backend {
+    background: rgba(52, 211, 153, 0.15);
+    color: var(--clr-success);
+}
+
+.role-badge--js {
+    background: rgba(251, 191, 36, 0.15);
+    color: var(--clr-warning);
+}
+
+.table-link {
+    font-size: 0.85rem;
+    color: var(--clr-accent);
+}
+.table-link:hover { text-decoration: underline; }
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 992px) {
+    .team-cards-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 576px) {
+    .team-cards-grid { grid-template-columns: 1fr; }
+
+    .team-table { font-size: 0.82rem; }
+
+    .team-table thead th,
+    .team-table tbody td { padding: 0.75rem 1rem; }
+}

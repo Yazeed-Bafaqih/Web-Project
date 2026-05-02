@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams - TechPath</title>
+    <!-- Import Theme and Components -->
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/teams.css">
+</head>
+<body class="page-load">
+    <div class="bg-mesh"></div>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-glass">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
+            <a href="index.html" class="logo" style="font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+                <span class="gradient-text">TechPath</span> Teams
+            </a>
+            <div class="nav-links" style="display: flex; gap: 1rem;">
+                <a href="index.html">Home</a>
+                <a href="roadmap-generator.html">Generate</a>
+                <a href="my-roadmaps.html">My Roadmaps</a>
+                <a href="teams.html" class="active gradient-text" style="font-weight: bold;">Teams</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+        
+        <div class="dashboard-header stagger-item" style="--i: 1;">
+            <div style="flex: 1;">
+                <h1 style="margin-bottom: 8px;"><span class="gradient-text">Welcome, <span id="user-welcome-name">Learner</span></span> 👋</h1>
+                <p style="color: var(--dark-muted);">Connect with others, share your progress, and stay motivated!</p>
+            </div>
+            <button class="btn-primary create-team-btn" onclick="openModal('createTeamModal')">
+                + Create New Team
+            </button>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row stagger-item" style="--i: 2;">
+            <div class="card-glass stat-box">
+                <div class="stat-label">Teams Joined</div>
+                <div class="stat-value" id="stat-teams-joined">0</div>
+            </div>
+            <div class="card-glass stat-box">
+                <div class="stat-label">Current Streak</div>
+                <div class="stat-value" id="stat-streak">0 🔥</div>
+            </div>
+            <div class="card-glass stat-box">
+                <div class="stat-label">Roadmaps in Progress</div>
+                <div class="stat-value" id="stat-roadmaps">0 🗺️</div>
+            </div>
+        </div>
+
+        <!-- My Teams Section -->
+        <section style="margin-bottom: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05);" class="stagger-item" style="--i: 3;">
+            <h2 style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem;"><span style="font-size: 1.8rem;">🚀</span> Your Active Teams</h2>
+            
+            <div id="loading-my-teams" class="loading-state">
+                <div class="loader-primary"></div>
+                <p>Loading your teams...</p>
+            </div>
+
+            <div id="my-teams-container" class="teams-grid">
+                <!-- Loaded via JS -->
+            </div>
+            
+            <div id="empty-my-teams" class="empty-state card-glass hidden" style="max-width: 600px; margin: 0 auto;">
+                <div class="empty-icon">🏔️</div>
+                <h3>No Teams Yet</h3>
+                <p>You haven't joined any teams. Join a public team below or create your own!</p>
+                <button class="btn-primary" style="margin-top: 1.5rem;" onclick="openModal('createTeamModal')">Create Your First Team</button>
+            </div>
+        </section>
+
+        <!-- Public Teams Section -->
+        <section class="stagger-item" style="--i: 4; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <h2 style="display: flex; align-items: center; gap: 10px; margin: 0;"><span style="font-size: 1.8rem;">🔍</span> Discover Public Teams</h2>
+                <div class="search-container" style="margin: 0; min-width: 300px;">
+                    <input type="text" id="searchPublicTeams" class="search-input" placeholder="Search teams by name..." onkeyup="filterPublicTeams()">
+                </div>
+            </div>
+            
+            <div id="loading-public-teams" class="loading-state">
+                <div class="loader-primary"></div>
+                <p>Finding public teams...</p>
+            </div>
+
+            <div id="public-teams-container" class="teams-grid">
+                <!-- Loaded via JS -->
+            </div>
+
+            <div id="empty-public-teams" class="empty-state card-glass hidden" style="max-width: 600px; margin: 0 auto;">
+                <div class="empty-icon">🔍</div>
+                <h3>No Public Teams Found</h3>
+                <p>There are no public teams matching your search. Be the first to create one!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Create Team Modal (Overlay) -->
+    <div id="createTeamModal" class="modal-overlay">
+        <div class="card-glass" style="width: 100%; max-width: 500px; position: relative;">
+            <button onclick="closeModal('createTeamModal')" 
+                    style="position: absolute; right: 20px; top: 20px; background: transparent; border: none; color: var(--dark-text); cursor: pointer; font-size: 1.5rem;">&times;</button>
+            <h2 style="margin-bottom: 24px;">Create a New Team</h2>
+            
+            <form id="createTeamForm">
+                <div class="form-group">
+                    <label class="form-label">Team Name</label>
+                    <input type="text" id="teamName" class="form-input" required minlength="3" placeholder="e.g., Web Dev Masters">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Description (Optional)</label>
+                    <textarea id="teamDesc" class="form-textarea" rows="3" placeholder="What is this team about?"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Privacy</label>
+                    <select id="teamPrivacy" class="form-select">
+                        <option value="public">🔓 Public (Anyone can join)</option>
+                        <option value="visible">👁️ Visible (Requires approval)</option>
+                        <option value="private">🔑 Private (Invite-only)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-primary" style="width: 100%;">Create Team</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/teams.js"></script>
+</body>
+</html>

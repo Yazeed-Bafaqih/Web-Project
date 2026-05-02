@@ -1,0 +1,103 @@
+:root {
+  /* Midnight & Solar Palette */
+  --primary: #FF5E00;
+  --primary-light: #FFB085;
+  --primary-bright: #FF8A00;
+  --primary-soft: #FFD6C2;
+  --primary-glow: rgba(255, 94, 0, 0.4);
+  
+  --secondary: #FF8A00;
+  --secondary-glow: rgba(255, 138, 0, 0.4);
+  
+  --accent: #FF5E00;
+  --accent-glow: rgba(255, 94, 0, 0.4);
+  
+  /* Background & Surfaces */
+  --dark-bg: #0F0F10;
+  --dark-card: #18181A;
+  --dark-border: #27272A;
+  --dark-text: #E5E7EB;
+  --dark-muted: #9CA3AF;
+  
+  /* Status Colors */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #FF5E00 0%, #FF8A00 100%);
+  --gradient-dark: linear-gradient(180deg, #0F0F10 0%, #1A1A1D 100%);
+  --gradient-mesh: linear-gradient(135deg, #0F0F10 0%, #FF5E00 50%, #1A1A1D 100%);
+  
+  /* Typography */
+  --font-heading: 'Inter', 'Poppins', sans-serif;
+  --font-body: 'Inter', 'Roboto', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  /* Animation Easing */
+  --ease-fluid: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--dark-text);
+  margin-top: 0;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s var(--ease-fluid);
+}
+
+a:hover {
+  color: var(--primary-light);
+}
+
+/* Gradient Text Utility */
+.gradient-text {
+  background: var(--gradient-primary) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dark-border);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

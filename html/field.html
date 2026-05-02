@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore Fields — TechPath</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/field.css" />
+</head>
+<body class="page-load">
+    <div class="bg-mesh"></div>
+
+    <header class="site-header navbar-glass">
+        <div class="header-inner container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
+                <span class="logo-icon gradient-text" style="font-size: 1.5rem;">&#9670;</span>
+                <span class="logo-text gradient-text" style="font-weight: bold; font-size: 1.5rem;">TechPath</span>
+            </a>
+            <nav class="main-nav" aria-label="Main navigation" style="display: flex; gap: 1rem;">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="field.html" class="active gradient-text" style="font-weight: bold;">Explore</a></li>
+                    <li><a href="teams.html">Teams</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+    <main>
+
+        <!-- Track Selector -->
+        <section class="page-hero container stagger-item" aria-labelledby="explore-title" style="--i: 1; padding: 4rem 2rem; text-align: center;">
+            <div class="section-inner floating">
+                <p class="hero-eyebrow" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Find Your Path</p>
+                <h1 id="explore-title" class="gradient-text" style="font-size: 3rem; margin-bottom: 1.5rem;">Explore Tech Fields</h1>
+                <p class="page-hero-desc" style="color: var(--dark-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem;">
+                    Select a field, take the level assessment, and unlock resources tailored exactly to where you are right now.
+                </p>
+                <!-- Track toggle -->
+                <div class="track-toggle card-glass" role="group" aria-label="Select a tech field" style="display: inline-flex; padding: 0.5rem; gap: 0.5rem; border-radius: var(--radius-full);">
+                    <button class="track-btn active" data-track="webdev" aria-pressed="true">
+                        Web Development
+                    </button>
+                    <button class="track-btn" data-track="ai" aria-pressed="false">
+                        AI &amp; Machine Learning
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assessment Form -->
+        <section class="assessment-section container stagger-item" aria-labelledby="assessment-title" style="--i: 2; margin-bottom: 4rem;">
+            <div class="section-inner assess-layout" style="display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+
+                <div class="assess-form-wrap card-glass" style="max-width: 800px; width: 100%;">
+                    <h2 id="assessment-title" style="margin-bottom: 1rem; text-align: center;">Level Assessment</h2>
+                    <p class="assess-intro" style="color: var(--dark-muted); text-align: center; margin-bottom: 2rem;">Answer 4 quick questions honestly — the more accurate, the better your resources.</p>
+
+                    <form
+                        id="assessment-form"
+                        action="/backend/assessment.js"
+                        method="POST"
+                        novalidate
+                        aria-labelledby="assessment-title"
+                    >
+                        <input type="hidden" id="selected-track" name="track" value="webdev" />
+
+                        <!-- Q1 -->
+                        <fieldset class="quiz-question" id="q1-group">
+                            <legend>
+                                <span class="q-num" aria-hidden="true">01</span>
+                                How would you describe your experience with this field?
+                            </legend>
+                            <div class="radio-group" role="radiogroup" aria-required="true" aria-describedby="q1-error">
+                                <label class="radio-label">
+                                    <input type="radio" name="q1" value="1" required />
+                                    <span>I am just starting out — little to no experience</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="q1" value="2" required />
+                                    <span>I understand the basics and have built small projects</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="q1" value="3" required />
+                                    <span>I work on complex projects and know advanced concepts</span>
+                                </label>
+                            </div>
+                            <span class="field-error" id="q1-error" role="alert" aria-live="polite"></span>
+                        </fieldset>
+
+                        <!-- Q2 -->
+                        <fieldset class="quiz-question" id="q2-group">
+                            <legend>
+                                <span class="q-num" aria-hidden="true">02</span>
+                                How comfortable are you reading technical documentation?
+                            </legend>
+                            <div class="radio-group" role="radiogroup" aria-required="true" aria-describedby="q2-error">
+                                <label class="radio-label">
+                                    <input type="radio" name="q2" value="1" required />
+                                    <span>I find it very difficult to understand</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="q2" value="2" required />
+                                    <span>I can read it with some effort and Googling</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="q2" value="3" required />
+                                    <span>I read documentation comfortably as a daily tool</span>
+                                </label>
+                            </div>
+                            <span class="field-error" id="q2-error" role="alert" aria-live="polite"></span>
+                        </fieldset>
+
+                        <!-- Q3 -->
+                        <fieldset class="quiz-question" id="q3-group">
+                            <legend>
+                                <span class="q-num" aria-hidden="true">03</span>
+                                How many personal or academic projects have you completed?
+                            </legend>
+                            <div class="radio-group" role="radiogroup" aria-required="true" aria-describedby="q3-error">
+                                <label class="radio-label">
+                                    <input type="radio" name="q3" value="1" required />
+                                    <span>None or still working on my first one</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="q3" value="2" required />
+                                    <span>1 to 3 projects</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="q3" value="3" required />
+                                    <span>4 or more projects</span>
+                                </label>
+                            </div>
+                            <span class="field-error" id="q3-error" role="alert" aria-live="polite"></span>
+                        </fieldset>
+
+                        <!-- Q4 -->
+                        <fieldset class="quiz-question" id="q4-group">
+                            <legend>
+                                <span class="q-num" aria-hidden="true">04</span>
+                                How do you prefer to learn new concepts?
+                            </legend>
+                            <div class="radio-group" role="radiogroup" aria-required="true" aria-describedby="q4-error">
+                                <label class="radio-label">
+                                    <input type="radio" name="q4" value="video" required />
+                                    <span>Video tutorials &mdash; step by step guidance</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="q4" value="reading" required />
+                                    <span>Articles and written documentation</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="q4" value="projects" required />
+                                    <span>Hands-on projects &mdash; learning by doing</span>
+                                </label>
+                            </div>
+                            <span class="field-error" id="q4-error" role="alert" aria-live="polite"></span>
+                        </fieldset>
+
+                        <!-- Name for registration -->
+                        <div class="form-group register-group" style="margin-top: 2rem;">
+                            <label for="learner-name" class="form-label">Your Name (to save your progress) <span style="color: var(--primary);" aria-hidden="true">*</span></label>
+                            <input
+                                type="text"
+                                id="learner-name"
+                                name="learner_name"
+                                class="form-input"
+                                placeholder="Enter your name"
+                                required
+                                minlength="2"
+                                maxlength="80"
+                                autocomplete="name"
+                                aria-required="true"
+                                aria-describedby="name-error"
+                            />
+                            <span class="field-error" id="name-error" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <div id="assessment-error" class="form-error-banner" role="alert" aria-live="polite" hidden style="background: rgba(239, 68, 68, 0.1); color: var(--error); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; border: 1px solid var(--error);"></div>
+
+                        <button type="submit" class="btn-primary submit-btn" style="width: 100%;">
+                            Get My Resources &rarr;
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Results Panel (shown after submission) -->
+                <aside class="results-panel card-glass" id="results-panel" aria-live="polite" aria-label="Assessment results" hidden style="max-width: 800px; width: 100%;">
+                    <div class="results-inner" style="text-align: center;">
+                        <p class="results-eyebrow" style="color: var(--primary); font-weight: 600;">Your Level</p>
+                        <h2 id="results-level" class="results-level gradient-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Beginner</h2>
+                        <p id="results-desc" class="results-desc" style="color: var(--dark-muted); margin-bottom: 2rem;"></p>
+
+                        <div id="resources-list" aria-label="Recommended resources" style="text-align: left; margin-bottom: 2rem;">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <button class="btn-secondary" id="retake-btn" onclick="retakeAssessment()">
+                            Retake Assessment
+                        </button>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-icon">&#9670;</span>
+                <span class="logo-text">TechPath</span>
+            </div>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index.html">Home</a>
+                <a href="field.html">Explore</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact-us.html">Contact</a>
+            </nav>
+            <p class="footer-copy">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/assessment.js"></script>
+</body>
+</html>

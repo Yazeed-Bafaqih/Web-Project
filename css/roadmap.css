@@ -1,0 +1,564 @@
+/* ============================================================
+   TechPath — roadmap.css (Roadmap Feature Styles)
+   ============================================================ */
+
+/* ── 1. Generator Form ─────────────────────────────────────── */
+.generator-section {
+    padding: 3rem 0 5rem;
+}
+
+.generator-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.roadmap-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Spinner */
+.spinner {
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top: 3px solid #fff;
+    width: 20px;
+    height: 20px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(13, 15, 20, 0.9);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-text);
+    gap: 1rem;
+}
+.loading-overlay .spinner {
+    width: 50px;
+    height: 50px;
+    border-width: 5px;
+    border-top-color: var(--clr-accent);
+}
+
+.error-notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--clr-danger);
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    z-index: 1001;
+    display: none;
+    transition: opacity 0.3s ease;
+}
+
+/* ── 2. Roadmap View Header & Overview ─────────────────────── */
+.roadmap-view-main {
+    padding-bottom: 5rem;
+}
+
+.roadmap-header {
+    background: var(--clr-surface);
+    border-bottom: 1px solid var(--clr-border);
+    padding: 3rem 0 2rem;
+}
+
+.header-top {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#roadmap-topic {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 1rem 0;
+    background: linear-gradient(to right, var(--clr-accent), var(--clr-accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-accent { background: rgba(255, 94, 0, 0.15); color: var(--clr-accent); }
+.badge-success { background: rgba(52, 211, 153, 0.15); color: var(--clr-success); }
+.badge-warning { background: rgba(251, 191, 36, 0.15); color: var(--clr-warning); }
+.badge-danger { background: rgba(248, 113, 113, 0.15); color: var(--clr-danger); }
+
+.roadmap-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.roadmap-overview {
+    padding: 2rem 0;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--clr-surface-2);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-num {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    color: var(--clr-text);
+}
+
+.stat-label {
+    color: var(--clr-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.progress-container {
+    background: var(--clr-surface-2);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.progress-bar-bg {
+    height: 12px;
+    background: var(--clr-bg);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--clr-accent);
+    transition: width 0.5s ease, background-color 0.3s ease;
+}
+
+/* ── 3. Roadmap Details (Timeline & Sidebar) ───────────────── */
+.roadmap-details {
+    padding: 2rem 0;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.phases-column h2 {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+}
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 1.5rem; bottom: 0;
+    width: 2px;
+    background: var(--clr-border);
+    z-index: 0;
+}
+
+.phase-card {
+    background: var(--clr-surface-2);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    position: relative;
+    z-index: 1;
+    margin-left: 3rem;
+    transition: box-shadow var(--transition);
+}
+.phase-card::before {
+    content: '';
+    position: absolute;
+    top: 1.5rem; left: -1.8rem;
+    width: 1rem; height: 1rem;
+    background: var(--clr-surface-2);
+    border: 2px solid var(--clr-accent);
+    border-radius: 50%;
+}
+
+.phase-card:hover {
+    box-shadow: var(--shadow-sm);
+    border-color: var(--clr-accent);
+}
+
+.phase-header {
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+}
+
+.phase-number {
+    font-family: var(--font-mono);
+    color: var(--clr-accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.phase-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.phase-name {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+}
+
+.phase-duration {
+    font-size: 0.85rem;
+    color: var(--clr-muted);
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: var(--clr-muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.3s ease, color var(--transition);
+}
+.phase-header:hover .toggle-btn { color: var(--clr-accent); }
+
+.phase-content {
+    padding: 0 1.5rem 1.5rem;
+    border-top: 1px solid var(--clr-border);
+    display: block;
+}
+.phase-content.collapsed {
+    display: none;
+}
+
+.phase-description {
+    color: var(--clr-text);
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+
+.phase-section {
+    margin-top: 1.5rem;
+}
+
+.phase-section h4 {
+    font-size: 1rem;
+    color: var(--clr-accent-2);
+    margin-bottom: 0.75rem;
+}
+
+.topics-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.topic-tag {
+    background: rgba(255, 138, 0, 0.1);
+    color: var(--clr-accent-2);
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 138, 0, 0.2);
+}
+
+.resources-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.resource-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background: rgba(255,255,255,0.03);
+    border-radius: var(--radius-sm);
+}
+
+.resource-type {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+.type-video { background: #fee2e2; color: #ef4444; }
+.type-article { background: #e0e7ff; color: #4f46e5; }
+.type-course { background: #d1fae5; color: #059669; }
+.type-book { background: #fef3c7; color: #d97706; }
+.type-other { background: #f3f4f6; color: #4b5563; }
+
+.resource-item a {
+    font-size: 0.95rem;
+    color: var(--clr-text);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color var(--transition);
+}
+.resource-item a:hover { text-decoration-color: var(--clr-accent); }
+
+.milestones-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Custom Checkbox */
+.custom-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    height: 20px;
+    width: 20px;
+    background-color: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 4px;
+    margin-top: 2px;
+    position: relative;
+    transition: background-color var(--transition), border-color var(--transition);
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+    border-color: var(--clr-accent);
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: var(--clr-success);
+    border-color: var(--clr-success);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.custom-checkbox input:checked ~ .milestone-text {
+    text-decoration: line-through;
+    color: var(--clr-muted);
+}
+
+.milestone-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    transition: color var(--transition);
+}
+
+.exercises-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.phase-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--clr-border);
+    text-align: right;
+}
+
+.estimated-hours {
+    font-size: 0.85rem;
+    color: var(--clr-muted);
+    font-family: var(--font-mono);
+}
+
+/* ── 4. Sidebar ────────────────────────────────────────────── */
+.sidebar-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar-card {
+    background: var(--clr-surface-2);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+.sidebar-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.schedule-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.03);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+}
+
+.schedule-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-accent);
+}
+
+.schedule-days-section {
+    margin-top: 1rem;
+}
+
+.days-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+
+.day-tag {
+    background: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    color: var(--clr-text);
+}
+
+.sidebar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebar-list li {
+    font-size: 0.9rem;
+    color: var(--clr-text);
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.check-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--clr-success);
+}
+
+.arrow-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--clr-accent);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    .sidebar-column {
+        position: static;
+    }
+}
+
+@media (max-width: 576px) {
+    .generator-container { padding: 1.5rem; }
+    .phase-card { margin-left: 1.5rem; }
+    .timeline-container::before { left: 0.5rem; }
+    .phase-card::before { left: -1.5rem; width: 0.8rem; height: 0.8rem; }
+    .phase-header { grid-template-columns: 1fr auto; }
+    .phase-number { grid-column: 1 / -1; }
+}

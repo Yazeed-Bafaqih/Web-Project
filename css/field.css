@@ -1,0 +1,200 @@
+/* ============================================================
+   TechPath — field.css (Explore / Assessment Page)
+   CCSW321 Web Development — University of Jeddah 2025-2026
+   ============================================================ */
+
+/* ── Track Toggle ──────────────────────────────────────────── */
+.track-toggle {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    padding: 0.35rem;
+    border-radius: var(--radius-md);
+}
+
+.track-btn {
+    padding: 0.55rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--clr-muted);
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+}
+
+.track-btn.active,
+.track-btn[aria-pressed="true"] {
+    background: var(--clr-accent);
+    color: #fff;
+}
+
+.track-btn:hover:not(.active) {
+    background: var(--clr-surface-2);
+    color: var(--clr-text);
+}
+
+/* ── Assessment Section ────────────────────────────────────── */
+.assessment-section { padding: 4rem 0 6rem; }
+
+.assess-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 2.5rem;
+    align-items: flex-start;
+}
+
+.assess-form-wrap {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem;
+}
+
+.assess-form-wrap h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.assess-intro {
+    font-size: 0.9rem;
+    color: var(--clr-muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Quiz Questions */
+.quiz-question {
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    transition: border-color var(--transition);
+}
+
+.quiz-question:focus-within {
+    border-color: var(--clr-accent);
+}
+
+.quiz-question legend {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: var(--clr-text);
+    padding: 0 0.5rem;
+    line-height: 1.5;
+}
+
+.q-num {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--clr-accent);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+/* Name field spacing */
+.register-group { margin-top: 0.5rem; }
+
+/* Error banner */
+.form-error-banner {
+    background: rgba(248, 113, 113, 0.1);
+    border: 1px solid var(--clr-danger);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    font-size: 0.88rem;
+    color: var(--clr-danger);
+    margin-bottom: 1rem;
+}
+
+/* ── Results Panel ─────────────────────────────────────────── */
+.results-panel {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-accent);
+    border-radius: var(--radius-lg);
+    position: sticky;
+    top: calc(var(--header-h) + 1.5rem);
+    box-shadow: 0 0 30px rgba(91, 141, 246, 0.12);
+    overflow: hidden;
+}
+
+.results-inner { padding: 2rem 1.5rem; }
+
+.results-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--clr-accent);
+    margin-bottom: 0.5rem;
+}
+
+.results-level {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.results-desc {
+    font-size: 0.88rem;
+    color: var(--clr-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.65;
+}
+
+/* Resource cards (populated by JS) */
+.resource-card {
+    background: var(--clr-surface-2);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    transition: border-color var(--transition);
+}
+
+.resource-card:hover { border-color: var(--clr-accent); }
+
+.resource-type {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-accent);
+    margin-bottom: 0.3rem;
+}
+
+.resource-title {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--clr-text);
+    margin-bottom: 0.2rem;
+}
+
+.resource-desc {
+    font-size: 0.8rem;
+    color: var(--clr-muted);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .assess-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .results-panel { position: static; }
+}
+
+@media (max-width: 576px) {
+    .assess-form-wrap { padding: 1.5rem 1rem; }
+
+    .track-toggle { flex-direction: column; width: 100%; }
+
+    .track-btn { width: 100%; text-align: center; }
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us — TechPath</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/about.css" />
+</head>
+<body class="page-load">
+    <div class="bg-mesh"></div>
+
+    <header class="site-header navbar-glass">
+        <div class="header-inner container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
+                <span class="logo-icon gradient-text" style="font-size: 1.5rem;">&#9670;</span>
+                <span class="logo-text gradient-text" style="font-weight: bold; font-size: 1.5rem;">TechPath</span>
+            </a>
+            <nav class="main-nav" aria-label="Main navigation" style="display: flex; gap: 1rem;">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="field.html">Explore</a></li>
+                    <li><a href="teams.html">Teams</a></li>
+                    <li><a href="about-us.html" class="active gradient-text" style="font-weight: bold;">About Us</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+    <main>
+        <section class="page-hero container stagger-item" aria-labelledby="about-title" style="--i: 1; padding: 4rem 2rem; text-align: center;">
+            <div class="section-inner floating">
+                <p class="hero-eyebrow" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">The People Behind TechPath</p>
+                <h1 id="about-title" class="gradient-text" style="font-size: 3rem; margin-bottom: 1.5rem;">Meet Our Team</h1>
+                <p class="page-hero-desc" style="color: var(--dark-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                    We are three software engineering students from the University of Jeddah,
+                    united by a passion for making tech education more accessible and personalized.
+                </p>
+            </div>
+        </section>
+
+        <!-- Team Cards -->
+        <section class="team-cards-section container stagger-item" aria-labelledby="team-cards-title" style="--i: 2; margin-bottom: 4rem;">
+            <div class="section-inner">
+                <h2 id="team-cards-title" class="sr-only">Team Member Cards</h2>
+                <div class="team-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+
+                    <article class="member-card card-glass" aria-labelledby="member1-name" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                        <div class="member-avatar" aria-hidden="true" style="background: var(--gradient-primary); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-bottom: 1rem; font-weight: bold;">Y</div>
+                        <h3 id="member1-name">Yazeed Bafaqih</h3>
+                        <p class="member-role" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Frontend Developer</p>
+                        <p class="member-bio" style="color: var(--dark-muted); margin-bottom: 1.5rem;">Responsible for UI/UX design, HTML structure, and CSS styling across all pages.</p>
+                        <div class="member-links" style="display: flex; gap: 1rem; margin-top: auto;">
+                            <a href="#" aria-label="Yazeed's GitHub profile" class="member-link" style="color: var(--dark-text); font-weight: bold;">GitHub</a>
+                            <a href="#" aria-label="Yazeed's LinkedIn profile" class="member-link" style="color: var(--dark-text); font-weight: bold;">LinkedIn</a>
+                        </div>
+                    </article>
+
+                    <article class="member-card card-glass" aria-labelledby="member2-name" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                        <div class="member-avatar" aria-hidden="true" style="background: var(--gradient-primary); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-bottom: 1rem; font-weight: bold;">A</div>
+                        <h3 id="member2-name">Ahmed Bahaj</h3>
+                        <p class="member-role" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Backend Developer</p>
+                        <p class="member-bio" style="color: var(--dark-muted); margin-bottom: 1.5rem;">Handles Node.js backend, database design, and API integration with MongoDB.</p>
+                        <div class="member-links" style="display: flex; gap: 1rem; margin-top: auto;">
+                            <a href="#" aria-label="Ahmed's GitHub profile" class="member-link" style="color: var(--dark-text); font-weight: bold;">GitHub</a>
+                            <a href="#" aria-label="Ahmed's LinkedIn profile" class="member-link" style="color: var(--dark-text); font-weight: bold;">LinkedIn</a>
+                        </div>
+                    </article>
+
+                    <article class="member-card card-glass" aria-labelledby="member3-name" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                        <div class="member-avatar" aria-hidden="true" style="background: var(--gradient-primary); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; margin-bottom: 1rem; font-weight: bold;">A</div>
+                        <h3 id="member3-name">Albraa Alnahari</h3>
+                        <p class="member-role" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">JavaScript Developer</p>
+                        <p class="member-bio" style="color: var(--dark-muted); margin-bottom: 1.5rem;">Develops all client-side logic, real-time chat socket integration, and dynamic routing.</p>
+                        <div class="member-links" style="display: flex; gap: 1rem; margin-top: auto;">
+                            <a href="#" aria-label="Albraa's GitHub profile" class="member-link" style="color: var(--dark-text); font-weight: bold;">GitHub</a>
+                            <a href="#" aria-label="Albraa's LinkedIn profile" class="member-link" style="color: var(--dark-text); font-weight: bold;">LinkedIn</a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Table -->
+        <section class="team-table-section" aria-labelledby="team-table-title">
+            <div class="section-inner">
+                <header class="section-header">
+                    <h2 id="team-table-title">Team Directory</h2>
+                    <p>Full details of all team members and their contributions.</p>
+                </header>
+
+                <div class="table-wrapper" role="region" aria-label="Team members table" tabindex="0">
+                    <table class="team-table">
+                        <caption>TechPath Development Team — University of Jeddah 2025–2026</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Full Name</th>
+                                <th scope="col">Student ID</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Responsibilities</th>
+                                <th scope="col">GitHub</th>
+                                <th scope="col">LinkedIn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Yazeed Bafaqih</td>
+                                <td>20231001</td>
+                                <td><span class="role-badge role-badge--frontend">Frontend</span></td>
+                                <td>HTML, CSS, Responsive Design, UI/UX</td>
+                                <td><a href="#" class="table-link" aria-label="Sara's GitHub">github.com/sara</a></td>
+                                <td><a href="#" class="table-link" aria-label="Sara's LinkedIn">linkedin.com/sara</a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Ahmed Bahaj</td>
+                                <td>20231002</td>
+                                <td><span class="role-badge role-badge--backend">Backend</span></td>
+                                <td>Node.js, MySQL, API Routes, Security</td>
+                                <td><a href="#" class="table-link" aria-label="Nora's GitHub">github.com/nora</a></td>
+                                <td><a href="#" class="table-link" aria-label="Nora's LinkedIn">linkedin.com/nora</a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Albraa Alnahari</td>
+                                <td>20231003</td>
+                                <td><span class="role-badge role-badge--js">JavaScript</span></td>
+                                <td>Validation, Quiz Engine, DOM Manipulation</td>
+                                <td><a href="#" class="table-link" aria-label="Reem's GitHub">github.com/reem</a></td>
+                                <td><a href="#" class="table-link" aria-label="Reem's LinkedIn">linkedin.com/reem</a></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">Department of Software Engineering &mdash; CCSW321 Web Development &mdash; 2025&ndash;2026</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-icon">&#9670;</span>
+                <span class="logo-text">TechPath</span>
+            </div>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index.html">Home</a>
+                <a href="field.html">Explore</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact-us.html">Contact</a>
+            </nav>
+            <p class="footer-copy">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

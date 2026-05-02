@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Roadmap Generator — TechPath</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/roadmap.css">
+</head>
+<body class="page-load">
+    <div class="bg-mesh"></div>
+
+    <header class="site-header navbar-glass">
+        <div class="header-inner container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
+                <span class="logo-icon gradient-text" style="font-size: 1.5rem;">&#9670;</span>
+                <span class="logo-text gradient-text" style="font-weight: bold; font-size: 1.5rem;">TechPath</span>
+            </a>
+            <nav class="main-nav" aria-label="Main navigation" style="display: flex; gap: 1rem;">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="field.html">Explore</a></li>
+                    <li><a href="my-roadmaps.html">My Roadmaps</a></li>
+                    <li><a href="roadmap-generator.html" class="active gradient-text" style="font-weight: bold;">AI Generator</a></li>
+                    <li><a href="teams.html">Teams</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero container stagger-item" aria-labelledby="hero-title" style="--i: 1; padding: 4rem 2rem; text-align: center;">
+            <div class="section-inner floating">
+                <p class="hero-eyebrow" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Powered by Claude AI</p>
+                <h1 id="hero-title" class="gradient-text" style="font-size: 3rem; margin-bottom: 1.5rem;">Generate Your Custom Roadmap</h1>
+                <p class="page-hero-desc" style="color: var(--dark-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                    Tell us what you want to learn, and our AI will generate a personalized, structured learning path tailored to your exact needs and schedule.
+                </p>
+            </div>
+        </section>
+
+        <section class="generator-section container stagger-item" style="--i: 2; max-width: 800px; margin: 0 auto 4rem;">
+            <div class="section-inner">
+                <div class="generator-container card-glass">
+                    <form id="roadmap-form" class="roadmap-form">
+                        <div class="form-group">
+                            <label for="topic" class="form-label">What do you want to learn? <span style="color: var(--primary);">*</span></label>
+                            <input type="text" id="topic" name="topic" class="form-input" placeholder="e.g., Full-Stack Web Development, Machine Learning, React.js" required maxlength="100">
+                        </div>
+
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="level" class="form-label">Current Skill Level <span style="color: var(--primary);">*</span></label>
+                                <select id="level" name="level" class="form-select" required>
+                                    <option value="" disabled selected>Select your level</option>
+                                    <option value="Beginner">Beginner</option>
+                                    <option value="Intermediate">Intermediate</option>
+                                    <option value="Advanced">Advanced</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hours" class="form-label">Hours available per week <span style="color: var(--primary);">*</span></label>
+                                <input type="number" id="hours" name="hours" class="form-input" min="1" max="20" placeholder="e.g., 10" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="goal" class="form-label">Learning Goal / Objective (Optional)</label>
+                            <textarea id="goal" name="goal" class="form-textarea" rows="3" placeholder="e.g., I want to build a portfolio website to get my first job as a frontend developer." maxlength="500"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="userEmail" class="form-label">Email Address (Optional - to save to your account)</label>
+                            <input type="email" id="userEmail" name="userEmail" class="form-input" placeholder="your@email.com">
+                        </div>
+
+                        <button type="submit" class="btn-primary submit-btn" style="width: 100%; justify-content: center; margin-top: 1rem;">
+                            <span class="btn-text">Generate Roadmap &rarr;</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-icon">&#9670;</span>
+                <span class="logo-text">TechPath</span>
+            </div>
+            <p class="footer-copy">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/roadmap-generator.js"></script>
+</body>
+</html>

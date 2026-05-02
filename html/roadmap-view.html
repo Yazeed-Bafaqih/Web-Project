@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Learning Roadmap — TechPath</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/roadmap.css">
+</head>
+<body class="page-load">
+    <div class="bg-mesh"></div>
+
+    <header class="site-header navbar-glass">
+        <div class="header-inner container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
+                <span class="logo-icon gradient-text" style="font-size: 1.5rem;">&#9670;</span>
+                <span class="logo-text gradient-text" style="font-weight: bold; font-size: 1.5rem;">TechPath</span>
+            </a>
+            <nav class="main-nav" aria-label="Main navigation" style="display: flex; gap: 1rem;">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="my-roadmaps.html">My Roadmaps</a></li>
+                    <li><a href="roadmap-generator.html" class="active gradient-text" style="font-weight: bold;">AI Generator</a></li>
+                    <li><a href="teams.html">Teams</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="roadmap-view-main container" style="padding: 2rem;">
+        <div id="loading-overlay" class="loading-overlay" style="display: none;">
+            <div class="loader-primary"></div>
+            <p style="color: var(--dark-muted); margin-top: 1rem;">Loading your roadmap...</p>
+        </div>
+
+        <div id="roadmap-content" style="display: none;">
+            <!-- Header Section -->
+            <section class="roadmap-header card-glass stagger-item" style="--i: 1; margin-bottom: 2rem; padding: 2rem;">
+                <div class="section-inner" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                    <div class="header-top">
+                        <span class="badge badge-primary" id="difficulty-level">Difficulty: -</span>
+                        <h1 id="roadmap-topic" class="gradient-text" style="margin: 0.5rem 0;">Roadmap Topic</h1>
+                        <p class="roadmap-meta" style="color: var(--dark-muted);">Estimated <span id="total-duration" style="color: var(--dark-text); font-weight: bold;">- weeks</span> to complete</p>
+                    </div>
+                    
+                    <div class="roadmap-actions" style="display: flex; gap: 1rem;">
+                        <button id="save-btn" class="btn-primary">Save to Profile</button>
+                        <button id="share-btn" class="btn-secondary">Share Link</button>
+                        <button id="print-btn" class="btn-secondary">Print</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Overview Section -->
+            <section class="roadmap-overview stagger-item" style="--i: 2; margin-bottom: 2rem;">
+                <div class="section-inner">
+                    <div class="overview-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+                        <div class="stat-card card-glass" style="text-align: center;">
+                            <span class="stat-num gradient-text" id="total-phases" style="font-size: 2rem; font-weight: bold; display: block;">-</span>
+                            <span class="stat-label" style="color: var(--dark-muted);">Total Phases</span>
+                        </div>
+                        <div class="stat-card card-glass" style="text-align: center;">
+                            <span class="stat-num gradient-text" id="total-hours" style="font-size: 2rem; font-weight: bold; display: block;">-</span>
+                            <span class="stat-label" style="color: var(--dark-muted);">Total Hours</span>
+                        </div>
+                        <div class="stat-card card-glass" style="text-align: center;">
+                            <span class="stat-num gradient-text" id="weekly-hours" style="font-size: 2rem; font-weight: bold; display: block;">-</span>
+                            <span class="stat-label" style="color: var(--dark-muted);">Weekly Commitment</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container card-glass">
+                        <div class="progress-header" style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <h3 style="margin: 0; font-size: 1.1rem;">Overall Progress</h3>
+                            <span id="progress-text" style="color: var(--primary-soft);">0% Complete</span>
+                        </div>
+                        <div class="progress-bar-bg" style="background: rgba(255,255,255,0.1); height: 12px; border-radius: 6px; overflow: hidden;">
+                            <div id="progress-bar" class="progress-bar-fill" style="background: var(--gradient-primary); height: 100%; width: 0%; transition: width 0.5s ease;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Content Area -->
+            <section class="roadmap-details stagger-item" style="--i: 3;">
+                <div class="section-inner details-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+                    
+                    <!-- Left Column: Phases (Timeline) -->
+                    <div class="phases-column">
+                        <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Learning Timeline</h2>
+                        <div id="phases-container" class="timeline-container">
+                            <!-- Phases generated dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Sidebar (Schedule & Extras) -->
+                    <aside class="sidebar-column" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div class="sidebar-card card-glass" id="weekly-schedule">
+                            <!-- Weekly schedule injected here -->
+                        </div>
+                        
+                        <div class="sidebar-card card-glass" id="prerequisites">
+                            <!-- Prerequisites injected here -->
+                        </div>
+                        
+                        <div class="sidebar-card card-glass" id="next-steps">
+                            <!-- Next steps injected here -->
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../js/roadmap-view.js"></script>
+</body>
+</html>

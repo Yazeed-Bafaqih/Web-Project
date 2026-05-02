@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us — TechPath</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/contact.css" />
+</head>
+<body class="page-load">
+    <div class="bg-mesh"></div>
+
+    <header class="site-header navbar-glass">
+        <div class="header-inner container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
+                <span class="logo-icon gradient-text" style="font-size: 1.5rem;">&#9670;</span>
+                <span class="logo-text gradient-text" style="font-weight: bold; font-size: 1.5rem;">TechPath</span>
+            </a>
+            <nav class="main-nav" aria-label="Main navigation" style="display: flex; gap: 1rem;">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="field.html">Explore</a></li>
+                    <li><a href="teams.html">Teams</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact-us.html" class="active gradient-text" style="font-weight: bold;">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+    <main>
+
+        <section class="page-hero container stagger-item" aria-labelledby="contact-title" style="--i: 1; padding: 4rem 2rem; text-align: center;">
+            <div class="section-inner floating">
+                <p class="hero-eyebrow" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">We'd Love to Hear From You!!!!</p>
+                <h1 id="contact-title" class="gradient-text" style="font-size: 3rem; margin-bottom: 1.5rem;">Contact Us</h1>
+                <p class="page-hero-desc" style="color: var(--dark-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                    Have a question, suggestion, or feedback? Fill in the form below
+                    and we'll get back to you as soon as possible.
+                </p>
+            </div>
+        </section>
+
+        <section class="contact-section container stagger-item" aria-labelledby="form-title" style="--i: 2; margin-bottom: 4rem;">
+            <div class="section-inner contact-layout" style="display: grid; grid-template-columns: 1fr 2fr; gap: 3rem;">
+
+                <!-- Contact Info Aside -->
+                <aside class="contact-info card-glass" aria-label="Contact information" style="align-self: start;">
+                    <h2 id="contact-info-title" style="margin-bottom: 1.5rem; color: var(--primary);">Get in Touch</h2>
+                    <ul class="info-list" style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem;">
+                        <li style="display: flex; gap: 1rem; align-items: start;">
+                            <span class="info-icon" aria-hidden="true" style="color: var(--primary-bright); font-size: 1.2rem;">&#9670;</span>
+                            <div>
+                                <strong style="color: var(--dark-text); display: block; margin-bottom: 0.25rem;">University</strong>
+                                <p style="color: var(--dark-muted); margin: 0;">University of Jeddah<br />College of Computer Science</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 1rem; align-items: start;">
+                            <span class="info-icon" aria-hidden="true" style="color: var(--primary-bright); font-size: 1.2rem;">&#9670;</span>
+                            <div>
+                                <strong style="color: var(--dark-text); display: block; margin-bottom: 0.25rem;">Department</strong>
+                                <p style="color: var(--dark-muted); margin: 0;">Software Engineering<br />CCSW321 — Web Development</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 1rem; align-items: start;">
+                            <span class="info-icon" aria-hidden="true" style="color: var(--primary-bright); font-size: 1.2rem;">&#9670;</span>
+                            <div>
+                                <strong style="color: var(--dark-text); display: block; margin-bottom: 0.25rem;">Response Time</strong>
+                                <p style="color: var(--dark-muted); margin: 0;">We typically respond within 24 hours.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Contact Form -->
+                <div class="form-container card-glass">
+                    <h2 id="form-title" class="sr-only">Contact Form</h2>
+
+                    <div id="form-success" class="form-success" role="alert" aria-live="polite" style="background: rgba(16, 185, 129, 0.1); color: var(--success); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; border: 1px solid var(--success); display: none;">
+                        <span aria-hidden="true" style="margin-right: 0.5rem;">&#10003;</span>
+                        <p style="display: inline; margin: 0;">Your message has been sent successfully! We'll be in touch soon.</p>
+                    </div>
+
+                    <form
+                        id="contact-form"
+                        action="/backend/contact.js"
+                        method="POST"
+                        novalidate
+                        aria-labelledby="form-title"
+                    >
+
+                        <div class="form-row">
+                            <!-- First Name -->
+                            <div class="form-group">
+                                <label for="first-name">First Name <span class="required" aria-hidden="true">*</span></label>
+                                <input
+                                    type="text"
+                                    id="first-name"
+                                    name="first_name"
+                                    placeholder="Ahmed"
+                                    required
+                                    minlength="2"
+                                    maxlength="50"
+                                    pattern="[A-Za-z\u0600-\u06FF\s]+"
+                                    autocomplete="given-name"
+                                    aria-required="true"
+                                    aria-describedby="first-name-error"
+                                />
+                                <span class="field-error" id="first-name-error" role="alert" aria-live="polite"></span>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="form-group">
+                                <label for="last-name">Last Name <span class="required" aria-hidden="true">*</span></label>
+                                <input
+                                    type="text"
+                                    id="last-name"
+                                    name="last_name"
+                                    placeholder="Alnahari"
+                                    required
+                                    minlength="2"
+                                    maxlength="50"
+                                    pattern="[A-Za-z\u0600-\u06FF\s\-]+"
+                                    autocomplete="family-name"
+                                    aria-required="true"
+                                    aria-describedby="last-name-error"
+                                />
+                                <span class="field-error" id="last-name-error" role="alert" aria-live="polite"></span>
+                            </div>
+                        </div>
+
+                        <!-- Gender -->
+                        <fieldset class="form-group form-fieldset">
+                            <legend>Gender <span class="required" aria-hidden="true">*</span></legend>
+                            <div class="radio-group" role="radiogroup" aria-required="true" aria-describedby="gender-error">
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="female" required />
+                                    <span>Female</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="male" required />
+                                    <span>Male</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="prefer_not" required />
+                                    <span>Prefer not to say</span>
+                                </label>
+                            </div>
+                            <span class="field-error" id="gender-error" role="alert" aria-live="polite"></span>
+                        </fieldset>
+
+                        <!-- Mobile -->
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number <span class="required" aria-hidden="true">*</span></label>
+                            <input
+                                type="tel"
+                                id="mobile"
+                                name="mobile"
+                                placeholder="+966 5X XXX XXXX"
+                                required
+                                maxlength="20"
+                                pattern="^\+?[0-9\s\-]{7,20}$"
+                                autocomplete="tel"
+                                aria-required="true"
+                                aria-describedby="mobile-error"
+                            />
+                            <span class="field-error" id="mobile-error" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <!-- Date of Birth -->
+                        <div class="form-group">
+                            <label for="dob">Date of Birth <span class="required" aria-hidden="true">*</span></label>
+                            <input
+                                type="date"
+                                id="dob"
+                                name="dob"
+                                required
+                                max="2008-12-31"
+                                min="1950-01-01"
+                                autocomplete="bday"
+                                aria-required="true"
+                                aria-describedby="dob-error"
+                            />
+                            <span class="field-error" id="dob-error" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="sara@example.com"
+                                required
+                                maxlength="100"
+                                autocomplete="email"
+                                aria-required="true"
+                                aria-describedby="email-error"
+                            />
+                            <span class="field-error" id="email-error" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <!-- Language -->
+                        <div class="form-group">
+                            <label for="language">Preferred Language of Communication <span class="required" aria-hidden="true">*</span></label>
+                            <select
+                                id="language"
+                                name="language"
+                                required
+                                aria-required="true"
+                                aria-describedby="language-error"
+                            >
+                                <option value="" disabled selected>Select a language</option>
+                                <option value="arabic">Arabic (العربية)</option>
+                                <option value="english">English</option>
+                                <option value="french">French (Français)</option>
+                                <option value="urdu">Urdu (اردو)</option>
+                            </select>
+                            <span class="field-error" id="language-error" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="form-group">
+                            <label for="message">Your Message <span class="required" aria-hidden="true">*</span></label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="Tell us what's on your mind..."
+                                required
+                                minlength="10"
+                                maxlength="1000"
+                                rows="5"
+                                aria-required="true"
+                                aria-describedby="message-error message-count"
+                            ></textarea>
+                            <div class="textarea-footer">
+                                <span class="field-error" id="message-error" role="alert" aria-live="polite"></span>
+                                <span class="char-count" id="message-count" aria-live="polite">0 / 1000</span>
+                            </div>
+                        </div>
+
+                        </div>
+
+                        <button type="submit" class="btn-primary submit-btn" style="width: 100%;">
+                            Send Message &rarr;
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-icon">&#9670;</span>
+                <span class="logo-text">TechPath</span>
+            </div>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index.html">Home</a>
+                <a href="field.html">Explore</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact-us.html">Contact</a>
+            </nav>
+            <p class="footer-copy">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/contact-validation.js"></script>
+</body>
+</html>

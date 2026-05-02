@@ -1,0 +1,279 @@
+/* ============================================================
+   TechPath — index.css (Homepage Styles)
+   CCSW321 Web Development — University of Jeddah 2025-2026
+   ============================================================ */
+
+/* ── Hero ──────────────────────────────────────────────────── */
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 7rem 0 5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+/* Subtle grid background */
+.hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(91,141,246,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,141,246,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(ellipse 70% 80% at 20% 50%, black 20%, transparent 80%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 580px;
+}
+
+.hero h1 {
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    margin: 0.5rem 0 1.25rem;
+    letter-spacing: -0.01em;
+}
+
+.hero-accent {
+    background: linear-gradient(135deg, var(--clr-accent) 0%, var(--clr-accent-2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-desc {
+    color: var(--clr-muted);
+    font-size: 1.1rem;
+    max-width: 50ch;
+    margin-bottom: 2rem;
+    line-height: 1.75;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* Hero Stats Aside */
+.hero-stats {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.stat-card {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.75rem;
+    text-align: center;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.stat-card:hover {
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 20px rgba(91, 141, 246, 0.12);
+}
+
+.stat-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--clr-accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-muted);
+}
+
+/* ── Fields Section ────────────────────────────────────────── */
+.fields-section {
+    padding: 6rem 0;
+    border-top: 1px solid var(--clr-border);
+}
+
+.fields-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.field-card {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.field-card:hover {
+    border-color: var(--clr-accent);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(91, 141, 246, 0.1);
+    transform: translateY(-2px);
+}
+
+.field-card--ai:hover {
+    border-color: var(--clr-accent-2);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(167, 139, 250, 0.1);
+}
+
+.field-card-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--clr-surface-2);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-accent);
+    flex-shrink: 0;
+}
+
+.field-card--ai .field-card-icon { color: var(--clr-accent-2); }
+
+.field-card-body { flex: 1; }
+
+.field-card-body h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.65rem;
+}
+
+.field-card-body p {
+    font-size: 0.93rem;
+    color: var(--clr-muted);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+}
+
+.field-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.field-tags li {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.65rem;
+    background: var(--clr-surface-2);
+    border: 1px solid var(--clr-border);
+    border-radius: 99px;
+    color: var(--clr-muted);
+}
+
+.field-card-link.btn { align-self: flex-start; }
+
+/* ── How It Works ──────────────────────────────────────────── */
+.how-section {
+    padding: 6rem 0;
+    border-top: 1px solid var(--clr-border);
+}
+
+.steps-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    counter-reset: none;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.75rem;
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition);
+}
+
+.step:hover { border-color: var(--clr-border); }
+
+.step-num {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--clr-accent);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.step-body h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+}
+
+.step-body p {
+    font-size: 0.9rem;
+    color: var(--clr-muted);
+    line-height: 1.65;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 992px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+        text-align: center;
+    }
+
+    .hero-content { max-width: 100%; }
+    .hero-desc { max-width: 100%; }
+    .hero-actions { justify-content: center; }
+
+    .hero-stats {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .hero-bg-grid {
+        mask-image: radial-gradient(ellipse 90% 60% at 50% 30%, black 20%, transparent 80%);
+    }
+
+    .steps-list { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+@media (max-width: 768px) {
+    .fields-grid { grid-template-columns: 1fr; }
+
+    .hero-stats { flex-wrap: wrap; }
+
+    .stat-card { flex: 1; min-width: 100px; }
+}
+
+@media (max-width: 576px) {
+    .hero { padding-top: 3.5rem; padding-bottom: 3rem; }
+
+    .hero h1 { font-size: 2.4rem; }
+
+    .hero-stats { gap: 0.75rem; }
+
+    .field-card { padding: 1.5rem; }
+
+    .steps-list { gap: 0.75rem; }
+
+    .step { padding: 1.25rem; }
+}
