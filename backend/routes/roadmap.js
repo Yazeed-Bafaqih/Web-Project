@@ -8,37 +8,57 @@ const generateRoadmap = require('../generate-roadmap');
 const memoryDb = new Map();
 
 // Dummy Roadmap Generator (Fallback if Claude fails during testing)
-function getDummyRoadmap(topic, level, hours) {
+function getDummyRoadmap(topic, level, hours, durationWeeks) {
+  let rem = durationWeeks;
+  const dur0 = Math.ceil(rem / 3);
+  rem -= dur0;
+  const dur1 = Math.ceil(rem / 2);
+  const dur2 = rem - dur1;
+  const dur = [dur0, dur1, dur2];
+
   return {
     "topic": topic,
-    "total_duration_weeks": 8,
+    "total_duration_weeks": durationWeeks,
     "difficulty_rating": level === 'Beginner' ? 3 : level === 'Intermediate' ? 6 : 8,
     "phases": [
       {
         "phase_number": 1,
-        "phase_name": `Introduction to ${topic}`,
-        "duration_weeks": 2,
+        "phase_name": `Foundation — ${topic}`,
+        "duration_weeks": dur[0],
         "description": `Get started with the fundamentals of ${topic} at a ${level} level.`,
-        "topics": ["Core concepts", "Setup & Tools", "Basic Syntax/Theory"],
+        "topics": ["Core concepts", "Setup & tools", "Essential syntax or theory"],
         "resources": [
           {"type": "course", "title": `${topic} for ${level}s`, "url": "https://developer.mozilla.org"}
         ],
-        "milestones": ["Set up your environment", "Complete your first Hello World"],
-        "exercises": ["Write your first script", "Read the documentation"],
-        "estimated_hours": hours * 2
+        "milestones": ["Set up your environment", "Complete your first guided exercise"],
+        "exercises": ["Practice basics daily", "Read official docs"],
+        "estimated_hours": hours * dur[0]
       },
       {
         "phase_number": 2,
-        "phase_name": "Building Real Projects",
-        "duration_weeks": 6,
-        "description": "Apply your knowledge by building practical applications.",
-        "topics": ["Advanced structures", "Best Practices", "Deployment"],
+        "phase_name": `Practice & projects — ${topic}`,
+        "duration_weeks": dur[1],
+        "description": "Apply concepts with structured projects.",
+        "topics": ["Intermediate patterns", "Debugging", "Tooling"],
         "resources": [
-          {"type": "video", "title": "Build a Project from Scratch", "url": "https://youtube.com"}
+          {"type": "video", "title": "Guided mini-projects", "url": "https://youtube.com"}
         ],
-        "milestones": ["Finish main project", "Deploy to production"],
-        "exercises": ["Refactor code", "Add unit tests"],
-        "estimated_hours": hours * 6
+        "milestones": ["Ship two small projects", "Peer review or self-review"],
+        "exercises": ["Iterate on feedback", "Add tests where applicable"],
+        "estimated_hours": hours * dur[1]
+      },
+      {
+        "phase_number": 3,
+        "phase_name": `Consolidate & stretch — ${topic}`,
+        "duration_weeks": dur[2],
+        "description": "Deepen mastery and prepare real-world outputs.",
+        "topics": ["Best practices", "Deployment or integration", "Portfolio piece"],
+        "resources": [
+          {"type": "article", "title": "Production readiness checklist", "url": "https://developer.mozilla.org"}
+        ],
+        "milestones": ["Ship a capstone project", "Document what you learned"],
+        "exercises": ["Optimize and refactor", "Present or deploy"],
+        "estimated_hours": hours * dur[2]
       }
     ],
     "weekly_schedule": {
@@ -55,25 +75,44 @@ function getDummyRoadmap(topic, level, hours) {
 // Generate new roadmap
 router.post('/generate', async (req, res) => {
   try {
-    const { topic, level, hours, goal, userEmail } = req.body;
-    
-    if (!topic || !level || !hours) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    const { topic, level, hours, durationWeeks, sessionId } = req.body;
+
+    const sidRaw = typeof sessionId === 'string' ? sessionId.trim() : '';
+    const uuidOk =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+        sidRaw
+      );
+
+    if (!uuidOk) {
+      return res.status(400).json({
+        error: 'Missing or invalid sessionId (use crypto.randomUUID in the browser)',
+      });
+    }
+
+    if (!topic || !level || String(topic).trim().length < 3) {
+      return res.status(400).json({ error: 'Missing or invalid topic/level' });
+    }
+
+    const weeks = parseInt(durationWeeks, 10);
+    const hrs = parseInt(hours, 10);
+    if (Number.isNaN(weeks) || weeks < 3 || weeks > 52) {
+      return res.status(400).json({ error: 'durationWeeks must be between 3 and 52' });
+    }
+    if (Number.isNaN(hrs) || hrs < 1 || hrs > 15) {
+      return res.status(400).json({ error: 'hours must be between 1 and 15' });
     }
     
-    console.log(`\n🎯 API Request: Generate roadmap for [${topic}], Level: [${level}], Hours: [${hours}]`);
+    console.log(`\n🎯 API Request: [${topic}] Level: [${level}] Hours/wk: [${hrs}] Duration: [${weeks}w]`);
     
     let roadmapData;
     
     try {
-      // Try to call Claude API
-      roadmapData = await generateRoadmap(topic, level, hours, goal);
+      roadmapData = await generateRoadmap(topic, level, hrs, weeks);
     } catch (apiError) {
       console.error("⚠️ Claude API failed. Falling back to dummy data so you can test the UI!");
       console.error(apiError.message);
       
-      // Fallback
-      roadmapData = getDummyRoadmap(topic, level, hours);
+      roadmapData = getDummyRoadmap(topic, level, hrs, weeks);
     }
     
     // Save to IN-MEMORY Database
@@ -82,9 +121,9 @@ router.post('/generate', async (req, res) => {
       _id: roadmapId,
       topic,
       level,
-      hoursPerWeek: hours,
-      goal,
-      userEmail,
+      hoursPerWeek: hrs,
+      durationWeeks: weeks,
+      sessionId: sidRaw,
       roadmapData,
       progress: 0,
       createdAt: new Date(),
@@ -110,25 +149,39 @@ router.post('/generate', async (req, res) => {
   }
 });
 
-// Get saved roadmaps
+// Get saved roadmaps (scoped: email filter overrides session filter)
 router.get('/my-roadmaps', async (req, res) => {
   try {
-    const { email } = req.query;
-    
-    // Convert Map values to array
+    const { email, sessionId } = req.query;
+
     let allRoadmaps = Array.from(memoryDb.values());
-    
-    // Filter by email if provided
-    if (email) {
-      allRoadmaps = allRoadmaps.filter(r => r.userEmail === email);
+
+    const emailTrim =
+      typeof email === 'string' && email.includes('@')
+        ? email.trim()
+        : '';
+
+    const sidTrim =
+      typeof sessionId === 'string' &&
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+        sessionId.trim()
+      )
+        ? sessionId.trim()
+        : '';
+
+    if (emailTrim) {
+      allRoadmaps = allRoadmaps.filter((r) => r.userEmail === emailTrim);
+    } else if (sidTrim) {
+      allRoadmaps = allRoadmaps.filter((r) => r.sessionId === sidTrim);
+    } else {
+      allRoadmaps = [];
     }
-    
-    // Sort by newest
+
     allRoadmaps.sort((a, b) => b.createdAt - a.createdAt);
-    
-    res.json({ 
-      success: true, 
-      roadmaps: allRoadmaps
+
+    res.json({
+      success: true,
+      roadmaps: allRoadmaps,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });

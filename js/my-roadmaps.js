@@ -1,21 +1,51 @@
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'http://localhost:3000/api'; // Change if deployed
+
+function ensureRoadmapSessionId() {
+  const key = 'techpath_roadmap_session';
+  let id = localStorage.getItem(key);
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem(key, id);
+  }
+  return id;
+}
+
+function buildRoadmapsListUrl(emailFromInput) {
+  const params = new URLSearchParams();
+  const email = (typeof emailFromInput === 'string' ? emailFromInput : '')
+    .trim();
+
+  if (email && email.includes('@')) {
+    params.set('email', email);
+  } else {
+    const sid = ensureRoadmapSessionId();
+    params.set('sessionId', sid);
+  }
+
+  return `${API_BASE_URL}/roadmap/my-roadmaps?${params.toString()}`;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
+  ensureRoadmapSessionId();
+
   const emailInput = document.getElementById('filterEmail');
   const storedEmail = localStorage.getItem('userEmail');
-  
-  if(emailInput && storedEmail) {
+
+  if (emailInput && storedEmail) {
     emailInput.value = storedEmail;
   }
 
-  loadUserRoadmaps(storedEmail);
+  const firstFilter = emailInput?.value?.trim?.() || '';
+  loadUserRoadmaps(
+    firstFilter.includes('@') ? firstFilter : undefined
+  );
 
   document.getElementById('loadRoadmapsBtn')?.addEventListener('click', () => {
     const email = document.getElementById('filterEmail').value.trim();
-    if(email) {
+    if (email && email.includes('@')) {
       localStorage.setItem('userEmail', email);
     }
-    loadUserRoadmaps(email);
+    loadUserRoadmaps(email && email.includes('@') ? email : undefined);
   });
 });
 
@@ -23,21 +53,21 @@ async function loadUserRoadmaps(email) {
   const loading = document.getElementById('loading-roadmaps');
   const grid = document.getElementById('roadmaps-grid');
   const emptyState = document.getElementById('empty-state');
-  
+
   loading.style.display = 'block';
   grid.style.display = 'none';
   emptyState.style.display = 'none';
   grid.innerHTML = '';
 
   try {
-    let url = `${API_BASE_URL}/roadmap/my-roadmaps`;
-    if(email) {
-      url += `?email=${encodeURIComponent(email)}`;
-    }
-    
+    const url =
+      typeof email === 'string' && email.includes('@')
+        ? buildRoadmapsListUrl(email)
+        : buildRoadmapsListUrl('');
+
     const response = await fetch(url);
     const result = await response.json();
-    
+
     if (!result.success) throw new Error('Failed to fetch roadmaps');
 
     const roadmaps = result.roadmaps;
@@ -46,11 +76,10 @@ async function loadUserRoadmaps(email) {
       emptyState.style.display = 'block';
     } else {
       grid.style.display = 'grid';
-      roadmaps.forEach(roadmap => {
+      roadmaps.forEach((roadmap) => {
         grid.appendChild(createRoadmapCard(roadmap));
       });
     }
-
   } catch (error) {
     console.error('Error fetching roadmaps:', error);
     emptyState.style.display = 'block';
@@ -64,10 +93,10 @@ function createRoadmapCard(roadmap) {
   const card = document.createElement('div');
   card.className = 'dashboard-card card-glass stagger-item';
   card.style.setProperty('--i', Math.random());
-  
+
   const dateStr = new Date(roadmap.createdAt).toLocaleDateString();
   const progress = roadmap.progress || 0;
-  
+
   card.innerHTML = `
     <div class="card-header" style="display: flex; justify-content: space-between; margin-bottom: 12px;">
       <span class="badge badge-primary">${roadmap.level}</span>
@@ -92,19 +121,18 @@ function createRoadmapCard(roadmap) {
   return card;
 }
 
-window.deleteRoadmap = async function(id) {
-  if(!confirm('Are you sure you want to delete this roadmap?')) return;
-  
+window.deleteRoadmap = async function (id) {
+  if (!confirm('Are you sure you want to delete this roadmap?')) return;
+
   try {
     const response = await fetch(`${API_BASE_URL}/roadmap/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
     });
     const result = await response.json();
-    
-    if(result.success) {
-      // Reload
+
+    if (result.success) {
       const email = document.getElementById('filterEmail').value.trim();
-      loadUserRoadmaps(email);
+      loadUserRoadmaps(email && email.includes('@') ? email : undefined);
     } else {
       alert('Failed to delete');
     }
@@ -112,4 +140,4 @@ window.deleteRoadmap = async function(id) {
     console.error(err);
     alert('Failed to delete roadmap');
   }
-}
+};

@@ -1,35 +1,47 @@
 const API_BASE_URL = 'http://localhost:3000/api'; // Change to absolute or relative if deployed
 
+function ensureRoadmapSessionId() {
+  const key = 'techpath_roadmap_session';
+  let id = localStorage.getItem(key);
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem(key, id);
+  }
+  return id;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  ensureRoadmapSessionId();
   const form = document.getElementById('roadmap-form');
   
   if(form) {
-    // Check if there's a stored email to pre-fill
-    const storedEmail = localStorage.getItem('userEmail');
-    if (storedEmail) {
-      const emailInput = document.getElementById('userEmail');
-      if (emailInput) emailInput.value = storedEmail;
+    const hoursSlider = document.getElementById('hours');
+    const hoursValueEl = document.getElementById('hours-value');
+
+    function syncHoursLabel() {
+      if (!hoursSlider || !hoursValueEl) return;
+      const v = hoursSlider.value;
+      hoursValueEl.textContent = v + '\u00a0hrs/wk';
+      hoursSlider.setAttribute('aria-valuenow', v);
     }
+
+    hoursSlider?.addEventListener('input', syncHoursLabel);
+    syncHoursLabel();
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      // Get form values
+      const durationWeeks = parseInt(document.getElementById('durationWeeks').value, 10);
+
       const formData = {
         topic: document.getElementById('topic').value.trim(),
         level: document.getElementById('level').value,
-        hours: parseInt(document.getElementById('hours').value),
-        goal: document.getElementById('goal').value.trim(),
-        userEmail: document.getElementById('userEmail').value.trim()
+        hours: parseInt(hoursSlider.value, 10),
+        durationWeeks,
+        sessionId: ensureRoadmapSessionId(),
       };
       
-      // Validate
       if (!validateForm(formData)) return;
-
-      // Save email if provided
-      if (formData.userEmail) {
-        localStorage.setItem('userEmail', formData.userEmail);
-      }
       
       // Show loading state
       showLoadingState();
@@ -67,8 +79,16 @@ function validateForm(data) {
     showError('Please enter a valid topic (at least 3 characters)');
     return false;
   }
-  if (data.hours < 1 || data.hours > 20) {
-    showError('Hours per week must be between 1 and 20');
+  if (!data.level) {
+    showError('Please select your current skill level');
+    return false;
+  }
+  if (Number.isNaN(data.hours) || data.hours < 1 || data.hours > 15) {
+    showError('Hours per week must be between 1 and 15');
+    return false;
+  }
+  if (Number.isNaN(data.durationWeeks) || data.durationWeeks < 3 || data.durationWeeks > 52) {
+    showError('Duration must be between 3 and 52 weeks');
     return false;
   }
   return true;
@@ -85,7 +105,7 @@ function hideLoadingState() {
   const submitBtn = document.querySelector('.submit-btn');
   if(!submitBtn) return;
   submitBtn.disabled = false;
-  submitBtn.innerHTML = 'Generate Roadmap';
+  submitBtn.innerHTML = '<span class="btn-text">Generate Roadmap &rarr;</span>';
 }
 
 function showError(message) {

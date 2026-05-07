@@ -56,34 +56,32 @@
                             <input type="text" id="topic" name="topic" class="form-input" placeholder="e.g., Full-Stack Web Development, Machine Learning, React.js" required maxlength="100">
                         </div>
 
-                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                            <div class="form-group">
-                                <label for="level" class="form-label">Current Skill Level <span class="required">*</span></label>
-                                <select id="level" name="level" class="form-select" required>
-                                    <option value="" disabled selected>Select your level</option>
-                                    <option value="Beginner">Beginner</option>
-                                    <option value="Intermediate">Intermediate</option>
-                                    <option value="Advanced">Advanced</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="hours" class="form-label">Hours available per week <span class="required">*</span></label>
-                                <input type="number" id="hours" name="hours" class="form-input" min="1" max="20" placeholder="e.g., 10" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="level" class="form-label">Current skill level <span class="required">*</span></label>
+                            <select id="level" name="level" class="form-select" required>
+                                <option value="" disabled selected>Select your level</option>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="goal" class="form-label">Learning Goal / Objective (Optional)</label>
-                            <textarea id="goal" name="goal" class="form-textarea" rows="3" placeholder="e.g., I want to build a portfolio website to get my first job as a frontend developer." maxlength="500"></textarea>
+                            <div class="form-range-header">
+                                <label for="hours" id="hours-label" class="form-label">Hours available per week <span class="required">*</span></label>
+                                <span class="form-range-value" id="hours-value" aria-live="polite">8&nbsp;hrs/wk</span>
+                            </div>
+                            <input type="range" id="hours" name="hours" class="form-range" min="1" max="15" step="1" value="8" required aria-valuemin="1" aria-valuemax="15" aria-valuenow="8" aria-labelledby="hours-label hours-value">
+                            <div class="form-range-labels"><span>1 hr</span><span>15 hr</span></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="userEmail" class="form-label">Email Address (Optional - to save to your account)</label>
-                            <input type="email" id="userEmail" name="userEmail" class="form-input" placeholder="your@email.com">
+                            <label for="durationWeeks" class="form-label">Roadmap duration (weeks) <span class="required">*</span></label>
+                            <input type="number" id="durationWeeks" name="durationWeeks" class="form-input" min="3" max="52" value="12" required inputmode="numeric">
+                            <p class="form-hint">Total timeline for all three phases (3–52 weeks).</p>
                         </div>
 
-                        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
+                        <button type="submit" class="btn-primary submit-btn" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
                             <span class="btn-text">Generate Roadmap &rarr;</span>
                         </button>
                     </form>
