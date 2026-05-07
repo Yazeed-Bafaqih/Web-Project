@@ -1,33 +1,34 @@
 /* ============================================================
-   TechPath — roadmap.css (Roadmap Feature Styles)
+   TechPath — roadmap.css (Roadmap Feature — Dark Glassmorphism)
    ============================================================ */
 
 /* ── 1. Generator Form ─────────────────────────────────────── */
 .generator-section {
-    padding: 3rem 0 5rem;
+    padding: 3rem 0 6rem;
 }
 
 .generator-container {
-    max-width: 700px;
+    max-width: 720px;
     margin: 0 auto;
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    padding: 2.5rem;
+    padding: 3rem;
     box-shadow: var(--shadow-md);
+    backdrop-filter: blur(16px);
 }
 
 .roadmap-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.75rem;
 }
 
 /* Spinner */
 .spinner {
-    border: 3px solid rgba(255,255,255,0.3);
+    border: 3px solid rgba(255,255,255,0.15);
     border-radius: 50%;
-    border-top: 3px solid #fff;
+    border-top: 3px solid var(--primary);
     width: 20px;
     height: 20px;
     -webkit-animation: spin 1s linear infinite;
@@ -44,19 +45,19 @@
 .loading-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(13, 15, 20, 0.9);
+    background: rgba(18, 18, 18, 0.92);
     z-index: 1000;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: var(--clr-text);
-    gap: 1rem;
+    gap: 1.25rem;
 }
 .loading-overlay .spinner {
     width: 50px;
     height: 50px;
-    border-width: 5px;
+    border-width: 4px;
     border-top-color: var(--clr-accent);
 }
 
@@ -66,8 +67,8 @@
     right: 2rem;
     background: var(--clr-danger);
     color: #fff;
-    padding: 1rem 1.5rem;
-    border-radius: var(--radius-sm);
+    padding: 1.15rem 1.75rem;
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
     z-index: 1001;
     display: none;
@@ -76,39 +77,40 @@
 
 /* ── 2. Roadmap View Header & Overview ─────────────────────── */
 .roadmap-view-main {
-    padding-bottom: 5rem;
+    padding-bottom: 6rem;
 }
 
 .roadmap-header {
-    background: var(--clr-surface);
-    border-bottom: 1px solid var(--clr-border);
-    padding: 3rem 0 2rem;
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 3.5rem 0 2.5rem;
 }
 
 .header-top {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 #roadmap-topic {
     font-size: clamp(2rem, 4vw, 3rem);
     margin: 1rem 0;
-    background: linear-gradient(to right, var(--clr-accent), var(--clr-accent-2));
+    background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .badge {
     display: inline-block;
-    padding: 0.25rem 0.75rem;
+    padding: 0.3rem 0.85rem;
     border-radius: 999px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.78rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
 }
 
-.badge-accent { background: rgba(255, 94, 0, 0.15); color: var(--clr-accent); }
+.badge-accent { background: rgba(0, 229, 204, 0.15); color: var(--primary); }
 .badge-success { background: rgba(52, 211, 153, 0.15); color: var(--clr-success); }
 .badge-warning { background: rgba(251, 191, 36, 0.15); color: var(--clr-warning); }
 .badge-danger { background: rgba(248, 113, 113, 0.15); color: var(--clr-danger); }
@@ -116,94 +118,101 @@
 .roadmap-actions {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.25rem;
     flex-wrap: wrap;
 }
 
 .roadmap-overview {
-    padding: 2rem 0;
+    padding: 2.5rem 0;
 }
 
 .overview-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .stat-card {
-    background: var(--clr-surface-2);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.6rem;
+    backdrop-filter: blur(12px);
 }
 
 .stat-num {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 2.5rem;
+    font-weight: 900;
     font-family: var(--font-display);
-    color: var(--clr-text);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .stat-label {
     color: var(--clr-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    font-weight: 700;
 }
 
 .progress-container {
-    background: var(--clr-surface-2);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    backdrop-filter: blur(12px);
 }
 
 .progress-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .progress-bar-bg {
     height: 12px;
-    background: var(--clr-bg);
+    background: rgba(255, 255, 255, 0.06);
     border-radius: 999px;
     overflow: hidden;
 }
 
 .progress-bar-fill {
     height: 100%;
-    background: var(--clr-accent);
+    background: var(--gradient-primary);
     transition: width 0.5s ease, background-color 0.3s ease;
+    border-radius: 999px;
 }
 
 /* ── 3. Roadmap Details (Timeline & Sidebar) ───────────────── */
 .roadmap-details {
-    padding: 2rem 0;
+    padding: 2.5rem 0;
 }
 
 .details-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 2.5rem;
+    gap: 3rem;
     align-items: start;
 }
 
 .phases-column h2 {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     font-size: 1.8rem;
 }
 
 .timeline-container {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
     position: relative;
 }
 .timeline-container::before {
@@ -211,47 +220,48 @@
     position: absolute;
     top: 0; left: 1.5rem; bottom: 0;
     width: 2px;
-    background: var(--clr-border);
+    background: var(--glass-border);
     z-index: 0;
 }
 
 .phase-card {
-    background: var(--clr-surface-2);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-md);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
     position: relative;
     z-index: 1;
-    margin-left: 3rem;
-    transition: box-shadow var(--transition);
+    margin-left: 3.5rem;
+    transition: all var(--transition);
+    backdrop-filter: blur(12px);
 }
 .phase-card::before {
     content: '';
     position: absolute;
-    top: 1.5rem; left: -1.8rem;
+    top: 1.75rem; left: -2rem;
     width: 1rem; height: 1rem;
-    background: var(--clr-surface-2);
-    border: 2px solid var(--clr-accent);
+    background: var(--bg-main);
+    border: 2px solid var(--primary);
     border-radius: 50%;
 }
 
 .phase-card:hover {
-    box-shadow: var(--shadow-sm);
-    border-color: var(--clr-accent);
+    box-shadow: var(--shadow-sm), 0 0 15px rgba(0, 229, 204, 0.06);
+    border-color: rgba(0, 229, 204, 0.25);
 }
 
 .phase-header {
-    padding: 1.25rem 1.5rem;
+    padding: 1.5rem 2rem;
     cursor: pointer;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .phase-number {
     font-family: var(--font-mono);
-    color: var(--clr-accent);
-    font-weight: 600;
+    color: var(--primary);
+    font-weight: 700;
     font-size: 0.9rem;
 }
 
@@ -262,7 +272,7 @@
 
 .phase-name {
     font-size: 1.2rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 0.2rem;
 }
 
@@ -279,11 +289,11 @@
     padding: 0.5rem;
     transition: transform 0.3s ease, color var(--transition);
 }
-.phase-header:hover .toggle-btn { color: var(--clr-accent); }
+.phase-header:hover .toggle-btn { color: var(--primary); }
 
 .phase-content {
-    padding: 0 1.5rem 1.5rem;
-    border-top: 1px solid var(--clr-border);
+    padding: 0 2rem 2rem;
+    border-top: 1px solid var(--glass-border);
     display: block;
 }
 .phase-content.collapsed {
@@ -292,64 +302,65 @@
 
 .phase-description {
     color: var(--clr-text);
-    margin: 1rem 0;
+    margin: 1.25rem 0;
     font-size: 0.95rem;
+    line-height: 1.7;
 }
 
 .phase-section {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 .phase-section h4 {
     font-size: 1rem;
-    color: var(--clr-accent-2);
-    margin-bottom: 0.75rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
 }
 
 .topics-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.6rem;
 }
 
 .topic-tag {
-    background: rgba(255, 138, 0, 0.1);
-    color: var(--clr-accent-2);
-    padding: 0.3rem 0.6rem;
+    background: rgba(0, 229, 204, 0.1);
+    color: var(--primary);
+    padding: 0.35rem 0.75rem;
     border-radius: var(--radius-sm);
     font-size: 0.8rem;
-    border: 1px solid rgba(255, 138, 0, 0.2);
+    border: 1px solid rgba(0, 229, 204, 0.15);
 }
 
 .resources-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.6rem;
 }
 
 .resource-item {
     display: flex;
     align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.5rem;
-    background: rgba(255,255,255,0.03);
+    gap: 0.85rem;
+    padding: 0.6rem;
+    background: rgba(255, 255, 255, 0.02);
     border-radius: var(--radius-sm);
 }
 
 .resource-type {
     font-size: 0.7rem;
     text-transform: uppercase;
-    padding: 0.1rem 0.4rem;
+    padding: 0.15rem 0.5rem;
     border-radius: 4px;
-    font-weight: 600;
+    font-weight: 700;
     flex-shrink: 0;
     margin-top: 2px;
 }
-.type-video { background: #fee2e2; color: #ef4444; }
-.type-article { background: #e0e7ff; color: #4f46e5; }
-.type-course { background: #d1fae5; color: #059669; }
-.type-book { background: #fef3c7; color: #d97706; }
-.type-other { background: #f3f4f6; color: #4b5563; }
+.type-video { background: rgba(248, 113, 113, 0.15); color: #F87171; }
+.type-article { background: rgba(167, 139, 250, 0.15); color: #C4B5FD; }
+.type-course { background: rgba(52, 211, 153, 0.15); color: #6EE7B7; }
+.type-book { background: rgba(251, 191, 36, 0.15); color: #FCD34D; }
+.type-other { background: rgba(255, 255, 255, 0.08); color: var(--text-muted); }
 
 .resource-item a {
     font-size: 0.95rem;
@@ -358,19 +369,19 @@
     text-decoration-color: transparent;
     transition: text-decoration-color var(--transition);
 }
-.resource-item a:hover { text-decoration-color: var(--clr-accent); }
+.resource-item a:hover { text-decoration-color: var(--primary); }
 
 .milestones-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.85rem;
 }
 
 /* Custom Checkbox */
 .custom-checkbox {
     display: flex;
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: 0.85rem;
     cursor: pointer;
     position: relative;
 }
@@ -384,18 +395,18 @@
 }
 
 .checkmark {
-    height: 20px;
-    width: 20px;
-    background-color: var(--clr-bg);
-    border: 1px solid var(--clr-border);
-    border-radius: 4px;
+    height: 22px;
+    width: 22px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
     margin-top: 2px;
     position: relative;
-    transition: background-color var(--transition), border-color var(--transition);
+    transition: all var(--transition);
 }
 
 .custom-checkbox:hover input ~ .checkmark {
-    border-color: var(--clr-accent);
+    border-color: var(--primary);
 }
 
 .custom-checkbox input:checked ~ .checkmark {
@@ -407,8 +418,8 @@
     content: "";
     position: absolute;
     display: none;
-    left: 6px;
-    top: 2px;
+    left: 7px;
+    top: 3px;
     width: 5px;
     height: 10px;
     border: solid white;
@@ -427,22 +438,22 @@
 
 .milestone-text {
     font-size: 0.95rem;
-    line-height: 1.4;
+    line-height: 1.5;
     transition: color var(--transition);
 }
 
 .exercises-list li {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
     font-size: 0.95rem;
 }
 
 .phase-footer {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--clr-border);
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--glass-border);
     text-align: right;
 }
 
@@ -456,62 +467,63 @@
 .sidebar-column {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
     position: sticky;
-    top: 80px;
+    top: 100px;
 }
 
 .sidebar-card {
-    background: var(--clr-surface-2);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    backdrop-filter: blur(12px);
 }
 
 .sidebar-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--clr-border);
+    font-size: 1.15rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .schedule-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
 }
 
 .schedule-stat {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(255,255,255,0.03);
-    padding: 1rem;
-    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
 }
 
 .schedule-value {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--clr-accent);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary);
 }
 
 .schedule-days-section {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
 }
 
 .days-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.5rem;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
 }
 
 .day-tag {
-    background: var(--clr-bg);
-    border: 1px solid var(--clr-border);
-    padding: 0.2rem 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    padding: 0.25rem 0.6rem;
     border-radius: var(--radius-sm);
     font-size: 0.8rem;
     color: var(--clr-text);
@@ -520,7 +532,7 @@
 .sidebar-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.6rem;
 }
 
 .sidebar-list li {
@@ -541,7 +553,7 @@
     content: '→';
     position: absolute;
     left: 0;
-    color: var(--clr-accent);
+    color: var(--primary);
 }
 
 /* Responsive */
@@ -555,10 +567,10 @@
 }
 
 @media (max-width: 576px) {
-    .generator-container { padding: 1.5rem; }
-    .phase-card { margin-left: 1.5rem; }
-    .timeline-container::before { left: 0.5rem; }
-    .phase-card::before { left: -1.5rem; width: 0.8rem; height: 0.8rem; }
+    .generator-container { padding: 2rem 1.5rem; }
+    .phase-card { margin-left: 2rem; }
+    .timeline-container::before { left: 0.6rem; }
+    .phase-card::before { left: -1.6rem; width: 0.8rem; height: 0.8rem; }
     .phase-header { grid-template-columns: 1fr auto; }
     .phase-number { grid-column: 1 / -1; }
 }

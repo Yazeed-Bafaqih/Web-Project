@@ -14,15 +14,17 @@
     <div class="bg-mesh"></div>
 
     <header class="site-header navbar-glass">
-        <div class="header-inner container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
-            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
-                <span class="logo-icon gradient-text" style="font-size: 1.5rem;">&#9670;</span>
-                <span class="logo-text gradient-text" style="font-weight: bold; font-size: 1.5rem;">TechPath</span>
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#9670;</span>
+                <span class="logo-text">TechPath</span>
             </a>
-            <nav class="main-nav" aria-label="Main navigation" style="display: flex; gap: 1rem;">
+            <nav class="main-nav" aria-label="Main navigation">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="field.html" class="active gradient-text" style="font-weight: bold;">Explore</a></li>
+                    <li><a href="field.html" class="active">Explore</a></li>
+                    <li><a href="my-roadmaps.html">My Roadmaps</a></li>
+                    <li><a href="roadmap-generator.html">AI Generator</a></li>
                     <li><a href="teams.html">Teams</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                     <li><a href="contact-us.html">Contact</a></li>
@@ -36,18 +38,16 @@
 
     <main>
 
-    <main>
-
         <!-- Track Selector -->
-        <section class="page-hero container stagger-item" aria-labelledby="explore-title" style="--i: 1; padding: 4rem 2rem; text-align: center;">
+        <section class="page-hero stagger-item" aria-labelledby="explore-title" style="--i: 1;">
             <div class="section-inner floating">
-                <p class="hero-eyebrow" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Find Your Path</p>
-                <h1 id="explore-title" class="gradient-text" style="font-size: 3rem; margin-bottom: 1.5rem;">Explore Tech Fields</h1>
-                <p class="page-hero-desc" style="color: var(--dark-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem;">
+                <p class="hero-eyebrow">Find Your Path</p>
+                <h1 id="explore-title">Explore Tech <span class="gradient-text">Fields</span></h1>
+                <p class="page-hero-desc">
                     Select a field, take the level assessment, and unlock resources tailored exactly to where you are right now.
                 </p>
                 <!-- Track toggle -->
-                <div class="track-toggle card-glass" role="group" aria-label="Select a tech field" style="display: inline-flex; padding: 0.5rem; gap: 0.5rem; border-radius: var(--radius-full);">
+                <div class="track-toggle" role="group" aria-label="Select a tech field">
                     <button class="track-btn active" data-track="webdev" aria-pressed="true">
                         Web Development
                     </button>
@@ -59,12 +59,12 @@
         </section>
 
         <!-- Assessment Form -->
-        <section class="assessment-section container stagger-item" aria-labelledby="assessment-title" style="--i: 2; margin-bottom: 4rem;">
-            <div class="section-inner assess-layout" style="display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+        <section class="assessment-section stagger-item" aria-labelledby="assessment-title" style="--i: 2;">
+            <div class="section-inner assess-layout">
 
-                <div class="assess-form-wrap card-glass" style="max-width: 800px; width: 100%;">
-                    <h2 id="assessment-title" style="margin-bottom: 1rem; text-align: center;">Level Assessment</h2>
-                    <p class="assess-intro" style="color: var(--dark-muted); text-align: center; margin-bottom: 2rem;">Answer 4 quick questions honestly — the more accurate, the better your resources.</p>
+                <div class="assess-form-wrap card-glass">
+                    <h2 id="assessment-title">Level Assessment</h2>
+                    <p class="assess-intro">Answer 4 quick questions honestly — the more accurate, the better your resources.</p>
 
                     <form
                         id="assessment-form"
@@ -168,8 +168,8 @@
                         </fieldset>
 
                         <!-- Name for registration -->
-                        <div class="form-group register-group" style="margin-top: 2rem;">
-                            <label for="learner-name" class="form-label">Your Name (to save your progress) <span style="color: var(--primary);" aria-hidden="true">*</span></label>
+                        <div class="form-group register-group">
+                            <label for="learner-name" class="form-label">Your Name <span class="required" aria-hidden="true">*</span></label>
                             <input
                                 type="text"
                                 id="learner-name"
@@ -186,22 +186,22 @@
                             <span class="field-error" id="name-error" role="alert" aria-live="polite"></span>
                         </div>
 
-                        <div id="assessment-error" class="form-error-banner" role="alert" aria-live="polite" hidden style="background: rgba(239, 68, 68, 0.1); color: var(--error); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; border: 1px solid var(--error);"></div>
+                        <div id="assessment-error" class="form-error-banner" role="alert" aria-live="polite" hidden></div>
 
-                        <button type="submit" class="btn-primary submit-btn" style="width: 100%;">
+                        <button type="submit" class="btn-primary">
                             Get My Resources &rarr;
                         </button>
                     </form>
                 </div>
 
                 <!-- Results Panel (shown after submission) -->
-                <aside class="results-panel card-glass" id="results-panel" aria-live="polite" aria-label="Assessment results" hidden style="max-width: 800px; width: 100%;">
-                    <div class="results-inner" style="text-align: center;">
-                        <p class="results-eyebrow" style="color: var(--primary); font-weight: 600;">Your Level</p>
-                        <h2 id="results-level" class="results-level gradient-text" style="font-size: 2.5rem; margin-bottom: 1rem;">Beginner</h2>
-                        <p id="results-desc" class="results-desc" style="color: var(--dark-muted); margin-bottom: 2rem;"></p>
+                <aside class="results-panel" id="results-panel" aria-live="polite" aria-label="Assessment results" hidden>
+                    <div class="results-inner">
+                        <p class="results-eyebrow">Your Level</p>
+                        <h2 id="results-level" class="results-level">Beginner</h2>
+                        <p id="results-desc" class="results-desc"></p>
 
-                        <div id="resources-list" aria-label="Recommended resources" style="text-align: left; margin-bottom: 2rem;">
+                        <div id="resources-list" aria-label="Recommended resources">
                             <!-- Populated by JS -->
                         </div>
 

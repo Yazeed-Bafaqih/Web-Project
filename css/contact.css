@@ -1,87 +1,112 @@
 /* ============================================================
-   TechPath — contact.css (Contact Page)
+   TechPath — contact.css (Contact Page — Dark Glassmorphism)
    CCSW321 Web Development — University of Jeddah 2025-2026
    ============================================================ */
 
-.contact-section { padding: 4rem 0 6rem; }
+.contact-section { padding: 5rem 0 8rem; }
 
 .contact-layout {
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 3rem;
+    grid-template-columns: 300px 1fr;
+    gap: 3.5rem;
     align-items: flex-start;
 }
 
 /* Contact Info Aside */
 .contact-info {
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 2rem;
     position: sticky;
-    top: calc(var(--header-h) + 1.5rem);
+    top: calc(var(--header-h) + 2rem);
+    backdrop-filter: blur(16px);
 }
 
 .contact-info h2 {
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    font-weight: 800;
 }
 
 .info-list {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .info-list li {
     display: flex;
-    gap: 0.85rem;
+    gap: 1rem;
     align-items: flex-start;
 }
 
 .info-icon {
-    color: var(--clr-accent);
-    font-size: 0.65rem;
-    margin-top: 0.35rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 0.7rem;
+    margin-top: 0.4rem;
     flex-shrink: 0;
 }
 
 .info-list strong {
     display: block;
     font-size: 0.82rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--clr-muted);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 0.3rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.35rem;
 }
 
 .info-list p {
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     color: var(--clr-text);
-    line-height: 1.55;
+    line-height: 1.6;
 }
 
 /* Form Container */
 .form-container {
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    padding: 2.5rem 2rem;
+    padding: 3rem 2.5rem;
+    backdrop-filter: blur(16px);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+/* Character count & textarea footer */
+.textarea-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.35rem;
+}
+
+.char-count {
+    font-size: 0.82rem;
+    color: var(--clr-muted);
 }
 
 /* Success message */
 .form-success {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.85rem;
     background: rgba(52, 211, 153, 0.1);
     border: 1px solid var(--clr-success);
     border-radius: var(--radius-md);
-    padding: 1rem 1.25rem;
-    margin-bottom: 1.5rem;
+    padding: 1.15rem 1.5rem;
+    margin-bottom: 2rem;
     color: var(--clr-success);
-    font-size: 0.93rem;
+    font-size: 0.95rem;
 }
 
 .form-success span { font-size: 1.2rem; flex-shrink: 0; }
@@ -99,5 +124,6 @@
 }
 
 @media (max-width: 576px) {
-    .form-container { padding: 1.5rem 1rem; }
+    .form-container { padding: 2rem 1.25rem; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
 }

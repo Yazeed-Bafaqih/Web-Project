@@ -1,38 +1,39 @@
 /* ============================================================
-   TechPath — my-roadmaps.css
+   TechPath — my-roadmaps.css (Dark Glassmorphism)
    ============================================================ */
 
 .dashboard-section {
-    padding: 2rem 0 5rem;
+    padding: 3rem 0 6rem;
 }
 
 .roadmaps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
 }
 
 .dashboard-card {
-    background: var(--clr-surface-2);
-    border: 1px solid var(--clr-border);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    padding: 1.5rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    backdrop-filter: blur(12px);
 }
 
 .dashboard-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--clr-accent);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(0, 229, 204, 0.08);
+    border-color: rgba(0, 229, 204, 0.25);
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .date {
@@ -41,40 +42,41 @@
 }
 
 .card-topic {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
     color: var(--clr-text);
+    font-weight: 800;
 }
 
 .card-meta {
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
     font-size: 0.9rem;
     color: var(--clr-muted);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .card-progress {
     margin-top: auto;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .card-progress .progress-bar-bg {
     height: 8px;
-    background: var(--clr-bg);
+    background: rgba(255, 255, 255, 0.06);
     border-radius: 999px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     overflow: hidden;
 }
 
 .card-progress .progress-bar-fill {
     height: 100%;
-    background: var(--clr-accent);
+    background: var(--gradient-primary);
     border-radius: 999px;
 }
 
 .progress-text {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--clr-muted);
 }
 
@@ -85,13 +87,13 @@
 
 .card-actions .btn {
     flex: 1;
-    padding: 0.5rem;
+    padding: 0.55rem;
     font-size: 0.9rem;
 }
 
 .delete-btn {
     color: var(--clr-danger);
-    border-color: rgba(248, 113, 113, 0.3);
+    border-color: rgba(248, 113, 113, 0.2);
 }
 .delete-btn:hover {
     background: rgba(248, 113, 113, 0.1);
@@ -100,14 +102,22 @@
 
 .empty-state {
     text-align: center;
-    padding: 4rem 2rem;
-    background: var(--clr-surface-2);
-    border: 1px dashed var(--clr-border);
+    padding: 5rem 2.5rem;
+    background: var(--glass-bg);
+    border: 1px dashed var(--glass-border);
     border-radius: var(--radius-lg);
 }
 
 .empty-state p {
     color: var(--clr-muted);
     font-size: 1.1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Email filter */
+.email-filter .form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
 }

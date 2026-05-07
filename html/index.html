@@ -14,14 +14,14 @@
     <div class="bg-mesh"></div>
 
     <header class="site-header navbar-glass">
-        <div class="header-inner container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
-            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
-                <span class="logo-icon gradient-text" style="font-size: 1.5rem;">&#9670;</span>
-                <span class="logo-text gradient-text" style="font-weight: bold; font-size: 1.5rem;">TechPath</span>
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#9670;</span>
+                <span class="logo-text">TechPath</span>
             </a>
-            <nav class="main-nav" aria-label="Main navigation" style="display: flex; gap: 1rem;">
+            <nav class="main-nav" aria-label="Main navigation">
                 <ul>
-                    <li><a href="index.html" class="active gradient-text" style="font-weight: bold;">Home</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="field.html">Explore</a></li>
                     <li><a href="my-roadmaps.html">My Roadmaps</a></li>
                     <li><a href="roadmap-generator.html">AI Generator</a></li>
@@ -39,19 +39,19 @@
     <main>
 
         <!-- Hero Section -->
-        <section class="hero container stagger-item" aria-labelledby="hero-title" style="--i: 1; padding: 4rem 2rem; text-align: center;">
+        <section class="hero stagger-item" aria-labelledby="hero-title" style="--i: 1;">
             <div class="hero-bg-grid" aria-hidden="true"></div>
             <div class="hero-content floating">
-                <p class="hero-eyebrow" style="color: var(--primary); font-weight: 600; margin-bottom: 1rem;">Your Personalized Tech Journey</p>
-                <h1 id="hero-title" style="font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem;">
+                <p class="hero-eyebrow">Your Personalized Tech Journey</p>
+                <h1 id="hero-title">
                     Learn. Assess.<br />
                     <span class="gradient-text">Level Up.</span>
                 </h1>
-                <p class="hero-desc" style="color: var(--dark-muted); font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem;">
+                <p class="hero-desc">
                     TechPath guides you through Web Development and AI &amp; Machine Learning
                     with curated resources tailored to your exact skill level.
                 </p>
-                <div class="hero-actions" style="display: flex; gap: 1rem; justify-content: center;">
+                <div class="hero-actions">
                     <a href="field.html" class="btn-primary">Start Your Path &rarr;</a>
                     <a href="about-us.html" class="btn-secondary">Meet the Team</a>
                 </div>
@@ -80,53 +80,50 @@
                     <p>Pick a domain and take your level assessment to unlock the right resources for you.</p>
                 </header>
 
-                <div class="fields-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div class="fields-grid">
 
                     <article class="field-card card-glass stagger-item" aria-labelledby="field-web-title" style="--i: 2;">
-                        <div class="field-card-icon" aria-hidden="true" style="color: var(--primary); margin-bottom: 1rem;">
-                            <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="2" y="5" width="28" height="22" rx="3" stroke="currentColor" stroke-width="1.8" fill="none"/>
-                                <path d="M2 10h28" stroke="currentColor" stroke-width="1.8"/>
-                                <circle cx="7" cy="7.5" r="1" fill="currentColor"/>
-                                <circle cx="11" cy="7.5" r="1" fill="currentColor"/>
-                                <circle cx="15" cy="7.5" r="1" fill="currentColor"/>
-                                <path d="M10 18l4-4 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <div class="field-card-icon" aria-hidden="true">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="5" width="28" height="22" rx="3" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M2 10h28" stroke="currentColor" stroke-width="2"/>
+                                <path d="M10 18l4-4 4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
                         <div class="field-card-body">
-                            <h3 id="field-web-title" style="margin-bottom: 1rem;">Web Development</h3>
-                            <p style="color: var(--dark-muted); margin-bottom: 1.5rem;">From HTML fundamentals to full-stack applications. Master HTML5, CSS3, JavaScript, React, Node.js and more.</p>
-                            <ul class="field-tags" aria-label="Topics covered" style="display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin-bottom: 1.5rem;">
+                            <h3 id="field-web-title">Web Development</h3>
+                            <p>From HTML fundamentals to full-stack applications. Master HTML5, CSS3, JavaScript, React, Node.js and more.</p>
+                            <ul class="field-tags" aria-label="Topics covered">
                                 <li class="badge badge-primary">HTML &amp; CSS</li>
                                 <li class="badge badge-primary">JavaScript</li>
                                 <li class="badge badge-primary">React</li>
                                 <li class="badge badge-primary">Node.js</li>
                             </ul>
                         </div>
-                        <a href="field.html?track=webdev" class="btn-secondary" style="width: 100%;">
+                        <a href="field.html?track=webdev" class="btn-primary">
                             Explore Web Dev &rarr;
                         </a>
                     </article>
 
                     <article class="field-card card-glass stagger-item" aria-labelledby="field-ai-title" style="--i: 3;">
-                        <div class="field-card-icon" aria-hidden="true" style="color: var(--accent-blue); margin-bottom: 1rem;">
-                            <svg width="48" height="48" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="16" cy="16" r="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
-                                <path d="M16 3v4M16 25v4M3 16h4M25 16h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                                <path d="M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8M7.5 24.5l2.8-2.8M21.7 10.3l2.8-2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        <div class="field-card-icon" aria-hidden="true">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="16" cy="16" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M16 3v4M16 25v4M3 16h4M25 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7.5 7.5l2.8 2.8M21.7 21.7l2.8 2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </div>
                         <div class="field-card-body">
-                            <h3 id="field-ai-title" style="margin-bottom: 1rem;">AI &amp; Machine Learning</h3>
-                            <p style="color: var(--dark-muted); margin-bottom: 1.5rem;">Dive into data science, neural networks, and intelligent systems. Learn Python, ML algorithms, and model deployment.</p>
-                            <ul class="field-tags" aria-label="Topics covered" style="display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin-bottom: 1.5rem;">
-                                <li class="badge badge-primary" style="border-color: var(--accent-blue); color: var(--accent-blue); background: rgba(59, 130, 246, 0.1);">Python</li>
-                                <li class="badge badge-primary" style="border-color: var(--accent-blue); color: var(--accent-blue); background: rgba(59, 130, 246, 0.1);">TensorFlow</li>
-                                <li class="badge badge-primary" style="border-color: var(--accent-blue); color: var(--accent-blue); background: rgba(59, 130, 246, 0.1);">Data Science</li>
-                                <li class="badge badge-primary" style="border-color: var(--accent-blue); color: var(--accent-blue); background: rgba(59, 130, 246, 0.1);">Neural Nets</li>
+                            <h3 id="field-ai-title">AI &amp; Machine Learning</h3>
+                            <p>Dive into data science, neural networks, and intelligent systems. Learn Python, ML algorithms, and model deployment.</p>
+                            <ul class="field-tags" aria-label="Topics covered">
+                                <li class="badge badge-primary">Python</li>
+                                <li class="badge badge-primary">TensorFlow</li>
+                                <li class="badge badge-primary">Data Science</li>
+                                <li class="badge badge-primary">Neural Nets</li>
                             </ul>
                         </div>
-                        <a href="field.html?track=ai" class="btn-secondary" style="width: 100%; color: var(--accent-blue); border-color: var(--accent-blue);">
+                        <a href="field.html?track=ai" class="btn-primary">
                             Explore AI/ML &rarr;
                         </a>
                     </article>

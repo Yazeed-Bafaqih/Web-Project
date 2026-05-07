@@ -15,16 +15,16 @@
     <div class="bg-mesh"></div>
 
     <header class="site-header navbar-glass">
-        <div class="header-inner container" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
-            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
-                <span class="logo-icon gradient-text" style="font-size: 1.5rem;">&#9670;</span>
-                <span class="logo-text gradient-text" style="font-weight: bold; font-size: 1.5rem;">TechPath</span>
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#9670;</span>
+                <span class="logo-text">TechPath</span>
             </a>
-            <nav class="main-nav" aria-label="Main navigation" style="display: flex; gap: 1rem;">
+            <nav class="main-nav" aria-label="Main navigation">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="field.html">Explore</a></li>
-                    <li><a href="my-roadmaps.html" class="active gradient-text" style="font-weight: bold;">My Roadmaps</a></li>
+                    <li><a href="my-roadmaps.html" class="active">My Roadmaps</a></li>
                     <li><a href="roadmap-generator.html">AI Generator</a></li>
                     <li><a href="teams.html">Teams</a></li>
                     <li><a href="about-us.html">About Us</a></li>
@@ -38,45 +38,61 @@
     </header>
 
     <main>
-    <main>
-        <section class="page-hero container stagger-item" aria-labelledby="hero-title" style="--i: 1; padding: 4rem 2rem; text-align: center;">
+        <section class="page-hero stagger-item" aria-labelledby="hero-title" style="--i: 1;">
             <div class="section-inner floating">
-                <h1 id="hero-title" class="gradient-text" style="font-size: 3rem; margin-bottom: 1.5rem;">My Learning Roadmaps</h1>
-                <p class="page-hero-desc" style="color: var(--dark-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                <p class="hero-eyebrow">Your Learning Dashboard</p>
+                <h1 id="hero-title">My Learning <span class="gradient-text">Roadmaps</span></h1>
+                <p class="page-hero-desc">
                     View and manage your personalized learning paths.
                 </p>
-                <div style="margin-top: 1.5rem;">
-                    <a href="roadmap-generator.html" class="btn-primary">Generate New Roadmap</a>
+                <div style="margin-top: 2rem;">
+                    <a href="roadmap-generator.html" class="btn-primary">Generate New Roadmap &rarr;</a>
                 </div>
             </div>
         </section>
 
-        <section class="dashboard-section container stagger-item" style="--i: 2; padding: 2rem;">
+        <section class="dashboard-section stagger-item" style="--i: 2;">
             <div class="section-inner">
-                <div class="email-filter form-group" style="max-width: 400px; margin-bottom: 2rem;">
+                <div class="email-filter form-group" style="max-width: 420px; margin-bottom: 2.5rem;">
                     <label for="filterEmail" class="form-label">View roadmaps for email (Optional):</label>
-                    <div style="display: flex; gap: 0.5rem;">
+                    <div style="display: flex; gap: 0.75rem;">
                         <input type="email" id="filterEmail" class="form-input" placeholder="your@email.com">
                         <button id="loadRoadmapsBtn" class="btn-secondary">Load</button>
                     </div>
                 </div>
 
-                <div id="loading-roadmaps" style="display: none; text-align: center; padding: 2rem;">
+                <div id="loading-roadmaps" style="display: none; text-align: center; padding: 3rem;">
                     <div class="loader-primary" style="margin: 0 auto;"></div>
-                    <p style="color: var(--dark-muted); margin-top: 1rem;">Loading roadmaps...</p>
+                    <p style="color: var(--text-muted); margin-top: 1.25rem;">Loading roadmaps...</p>
                 </div>
 
-                <div id="roadmaps-grid" class="roadmaps-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
-                    <!-- Cards will be dynamically injected here, handled by js -->
+                <div id="roadmaps-grid" class="roadmaps-grid">
+                    <!-- Cards will be dynamically injected here -->
                 </div>
-                
-                <div id="empty-state" class="empty-state card-glass" style="display: none; text-align: center; padding: 3rem;">
-                    <p style="color: var(--dark-muted); margin-bottom: 1.5rem;">You haven't generated any roadmaps yet.</p>
+
+                <div id="empty-state" class="empty-state card-glass" style="display: none;">
+                    <p>You haven't generated any roadmaps yet.</p>
                     <a href="roadmap-generator.html" class="btn-secondary">Create your first roadmap</a>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-icon">&#9670;</span>
+                <span class="logo-text">TechPath</span>
+            </div>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index.html">Home</a>
+                <a href="field.html">Explore</a>
+                <a href="about-us.html">About Us</a>
+                <a href="contact-us.html">Contact</a>
+            </nav>
+            <p class="footer-copy">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
+        </div>
+    </footer>
 
     <script src="../js/main.js"></script>
     <script src="../js/my-roadmaps.js"></script>

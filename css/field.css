@@ -1,200 +1,204 @@
 /* ============================================================
-   TechPath — field.css (Explore / Assessment Page)
-   CCSW321 Web Development — University of Jeddah 2025-2026
+   TechPath — field.css (Explore / Assessment — Dark Glassmorphism)
    ============================================================ */
 
 /* ── Track Toggle ──────────────────────────────────────────── */
 .track-toggle {
     display: inline-flex;
     gap: 0.5rem;
-    margin-top: 2rem;
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
-    padding: 0.35rem;
-    border-radius: var(--radius-md);
+    margin-top: 2.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(12px);
 }
 
 .track-btn {
-    padding: 0.55rem 1.25rem;
-    font-size: 0.9rem;
-    font-weight: 500;
+    padding: 0.7rem 1.75rem;
+    font-size: 0.95rem;
+    font-weight: 700;
     font-family: var(--font-body);
     background: transparent;
     border: none;
-    border-radius: var(--radius-sm);
-    color: var(--clr-muted);
+    border-radius: var(--radius-full);
+    color: var(--text-muted);
     cursor: pointer;
-    transition: background var(--transition), color var(--transition);
+    transition: all 0.3s var(--ease-fluid);
 }
 
 .track-btn.active,
 .track-btn[aria-pressed="true"] {
-    background: var(--clr-accent);
-    color: #fff;
+    background: var(--gradient-primary);
+    color: var(--text-inverse);
+    box-shadow: 0 4px 15px var(--primary-glow);
 }
 
 .track-btn:hover:not(.active) {
-    background: var(--clr-surface-2);
-    color: var(--clr-text);
+    background: var(--glass-bg-hover);
+    color: var(--text-main);
 }
 
 /* ── Assessment Section ────────────────────────────────────── */
-.assessment-section { padding: 4rem 0 6rem; }
+.assessment-section { padding: 5rem 0 10rem; }
 
 .assess-layout {
     display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 2.5rem;
+    grid-template-columns: 1fr 400px;
+    gap: 3.5rem;
     align-items: flex-start;
 }
 
 .assess-form-wrap {
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    padding: 2.5rem 2rem;
+    padding: 3.5rem;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(16px);
 }
 
 .assess-form-wrap h2 {
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
 }
 
 .assess-intro {
-    font-size: 0.9rem;
-    color: var(--clr-muted);
-    margin-bottom: 2rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    line-height: 1.7;
 }
 
 /* Quiz Questions */
 .quiz-question {
-    border: 1px solid var(--clr-border);
-    border-radius: var(--radius-md);
-    padding: 1.25rem;
-    margin-bottom: 1.25rem;
-    transition: border-color var(--transition);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s var(--ease-fluid);
 }
 
 .quiz-question:focus-within {
-    border-color: var(--clr-accent);
+    border-color: rgba(0, 229, 204, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .quiz-question legend {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.65rem;
-    font-size: 0.93rem;
-    font-weight: 500;
-    color: var(--clr-text);
-    padding: 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 1.25rem;
     line-height: 1.5;
 }
 
 .q-num {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--clr-accent);
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
-    margin-top: 0.15rem;
-}
-
-/* Name field spacing */
-.register-group { margin-top: 0.5rem; }
-
-/* Error banner */
-.form-error-banner {
-    background: rgba(248, 113, 113, 0.1);
-    border: 1px solid var(--clr-danger);
-    border-radius: var(--radius-sm);
-    padding: 0.75rem 1rem;
-    font-size: 0.88rem;
-    color: var(--clr-danger);
-    margin-bottom: 1rem;
+    font-size: 0.82rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: block;
+    margin-bottom: 0.6rem;
 }
 
 /* ── Results Panel ─────────────────────────────────────────── */
 .results-panel {
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-accent);
+    background: var(--glass-bg);
+    border: 2px solid rgba(0, 229, 204, 0.3);
     border-radius: var(--radius-lg);
     position: sticky;
-    top: calc(var(--header-h) + 1.5rem);
-    box-shadow: 0 0 30px rgba(91, 141, 246, 0.12);
+    top: calc(var(--header-h) + 2rem);
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(0, 229, 204, 0.08);
     overflow: hidden;
+    backdrop-filter: blur(20px);
 }
 
-.results-inner { padding: 2rem 1.5rem; }
+.results-inner { padding: 3rem 2.5rem; }
 
 .results-eyebrow {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--clr-accent);
-    margin-bottom: 0.5rem;
+    letter-spacing: 0.15em;
+    color: var(--primary);
+    margin-bottom: 0.85rem;
 }
 
 .results-level {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
+    font-weight: 900;
 }
 
 .results-desc {
-    font-size: 0.88rem;
-    color: var(--clr-muted);
-    margin-bottom: 1.5rem;
-    line-height: 1.65;
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
 }
 
-/* Resource cards (populated by JS) */
+/* Resource cards */
 .resource-card {
-    background: var(--clr-surface-2);
-    border: 1px solid var(--clr-border);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
-    padding: 1rem;
-    margin-bottom: 0.75rem;
-    transition: border-color var(--transition);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    transition: all 0.3s var(--ease-fluid);
 }
 
-.resource-card:hover { border-color: var(--clr-accent); }
+.resource-card:hover {
+    border-color: rgba(0, 229, 204, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(5px);
+    box-shadow: var(--shadow-sm);
+}
 
 .resource-type {
-    font-size: 0.7rem;
-    font-weight: 700;
+    font-size: 0.72rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--clr-accent);
-    margin-bottom: 0.3rem;
+    letter-spacing: 0.12em;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
 }
 
 .resource-title {
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--clr-text);
-    margin-bottom: 0.2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.4rem;
 }
 
 .resource-desc {
-    font-size: 0.8rem;
-    color: var(--clr-muted);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Form Error Banner */
+.form-error-banner {
+    background: rgba(248, 113, 113, 0.1);
+    border: 1px solid var(--error);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--error);
+    font-size: 0.95rem;
 }
 
 /* Responsive */
 @media (max-width: 992px) {
-    .assess-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .results-panel { position: static; }
+    .assess-layout { grid-template-columns: 1fr; }
+    .results-panel { position: static; margin-top: 3rem; }
 }
 
 @media (max-width: 576px) {
-    .assess-form-wrap { padding: 1.5rem 1rem; }
-
-    .track-toggle { flex-direction: column; width: 100%; }
-
-    .track-btn { width: 100%; text-align: center; }
+    .assess-form-wrap { padding: 2rem 1.5rem; }
 }

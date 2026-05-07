@@ -1,214 +1,195 @@
 /* ============================================================
-   TechPath — about.css (About Us Page)
-   CCSW321 Web Development — University of Jeddah 2025-2026
+   TechPath — about.css (About Us Page — Dark Glassmorphism)
    ============================================================ */
 
 /* ── Team Cards ────────────────────────────────────────────── */
 .team-cards-section {
-    padding: 5rem 0 0;
+    padding: 7rem 0 0;
 }
 
 .team-cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 2.5rem;
 }
 
 .member-card {
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    padding: 2rem 1.5rem;
+    padding: 3.5rem 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 0.75rem;
-    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    gap: 1.25rem;
+    transition: all 0.4s var(--ease-fluid);
+    box-shadow: var(--shadow-glass);
+    backdrop-filter: blur(16px);
 }
 
 .member-card:hover {
-    border-color: var(--clr-accent);
-    box-shadow: 0 0 24px rgba(91, 141, 246, 0.12);
-    transform: translateY(-2px);
+    transform: translateY(-10px);
+    background: var(--glass-bg-hover);
+    border-color: rgba(0, 229, 204, 0.25);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 30px rgba(0, 229, 204, 0.1);
 }
 
 .member-avatar {
-    width: 72px;
-    height: 72px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--clr-accent), var(--clr-accent-2));
+    background: var(--gradient-primary);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-display);
-    font-size: 1.8rem;
-    color: #fff;
+    font-size: 2.4rem;
+    color: var(--text-inverse);
     flex-shrink: 0;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 10px 25px var(--primary-glow);
+    font-weight: 800;
 }
 
-.member-avatar--2 {
-    background: linear-gradient(135deg, #34d399, #059669);
-}
-
-.member-avatar--3 {
-    background: linear-gradient(135deg, #fb923c, #dc2626);
-}
+.member-avatar--2 { background: linear-gradient(135deg, #00E5CC, #00B3A0); }
+.member-avatar--3 { background: linear-gradient(135deg, #A78BFA, #7C3AED); }
 
 .member-card h3 {
-    font-size: 1.15rem;
+    font-size: 1.6rem;
     margin: 0;
+    font-weight: 800;
 }
 
 .member-role {
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--clr-accent);
+    letter-spacing: 0.12em;
+    color: var(--primary);
+    background: var(--primary-glow);
+    padding: 0.3rem 1rem;
+    border-radius: var(--radius-full);
 }
 
 .member-bio {
-    font-size: 0.88rem;
-    color: var(--clr-muted);
-    line-height: 1.6;
-    flex: 1;
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
 }
 
 .member-links {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 0.25rem;
+    gap: 0.85rem;
+    margin-top: 0.75rem;
 }
 
 .member-link {
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 0.3rem 0.8rem;
-    border: 1px solid var(--clr-border);
-    border-radius: 99px;
-    color: var(--clr-muted);
-    transition: color var(--transition), border-color var(--transition), background var(--transition);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.45rem 1.1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    color: var(--text-muted);
+    transition: all 0.3s var(--ease-fluid);
 }
 
 .member-link:hover {
-    color: var(--clr-accent);
-    border-color: var(--clr-accent);
-    background: rgba(91, 141, 246, 0.08);
+    color: var(--primary);
+    border-color: rgba(0, 229, 204, 0.4);
+    background: var(--primary-glow);
 }
 
 /* ── Team Table ────────────────────────────────────────────── */
 .team-table-section {
-    padding: 5rem 0 6rem;
+    padding: 7rem 0 10rem;
 }
 
 .table-wrapper {
     overflow-x: auto;
-    border: 1px solid var(--clr-border);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    background: var(--clr-surface);
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-md);
 }
 
 .team-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9rem;
-    min-width: 640px;
+    font-size: 1rem;
+    min-width: 800px;
 }
 
 .team-table caption {
-    padding: 1.25rem 1.5rem;
+    padding: 1.75rem 2rem;
     text-align: left;
-    font-size: 0.8rem;
-    color: var(--clr-muted);
-    border-bottom: 1px solid var(--clr-border);
-    font-weight: 500;
-    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--glass-border);
+    font-weight: 700;
 }
 
 .team-table thead th {
-    padding: 0.9rem 1.25rem;
+    padding: 1.5rem 2rem;
     text-align: left;
-    font-size: 0.78rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--clr-muted);
-    border-bottom: 1px solid var(--clr-border);
-    background: var(--clr-surface-2);
-    white-space: nowrap;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.02);
 }
-
-.team-table thead th:first-child { border-radius: var(--radius-sm) 0 0 0; }
-.team-table thead th:last-child  { border-radius: 0 var(--radius-sm) 0 0; }
 
 .team-table tbody td {
-    padding: 1rem 1.25rem;
-    color: var(--clr-text);
-    border-bottom: 1px solid var(--clr-border);
-    vertical-align: middle;
+    padding: 1.5rem 2rem;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--glass-border);
 }
 
-.team-table tbody tr:last-child td { border-bottom: none; }
-
 .team-table tbody tr {
-    transition: background var(--transition);
+    transition: background 0.3s ease;
 }
 
 .team-table tbody tr:hover {
-    background: rgba(91, 141, 246, 0.04);
+    background: var(--primary-glow);
 }
 
 .team-table tfoot td {
-    padding: 0.9rem 1.25rem;
-    font-size: 0.8rem;
-    color: var(--clr-muted);
-    border-top: 1px solid var(--clr-border);
-    background: var(--clr-surface-2);
-    text-align: center;
+    padding: 1.25rem 2rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--glass-border);
 }
 
 /* Role badges */
 .role-badge {
     display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.2rem 0.65rem;
-    border-radius: 99px;
-    white-space: nowrap;
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-full);
 }
 
-.role-badge--frontend {
-    background: rgba(91, 141, 246, 0.15);
-    color: var(--clr-accent);
-}
-
-.role-badge--backend {
-    background: rgba(52, 211, 153, 0.15);
-    color: var(--clr-success);
-}
-
-.role-badge--js {
-    background: rgba(251, 191, 36, 0.15);
-    color: var(--clr-warning);
-}
+.role-badge--frontend { background: rgba(0, 229, 204, 0.15); color: #5DFDE8; }
+.role-badge--backend { background: rgba(167, 139, 250, 0.15); color: #C4B5FD; }
+.role-badge--js { background: rgba(52, 211, 153, 0.15); color: #6EE7B7; }
 
 .table-link {
-    font-size: 0.85rem;
-    color: var(--clr-accent);
+    color: var(--secondary);
+    font-size: 0.9rem;
 }
-.table-link:hover { text-decoration: underline; }
+
+.table-link:hover {
+    color: var(--primary);
+}
 
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 992px) {
     .team-cards-grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
     .team-cards-grid { grid-template-columns: 1fr; }
-
-    .team-table { font-size: 0.82rem; }
-
-    .team-table thead th,
-    .team-table tbody td { padding: 0.75rem 1rem; }
 }
