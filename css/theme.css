@@ -81,7 +81,7 @@
   /* ── Animation Easing ─────────────────────────────────────── */
   --ease-fluid: cubic-bezier(0.25, 1, 0.5, 1);
 
-  /* ── Bright variants for Teams page ───────────────────────── */
+  /* ── Bright accents (shared pages) ───────────────────────── */
   --primary-bright: #00E5CC;
   --primary-soft: #5DFDE8;
 }

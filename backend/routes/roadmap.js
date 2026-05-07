@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const generateRoadmap = require('../generate-roadmap');
-
-// ==========================================
-// ⚠️ TEMPORARY IN-MEMORY DATABASE FOR TESTING
-// ==========================================
-const memoryDb = new Map();
+const store = require('../db/sqlite');
 
 // Dummy Roadmap Generator (Fallback if Claude fails during testing)
 function getDummyRoadmap(topic, level, hours, durationWeeks) {
@@ -115,7 +111,6 @@ router.post('/generate', async (req, res) => {
       roadmapData = getDummyRoadmap(topic, level, hrs, weeks);
     }
     
-    // Save to IN-MEMORY Database
     const roadmapId = 'temp-' + Date.now();
     const newRoadmap = {
       _id: roadmapId,
@@ -127,10 +122,10 @@ router.post('/generate', async (req, res) => {
       roadmapData,
       progress: 0,
       createdAt: new Date(),
-      shareToken: Math.random().toString(36).substring(7)
+      shareToken: Math.random().toString(36).substring(7),
     };
-    
-    memoryDb.set(roadmapId, newRoadmap);
+
+    store.insertRoadmap(newRoadmap);
     
     res.json({
       success: true,
@@ -154,7 +149,7 @@ router.get('/my-roadmaps', async (req, res) => {
   try {
     const { email, sessionId } = req.query;
 
-    let allRoadmaps = Array.from(memoryDb.values());
+    let allRoadmaps;
 
     const emailTrim =
       typeof email === 'string' && email.includes('@')
@@ -170,14 +165,12 @@ router.get('/my-roadmaps', async (req, res) => {
         : '';
 
     if (emailTrim) {
-      allRoadmaps = allRoadmaps.filter((r) => r.userEmail === emailTrim);
+      allRoadmaps = store.listByEmail(emailTrim);
     } else if (sidTrim) {
-      allRoadmaps = allRoadmaps.filter((r) => r.sessionId === sidTrim);
+      allRoadmaps = store.listBySession(sidTrim);
     } else {
       allRoadmaps = [];
     }
-
-    allRoadmaps.sort((a, b) => b.createdAt - a.createdAt);
 
     res.json({
       success: true,
@@ -193,17 +186,13 @@ router.get('/:idOrToken', async (req, res) => {
   try {
     const { idOrToken } = req.params;
     
-    // Find in memory db by ID or shareToken
-    let roadmap = memoryDb.get(idOrToken);
-    
+    let roadmap = store.findById(idOrToken);
     if (!roadmap) {
-      // Check shareToken
-      const allRoadmaps = Array.from(memoryDb.values());
-      roadmap = allRoadmaps.find(r => r.shareToken === idOrToken);
+      roadmap = store.findByShareToken(idOrToken);
     }
-    
+
     if (!roadmap) {
-      return res.status(404).json({ error: 'Roadmap not found in memory database' });
+      return res.status(404).json({ error: 'Roadmap not found' });
     }
     
     res.json({ 
@@ -221,16 +210,12 @@ router.put('/:id/progress', async (req, res) => {
     const { progress } = req.body;
     const { id } = req.params;
     
-    const roadmap = memoryDb.get(id);
-    if (roadmap) {
-      roadmap.progress = progress;
-      memoryDb.set(id, roadmap);
-    }
-    
-    res.json({ 
-      success: true, 
-      message: 'Progress updated in memory',
-      progress 
+    store.updateProgress(id, progress);
+
+    res.json({
+      success: true,
+      message: 'Progress updated',
+      progress,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -241,11 +226,11 @@ router.put('/:id/progress', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    memoryDb.delete(id);
-    
-    res.json({ 
-      success: true, 
-      message: 'Roadmap deleted from memory' 
+    store.deleteById(id);
+
+    res.json({
+      success: true,
+      message: 'Roadmap deleted',
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
