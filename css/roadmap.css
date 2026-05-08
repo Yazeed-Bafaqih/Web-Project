@@ -615,3 +615,26 @@
     .phase-header { grid-template-columns: 1fr auto; }
     .phase-number { grid-column: 1 / -1; }
 }
+
+/* ══ FORCE DARK DROPDOWN ═══════════════════════════════════ */
+select.form-select {
+    background-color: #0A0A0A !important;
+    color: #F0F0F0 !important;
+}
+
+select.form-select option {
+    background-color: #0A0A0A !important;
+    color: #F0F0F0 !important;
+    padding: 10px !important;
+}
+
+select.form-select optgroup {
+    background-color: #050505 !important;
+    color: #00E5CC !important;
+    font-weight: bold !important;
+}
+
+select.form-select optgroup option {
+    background-color: #0A0A0A !important;
+    color: #F0F0F0 !important;
+}
