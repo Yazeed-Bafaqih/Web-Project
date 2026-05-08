@@ -50,10 +50,23 @@
             <div class="section-inner">
                 <div class="generator-container card-glass">
                     <form id="roadmap-form" class="roadmap-form">
-                        <div class="form-group">
-                            <label for="topic" class="form-label">What do you want to learn? <span class="required">*</span></label>
-                            <input type="text" id="topic" name="topic" class="form-input" placeholder="e.g., Full-Stack Web Development, Machine Learning, React.js" required maxlength="100">
-                        </div>
+                       <div class="form-group">
+                    <label for="topic">What do you want to learn? <span class="required">*</span></label>
+                    <select id="topic" name="topic" class="form-select" required>
+                        <option value="" disabled selected>Select a learning path</option>
+                        <optgroup label="Web Development">
+                            <option value="Full-Stack Web Development">Full-Stack Web Development</option>
+                            <option value="Frontend Development">Frontend Development (HTML, CSS, JS)</option>
+                            <option value="Backend Development">Backend Development (Node.js, APIs)</option>
+                            <option value="React.js">React.js Development</option>
+                        </optgroup>
+                        <optgroup label="AI & Machine Learning">
+                            <option value="Machine Learning">Machine Learning Fundamentals</option>
+                            <option value="Python for Data Science">Python for Data Science</option>
+                            <option value="Deep Learning">Deep Learning & Neural Networks</option>
+                        </optgroup>
+                        </select>
+                    </div>
 
                         <div class="form-group">
                             <label for="level" class="form-label">Current skill level <span class="required">*</span></label>
