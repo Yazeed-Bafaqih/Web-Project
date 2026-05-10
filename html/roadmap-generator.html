@@ -21,12 +21,7 @@
             </a>
             <nav class="main-nav" aria-label="Main navigation">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="field.html">Explore</a></li>
-                    <li><a href="my-roadmaps.html">My Roadmaps</a></li>
-                    <li><a href="roadmap-generator.html" class="active">AI Generator</a></li>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="contact-us.html">Contact</a></li>
+                    <li><a href="contact-us.html" class="btn-primary" style="padding: 0.5rem 1.2rem; color: white;">Contact</a></li>
                 </ul>
             </nav>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -65,7 +60,13 @@
                             <option value="Python for Data Science">Python for Data Science</option>
                             <option value="Deep Learning">Deep Learning & Neural Networks</option>
                         </optgroup>
+                        <optgroup label="Custom">
+                            <option value="custom">✏️ Custom Topic (Type your own)</option>
+                        </optgroup>
                         </select>
+                    </div>
+                    <div class="form-group" id="custom-topic-group" style="display: none; opacity: 0; transition: opacity 0.2s ease;">
+                        <input type="text" id="custom-topic" name="customTopic" class="form-input" placeholder="e.g., Blockchain, Cybersecurity, Game Development..." aria-label="Custom Topic" />
                     </div>
 
                         <div class="form-group">
@@ -103,18 +104,8 @@
     </main>
 
     <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <span class="logo-icon">&#9670;</span>
-                <span class="logo-text">TechPath</span>
-            </div>
-            <nav class="footer-nav" aria-label="Footer navigation">
-                <a href="index.html">Home</a>
-                <a href="field.html">Explore</a>
-                <a href="about-us.html">About Us</a>
-                <a href="contact-us.html">Contact</a>
-            </nav>
-            <p class="footer-copy">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
+        <div class="footer-inner" style="text-align: center; justify-content: center; padding-bottom: 2rem;">
+            <p class="footer-copy" style="margin: 0; color: var(--text-muted);">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
         </div>
     </footer>
 

@@ -43,7 +43,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-display);
+    font-family: var(--font-main);
     font-size: 2.4rem;
     color: var(--text-inverse);
     flex-shrink: 0;

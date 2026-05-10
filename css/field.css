@@ -7,18 +7,18 @@
     display: inline-flex;
     gap: 0.5rem;
     margin-top: 2.5rem;
-    background: var(--glass-bg);
+    background: var(--bg-elevated);
     border: 1px solid var(--glass-border);
     padding: 0.5rem;
     border-radius: var(--radius-full);
-    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-sm);
 }
 
 .track-btn {
     padding: 0.7rem 1.75rem;
     font-size: 0.95rem;
     font-weight: 700;
-    font-family: var(--font-body);
+    font-family: var(--font-main);
     background: transparent;
     border: none;
     border-radius: var(--radius-full);
@@ -35,7 +35,7 @@
 }
 
 .track-btn:hover:not(.active) {
-    background: var(--glass-bg-hover);
+    background: var(--bg-deep);
     color: var(--text-main);
 }
 
@@ -43,19 +43,19 @@
 .assessment-section { padding: 5rem 0 10rem; }
 
 .assess-layout {
-    display: grid;
-    grid-template-columns: 1fr 400px;
+    display: flex;
+    flex-direction: column;
+    max-width: 850px;
+    margin: 0 auto;
     gap: 3.5rem;
-    align-items: flex-start;
 }
 
 .assess-form-wrap {
-    background: var(--glass-bg);
+    background: var(--bg-elevated);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    padding: 3.5rem;
-    box-shadow: var(--shadow-lg);
-    backdrop-filter: blur(16px);
+    padding: 48px;
+    box-shadow: var(--shadow-md);
 }
 
 .assess-form-wrap h2 {
@@ -77,14 +77,14 @@
     border-radius: var(--radius-lg);
     padding: 2rem;
     margin-bottom: 2rem;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--bg-deep);
     transition: all 0.3s var(--ease-fluid);
 }
 
 .quiz-question:focus-within {
-    border-color: rgba(0, 229, 204, 0.3);
-    background: rgba(255, 255, 255, 0.04);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-sm);
 }
 
 .quiz-question legend {
@@ -110,14 +110,12 @@
 
 /* ── Results Panel ─────────────────────────────────────────── */
 .results-panel {
-    background: var(--glass-bg);
-    border: 2px solid rgba(0, 229, 204, 0.3);
+    background: var(--bg-elevated);
+    border: 2px solid var(--primary);
     border-radius: var(--radius-lg);
-    position: sticky;
-    top: calc(var(--header-h) + 2rem);
-    box-shadow: var(--shadow-lg), 0 0 40px rgba(0, 229, 204, 0.08);
+    box-shadow: var(--shadow-md);
     overflow: hidden;
-    backdrop-filter: blur(20px);
+    width: 100%;
 }
 
 .results-inner { padding: 3rem 2.5rem; }
@@ -146,7 +144,7 @@
 
 /* Resource cards */
 .resource-card {
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--bg-deep);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     padding: 1.5rem;
@@ -155,8 +153,8 @@
 }
 
 .resource-card:hover {
-    border-color: rgba(0, 229, 204, 0.3);
-    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--primary);
+    background: var(--bg-elevated);
     transform: translateX(5px);
     box-shadow: var(--shadow-sm);
 }
@@ -195,8 +193,7 @@
 
 /* Responsive */
 @media (max-width: 992px) {
-    .assess-layout { grid-template-columns: 1fr; }
-    .results-panel { position: static; margin-top: 3rem; }
+    .results-panel { margin-top: 3rem; }
 }
 
 @media (max-width: 576px) {

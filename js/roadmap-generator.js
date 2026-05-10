@@ -25,6 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
       hoursSlider.setAttribute('aria-valuenow', v);
     }
 
+    const topicSelect = document.getElementById('topic');
+    const customTopicInput = document.getElementById('custom-topic');
+    const customTopicGroup = document.getElementById('custom-topic-group');
+    if (topicSelect && customTopicGroup) {
+      topicSelect.addEventListener('change', () => {
+        if (topicSelect.value === 'custom') {
+          customTopicGroup.style.display = 'block';
+          // small delay for transition effect
+          setTimeout(() => customTopicGroup.style.opacity = '1', 10);
+        } else {
+          customTopicGroup.style.opacity = '0';
+          setTimeout(() => customTopicGroup.style.display = 'none', 200);
+          customTopicInput.value = '';
+        }
+      });
+    }
+
     hoursSlider?.addEventListener('input', syncHoursLabel);
     syncHoursLabel();
 
@@ -33,8 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const durationWeeks = parseInt(document.getElementById('durationWeeks').value, 10);
 
+      const selectedTopic = document.getElementById('topic').value;
+      let finalTopic = selectedTopic;
+      if (selectedTopic === 'custom') {
+        finalTopic = document.getElementById('custom-topic').value.trim();
+        if (!finalTopic) {
+          showError('Please enter a custom topic');
+          return;
+        }
+      }
+
       const formData = {
-        topic: document.getElementById('topic').value.trim(),
+        topic: finalTopic,
         level: document.getElementById('level').value,
         hours: parseInt(hoursSlider.value, 10),
         durationWeeks,

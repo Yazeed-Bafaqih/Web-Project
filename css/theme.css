@@ -1,97 +1,81 @@
 /* ============================================================
-   TechPath — theme.css (Dark Glassmorphism Design System)
-   CCSW321 Web Development — University of Jeddah 2025-2026
+   TechPath — theme.css (Modern SaaS Design System)
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* ── Primary Accent: Vivid Cyan / Teal ────────────────────── */
-  --primary: #38BDF8;
-  --primary-light: #7DD3FC;
-  --primary-dark: #0EA5E9;
-  --primary-glow: rgba(56, 189, 248, 0.35);
+  /* ── Primary Accent: Olive Green ──────────────────────────── */
+  --primary: #5C6B4A;
+  --primary-hover: #4A553B;
+  --primary-light: #E8EDE4;
+  --primary-glow: rgba(92, 107, 74, 0.25);
 
-  /* ── Secondary Accent: Soft Purple ────────────────────────── */
-  --secondary: #F472B6;
-  --secondary-glow: rgba(244, 114, 182, 0.35);
+  /* ── Secondary Accent ─────────────────────────────────────── */
+  --secondary: #475569;
+  --secondary-glow: rgba(71, 85, 105, 0.2);
 
-  /* ── Accent Alternative ───────────────────────────────────── */
-  --accent: #A78BFA;
-  --accent-glow: rgba(167, 139, 250, 0.3);
-
-  /* ── Background & Surfaces (Dark Mode) ────────────────────── */
-  --bg-main: #0B0F19;
-  --bg-deep: #05080F;
-  --bg-elevated: #111827;
+  /* ── Background & Surfaces (Light SaaS Mode) ──────────────── */
+  --bg-main: #F8FAFC;
+  --bg-deep: #F1F5F9;
+  --bg-elevated: #FFFFFF;
   --bg-mesh: none;
 
-  /* ── Glass Surfaces ───────────────────────────────────────── */
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-bg-hover: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-border-dark: rgba(255, 255, 255, 0.05);
+  /* ── Solid/Framed Surfaces ────────────────────────────────── */
+  --glass-bg: #FFFFFF;
+  --glass-bg-hover: #F8FAFC;
+  --glass-border: #E2E8F0;
+  --glass-border-dark: #CBD5E1;
 
-  /* ── Typography ───────────────────────────────────────────── */
-  --text-main: #F8FAFC;
-  --text-muted: #94A3B8;
-  --text-inverse: #0D0D0D;
-  --dark-text: #F0F0F0;
-  --dark-muted: #8B8B9E;
-  --dark-border: rgba(255, 255, 255, 0.08);
-  --dark-bg: #181818;
+  /* ── Typography Colors ────────────────────────────────────── */
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --text-inverse: #FFFFFF;
 
   /* ── Status Colors ────────────────────────────────────────── */
-  --success: #34D399;
-  --warning: #FBBF24;
-  --error: #F87171;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
 
   /* ── Gradients ────────────────────────────────────────────── */
-  --gradient-primary: linear-gradient(135deg, #00E5CC 0%, #A78BFA 100%);
-  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
-  --gradient-glow: linear-gradient(135deg, rgba(0, 229, 204, 0.15) 0%, rgba(167, 139, 250, 0.15) 100%);
+  --gradient-primary: linear-gradient(135deg, #5C6B4A 0%, #3D4A30 100%);
+  --gradient-glass: none;
+  --gradient-glow: none;
 
-  /* ── Typography Config ────────────────────────────────────── */
-  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  /* ── Typography Config (Global Standardization) ───────────── */
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
 
-  /* ── Spacing ──────────────────────────────────────────────── */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
+  /* ── Spacing (Updated to 24px-32px gaps typically) ────────── */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 40px;
   --spacing-2xl: 48px;
   --spacing-3xl: 64px;
 
   /* ── Border Radius ────────────────────────────────────────── */
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
   --radius-full: 9999px;
 
-  /* ── Shadows ──────────────────────────────────────────────── */
-  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.4);
-  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.25);
-  --shadow-glow: 0 0 30px rgba(0, 229, 204, 0.15);
+  /* ── Shadows (Soft, Elegant Box Shadows) ──────────────────── */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  --shadow-glass: var(--shadow-lg);
+  --shadow-glow: 0 0 20px rgba(92, 107, 74, 0.15);
 
   /* ── Animation Easing ─────────────────────────────────────── */
   --ease-fluid: cubic-bezier(0.25, 1, 0.5, 1);
-
-  /* ── Bright accents (shared pages) ───────────────────────── */
-  --primary-bright: #00E5CC;
-  --primary-soft: #5DFDE8;
 }
 
 body {
   background-color: var(--bg-main);
-  background-image: var(--bg-mesh);
   color: var(--text-main);
-  font-family: var(--font-body);
+  font-family: var(--font-main);
   line-height: 1.7;
   margin: 0;
   padding: 0;
@@ -106,51 +90,51 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-main);
+  font-weight: 700;
   color: var(--text-main);
   margin-top: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 a {
-  color: var(--secondary);
+  color: var(--primary);
   text-decoration: none;
-  transition: all 0.3s var(--ease-fluid);
+  transition: all 0.2s var(--ease-fluid);
 }
 
 a:hover {
-  color: var(--primary);
+  color: var(--primary-hover);
 }
 
-/* Gradient Text Utility */
+/* Gradient Text Utility (Subtle now) */
 .gradient-text {
-  background: var(--gradient-primary) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   display: inline-block;
 }
 
 /* ── Scrollbar Customization ────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-deep);
+  background: var(--bg-main);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--glass-border-dark);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+  background: var(--text-muted);
 }
 
-/* ── Selection ──────────────────────────────────────────────── */
 ::selection {
-  background: rgba(0, 229, 204, 0.3);
-  color: var(--text-main);
+  background: var(--primary-light);
+  color: var(--primary);
 }

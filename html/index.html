@@ -21,12 +21,7 @@
             </a>
             <nav class="main-nav" aria-label="Main navigation">
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="field.html">Explore</a></li>
-                    <li><a href="my-roadmaps.html">My Roadmaps</a></li>
-                    <li><a href="roadmap-generator.html">AI Generator</a></li>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="contact-us.html">Contact</a></li>
+                    <li><a href="contact-us.html" class="btn-primary" style="padding: 0.5rem 1.2rem; color: white;">Contact</a></li>
                 </ul>
             </nav>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -36,9 +31,7 @@
     </header>
 
     <main>
-
-        <main>
-            <!-- PASTE THE NEW HERO CODE HERE -->
+        <!-- PASTE THE NEW HERO CODE HERE -->
             <section class="hero">
                 <div class="hero-bg-grid"></div>
                 <div class="hero-content">
@@ -153,47 +146,75 @@
                     <h2 id="how-title">How TechPath Works</h2>
                     <p>Three simple steps to a personalized learning experience.</p>
                 </header>
-                <ol class="steps-list" aria-label="How it works steps">
-                    <li class="step">
-                        <span class="step-num" aria-hidden="true">01</span>
+                <div class="steps-grid" aria-label="How it works steps">
+                    <div class="step-card">
+                        <span class="step-icon" aria-hidden="true">🎯</span>
                         <div class="step-body">
                             <h3>Pick Your Field</h3>
                             <p>Choose between Web Development or AI &amp; Machine Learning based on your interests.</p>
                         </div>
-                    </li>
-                    <li class="step">
-                        <span class="step-num" aria-hidden="true">02</span>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-icon" aria-hidden="true">📝</span>
                         <div class="step-body">
                             <h3>Take the Assessment</h3>
                             <p>Answer a short quiz to determine whether you're Beginner, Intermediate, or Advanced.</p>
                         </div>
-                    </li>
-                    <li class="step">
-                        <span class="step-num" aria-hidden="true">03</span>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-icon" aria-hidden="true">🚀</span>
                         <div class="step-body">
                             <h3>Get Your Resources</h3>
                             <p>Receive a curated list of videos, articles, and projects perfectly matched to your level.</p>
                         </div>
-                    </li>
-                </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" aria-labelledby="faq-title">
+            <div class="section-inner faq-container">
+                <header class="section-header">
+                    <h2 id="faq-title">Frequently Asked Questions</h2>
+                    <p>Everything you need to know about the platform.</p>
+                </header>
+
+                <div class="faq-accordion">
+                    <details class="faq-item">
+                        <summary class="faq-question">How does the AI-powered roadmap generation work?</summary>
+                        <div class="faq-answer">
+                            <p>Our system uses advanced AI to analyze your current skill level and learning goals. It then curates a personalized learning path with specific resources, videos, and projects tailored just for you.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Can I track my progress and collaborate with my team?</summary>
+                        <div class="faq-answer">
+                            <p>Yes! TechPath allows you to track completed modules and collaborate with team members on shared projects. You can monitor team progress through the dashboard.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">How is my data security and privacy handled?</summary>
+                        <div class="faq-answer">
+                            <p>We take data security seriously. All personal information and progress data are encrypted both in transit and at rest, fully compliant with modern data protection standards.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-question">Are there different account tiers or subscription details?</summary>
+                        <div class="faq-answer">
+                            <p>TechPath offers a free tier with basic resources and an advanced tier that unlocks premium AI features and team collaboration tools.</p>
+                        </div>
+                    </details>
+                </div>
             </div>
         </section>
 
     </main>
 
     <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <span class="logo-icon">&#9670;</span>
-                <span class="logo-text">TechPath</span>
-            </div>
-            <nav class="footer-nav" aria-label="Footer navigation">
-                <a href="index.html">Home</a>
-                <a href="field.html">Explore</a>
-                <a href="about-us.html">About Us</a>
-                <a href="contact-us.html">Contact</a>
-            </nav>
-            <p class="footer-copy">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
+        <div class="footer-inner" style="text-align: center; justify-content: center; padding-bottom: 2rem;">
+            <p class="footer-copy" style="margin: 0; color: var(--text-muted);">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
         </div>
     </footer>
 
