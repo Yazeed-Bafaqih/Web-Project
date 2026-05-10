@@ -46,7 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             if (data.success) {
                 localStorage.setItem('techpath_user', JSON.stringify(data.user));
-                window.location.href = 'index.html';
+                if (window.navigateTo) {
+                    window.navigateTo('index.html');
+                } else {
+                    window.location.href = 'index.html';
+                }
             } else {
                 errorBox.textContent = data.error || 'Authentication failed';
                 errorBox.style.display = 'block';

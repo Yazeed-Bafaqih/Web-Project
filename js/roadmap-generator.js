@@ -70,7 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!result.success) {
           throw new Error(result.error || 'Failed to generate roadmap');
         }
-        window.location.href = `roadmap-view.html?id=${result.roadmapId}`;
+        if (window.navigateTo) {
+          window.navigateTo(`roadmap-view.html?id=${result.roadmapId}`);
+        } else {
+          window.location.href = `roadmap-view.html?id=${result.roadmapId}`;
+        }
       } catch (error) {
         console.error('Error:', error);
         showError(error.message);

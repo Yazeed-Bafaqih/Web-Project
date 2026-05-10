@@ -53,9 +53,29 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         document.getElementById('logout-btn').addEventListener('click', () => {
             localStorage.removeItem('techpath_user');
-            window.location.reload();
+            document.body.classList.add('page-exit');
+            setTimeout(() => {
+                window.location.reload();
+            }, 450);
         });
     }
+
+    window.navigateTo = (url) => {
+        document.body.classList.add('page-exit');
+        setTimeout(() => { window.location.href = url; }, 450);
+    };
+
+    const handlePageExit = (e) => {
+        const link = e.currentTarget;
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('javascript:') && link.target !== '_blank' && !e.ctrlKey && !e.shiftKey && !e.metaKey && e.button === 0) {
+            e.preventDefault();
+            window.navigateTo(href);
+        }
+    };
+    document.querySelectorAll('a').forEach(link => {
+        if (link.getAttribute('href')) link.addEventListener('click', handlePageExit);
+    });
     const observerOptions = {
         root: null,
         rootMargin: '0px',

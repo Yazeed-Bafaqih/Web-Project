@@ -3,7 +3,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const roadmapId = urlParams.get('id');
   if (!roadmapId) {
-    window.location.href = 'roadmap-generator.html';
+    if (window.navigateTo) {
+      window.navigateTo('roadmap-generator.html');
+    } else {
+      window.location.href = 'roadmap-generator.html';
+    }
     return;
   }
   document.getElementById('loading-overlay').style.display = 'flex';
