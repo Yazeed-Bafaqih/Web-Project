@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: techpath-web
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    disk:
+      name: techpath-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: 20
