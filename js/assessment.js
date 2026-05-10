@@ -1,11 +1,4 @@
-/* ============================================================
-   TechPath — assessment.js (Level Assessment Logic)
-   CCSW321 Web Development — University of Jeddah 2025-2026
-   ============================================================ */
-
 "use strict";
-
-/* ── Resources Database ────────────────────────────────────── */
 var RESOURCES = {
     webdev: {
         beginner: {
@@ -66,12 +59,9 @@ var RESOURCES = {
         }
     }
 };
-
-/* ── Track Toggle ──────────────────────────────────────────── */
 (function initTrackToggle() {
     var btns = document.querySelectorAll(".track-btn");
     var hiddenTrack = document.getElementById("selected-track");
-
     btns.forEach(function (btn) {
         btn.addEventListener("click", function () {
             btns.forEach(function (b) {
@@ -80,43 +70,32 @@ var RESOURCES = {
             });
             btn.classList.add("active");
             btn.setAttribute("aria-pressed", "true");
-
             if (hiddenTrack) {
                 hiddenTrack.value = btn.getAttribute("data-track");
             }
         });
     });
 }());
-
-/* ── Validation Helpers ────────────────────────────────────── */
 function showFieldError(id, msg) {
     var el = document.getElementById(id);
     if (el) el.textContent = msg;
 }
-
 function clearFieldError(id) {
     var el = document.getElementById(id);
     if (el) el.textContent = "";
 }
-
-/* ── Determine level from scores ───────────────────────────── */
 function getLevel(score) {
     if (score <= 4) return "beginner";
     if (score <= 7) return "intermediate";
     return "advanced";
 }
-
-/* ── Render results ────────────────────────────────────────── */
 function renderResults(track, level, name) {
     var data = RESOURCES[track][level];
     var panel = document.getElementById("results-panel");
-
     document.getElementById("results-level").textContent = data.label;
     document.getElementById("results-desc").textContent = data.desc;
-
     var list = document.getElementById("resources-list");
     list.innerHTML = "";
-
     data.resources.forEach(function (r) {
         var card = document.createElement("div");
         card.className = "resource-card";
@@ -126,12 +105,9 @@ function renderResults(track, level, name) {
             "<p class='resource-desc'>" + r.desc + "</p>";
         list.appendChild(card);
     });
-
     panel.hidden = false;
     panel.scrollIntoView({ behavior: "smooth", block: "start" });
 }
-
-/* ── Retake assessment ─────────────────────────────────────── */
 function retakeAssessment() {
     var panel = document.getElementById("results-panel");
     var form = document.getElementById("assessment-form");
@@ -141,22 +117,15 @@ function retakeAssessment() {
         form.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 }
-
-/* ── Assessment Form Submit ────────────────────────────────── */
 (function initAssessmentForm() {
     var form = document.getElementById("assessment-form");
     if (!form) return;
-
     form.addEventListener("submit", function (e) {
         e.preventDefault();
-
         var isValid = true;
         var errorBanner = document.getElementById("assessment-error");
-
-        /* Validate name */
         var nameInput = document.getElementById("learner-name");
         var nameVal = nameInput ? nameInput.value.trim() : "";
-
         if (!nameVal || nameVal.length < 2) {
             showFieldError("name-error", "Please enter your name (at least 2 characters).");
             if (nameInput) nameInput.classList.add("input-error");
@@ -168,8 +137,6 @@ function retakeAssessment() {
                 nameInput.classList.add("input-valid");
             }
         }
-
-        /* Validate each quiz question */
         var qIds = ["q1", "q2", "q3", "q4"];
         qIds.forEach(function (qId) {
             var selected = document.querySelector("input[name='" + qId + "']:checked");
@@ -180,7 +147,6 @@ function retakeAssessment() {
                 clearFieldError(qId + "-error");
             }
         });
-
         if (!isValid) {
             if (errorBanner) {
                 errorBanner.hidden = false;
@@ -188,22 +154,16 @@ function retakeAssessment() {
             }
             return;
         }
-
         if (errorBanner) errorBanner.hidden = true;
-
-        /* Calculate score */
         var score = 0;
         ["q1", "q2", "q3"].forEach(function (qId) {
             var sel = document.querySelector("input[name='" + qId + "']:checked");
             score += sel ? parseInt(sel.value, 10) : 0;
         });
-
         var track = document.getElementById("selected-track")
             ? document.getElementById("selected-track").value
             : "webdev";
-
         var level = getLevel(score);
-
         renderResults(track, level, nameVal);
     });
 }());

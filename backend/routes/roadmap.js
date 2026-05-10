@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const generateRoadmap = require('../generate-roadmap');
 const store = require('../db/sqlite');
-
-// Dummy Roadmap Generator (Fallback if Claude fails during testing)
 function getDummyRoadmap(topic, level, hours, durationWeeks) {
   let rem = durationWeeks;
   const dur0 = Math.ceil(rem / 3);
@@ -11,7 +9,6 @@ function getDummyRoadmap(topic, level, hours, durationWeeks) {
   const dur1 = Math.ceil(rem / 2);
   const dur2 = rem - dur1;
   const dur = [dur0, dur1, dur2];
-
   return {
     "topic": topic,
     "total_duration_weeks": durationWeeks,
@@ -67,28 +64,22 @@ function getDummyRoadmap(topic, level, hours, durationWeeks) {
     "career_paths": [`${topic} Developer`, "Technical Consultant"]
   };
 }
-
-// Generate new roadmap
 router.post('/generate', async (req, res) => {
   try {
     const { topic, level, hours, durationWeeks, sessionId } = req.body;
-
     const sidRaw = typeof sessionId === 'string' ? sessionId.trim() : '';
     const uuidOk =
       /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
         sidRaw
       );
-
     if (!uuidOk) {
       return res.status(400).json({
         error: 'Missing or invalid sessionId (use crypto.randomUUID in the browser)',
       });
     }
-
     if (!topic || !level || String(topic).trim().length < 3) {
       return res.status(400).json({ error: 'Missing or invalid topic/level' });
     }
-
     const weeks = parseInt(durationWeeks, 10);
     const hrs = parseInt(hours, 10);
     if (Number.isNaN(weeks) || weeks < 3 || weeks > 52) {
@@ -97,20 +88,15 @@ router.post('/generate', async (req, res) => {
     if (Number.isNaN(hrs) || hrs < 1 || hrs > 15) {
       return res.status(400).json({ error: 'hours must be between 1 and 15' });
     }
-    
     console.log(`\n🎯 API Request: [${topic}] Level: [${level}] Hours/wk: [${hrs}] Duration: [${weeks}w]`);
-    
     let roadmapData;
-    
     try {
       roadmapData = await generateRoadmap(topic, level, hrs, weeks);
     } catch (apiError) {
       console.error("⚠️ Claude API failed. Falling back to dummy data so you can test the UI!");
       console.error(apiError.message);
-      
       roadmapData = getDummyRoadmap(topic, level, hrs, weeks);
     }
-    
     const roadmapId = 'temp-' + Date.now();
     const newRoadmap = {
       _id: roadmapId,
@@ -124,9 +110,7 @@ router.post('/generate', async (req, res) => {
       createdAt: new Date(),
       shareToken: Math.random().toString(36).substring(7),
     };
-
     store.insertRoadmap(newRoadmap);
-    
     res.json({
       success: true,
       roadmapId: roadmapId,
@@ -134,7 +118,6 @@ router.post('/generate', async (req, res) => {
       message: 'Roadmap generated successfully',
       data: roadmapData
     });
-    
   } catch (error) {
     console.error('❌ Critical Error in route:', error);
     res.status(500).json({ 
@@ -143,19 +126,14 @@ router.post('/generate', async (req, res) => {
     });
   }
 });
-
-// Get saved roadmaps (scoped: email filter overrides session filter)
 router.get('/my-roadmaps', async (req, res) => {
   try {
     const { email, sessionId } = req.query;
-
     let allRoadmaps;
-
     const emailTrim =
       typeof email === 'string' && email.includes('@')
         ? email.trim()
         : '';
-
     const sidTrim =
       typeof sessionId === 'string' &&
       /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
@@ -163,7 +141,6 @@ router.get('/my-roadmaps', async (req, res) => {
       )
         ? sessionId.trim()
         : '';
-
     if (emailTrim) {
       allRoadmaps = store.listByEmail(emailTrim);
     } else if (sidTrim) {
@@ -171,7 +148,6 @@ router.get('/my-roadmaps', async (req, res) => {
     } else {
       allRoadmaps = [];
     }
-
     res.json({
       success: true,
       roadmaps: allRoadmaps,
@@ -180,21 +156,16 @@ router.get('/my-roadmaps', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
-// Get single roadmap by ID
 router.get('/:idOrToken', async (req, res) => {
   try {
     const { idOrToken } = req.params;
-    
     let roadmap = store.findById(idOrToken);
     if (!roadmap) {
       roadmap = store.findByShareToken(idOrToken);
     }
-
     if (!roadmap) {
       return res.status(404).json({ error: 'Roadmap not found' });
     }
-    
     res.json({ 
       success: true, 
       roadmap: roadmap
@@ -203,15 +174,11 @@ router.get('/:idOrToken', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
-// Update roadmap progress
 router.put('/:id/progress', async (req, res) => {
   try {
     const { progress } = req.body;
     const { id } = req.params;
-    
     store.updateProgress(id, progress);
-
     res.json({
       success: true,
       message: 'Progress updated',
@@ -221,13 +188,10 @@ router.put('/:id/progress', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
-// Delete roadmap
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     store.deleteById(id);
-
     res.json({
       success: true,
       message: 'Roadmap deleted',
@@ -236,5 +200,4 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 module.exports = router;

@@ -12,7 +12,6 @@
 </head>
 <body class="page-load">
     <div class="bg-mesh"></div>
-
     <header class="site-header navbar-glass">
         <div class="header-inner">
             <a href="index.html" class="logo">
@@ -27,6 +26,7 @@
                     <li><a href="roadmap-generator.html" class="nav-link ">AI Generator</a></li>
                     <li><a href="about-us.html" class="nav-link ">About Us</a></li>
                     <li><a href="contact-us.html" class="nav-link ">Contact</a></li>
+                    <li id="auth-nav-item"><a href="login.html" class="nav-link">Login</a></li>
                 </ul>
             </nav>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -34,15 +34,12 @@
             </button>
         </div>
     </header>
-
     <main class="roadmap-view-main">
         <div id="loading-overlay" class="loading-overlay" style="display: none;">
             <div class="loader-primary"></div>
             <p style="color: var(--text-muted); margin-top: 1.25rem;">Loading your roadmap...</p>
         </div>
-
         <div id="roadmap-content" style="display: none;">
-            <!-- Header Section -->
             <section class="roadmap-header card-glass stagger-item" style="--i: 1; margin-bottom: 2.5rem;">
                 <div class="section-inner" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; padding: 2.5rem;">
                     <div class="header-top">
@@ -50,7 +47,6 @@
                         <h1 id="roadmap-topic" style="margin: 0.75rem 0;">Roadmap Topic</h1>
                         <p class="roadmap-meta" style="color: var(--text-muted);">Estimated <span id="total-duration" style="color: var(--text-main); font-weight: 700;">- weeks</span> to complete</p>
                     </div>
-
                     <div class="roadmap-actions">
                         <button id="save-btn" class="btn-primary">Save to Profile</button>
                         <button id="share-btn" class="btn-secondary">Share Link</button>
@@ -58,8 +54,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Overview Section -->
             <section class="roadmap-overview stagger-item" style="--i: 2; margin-bottom: 2.5rem;">
                 <div class="section-inner">
                     <div class="overview-grid">
@@ -76,7 +70,6 @@
                             <span class="stat-label">Weekly Commitment</span>
                         </div>
                     </div>
-
                     <div class="progress-container card-glass">
                         <div class="progress-header">
                             <h3 style="margin: 0; font-size: 1.1rem;">Overall Progress</h3>
@@ -88,44 +81,30 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Main Content Area -->
             <section class="roadmap-details stagger-item" style="--i: 3;">
                 <div class="section-inner details-grid">
-
-                    <!-- Left Column: Phases (Timeline) -->
                     <div class="phases-column">
                         <h2>Learning <span class="gradient-text">Timeline</span></h2>
                         <div id="phases-container" class="timeline-container">
-                            <!-- Phases generated dynamically -->
                         </div>
                     </div>
-
-                    <!-- Right Column: Sidebar (Schedule & Extras) -->
                     <aside class="sidebar-column">
                         <div class="sidebar-card card-glass" id="weekly-schedule">
-                            <!-- Weekly schedule injected here -->
                         </div>
-
                         <div class="sidebar-card card-glass" id="prerequisites">
-                            <!-- Prerequisites injected here -->
                         </div>
-
                         <div class="sidebar-card card-glass" id="next-steps">
-                            <!-- Next steps injected here -->
                         </div>
                     </aside>
                 </div>
             </section>
         </div>
     </main>
-
     <footer class="site-footer">
         <div class="footer-inner" style="text-align: center; justify-content: center; padding-bottom: 2rem;">
             <p class="footer-copy" style="margin: 0; color: var(--text-muted);">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
         </div>
     </footer>
-
     <script src="../js/main.js"></script>
     <script src="../js/roadmap-view.js"></script>
 </body>

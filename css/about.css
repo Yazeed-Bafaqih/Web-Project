@@ -1,18 +1,11 @@
-/* ============================================================
-   TechPath — about.css (About Us Page — Dark Glassmorphism)
-   ============================================================ */
-
-/* ── Team Cards ────────────────────────────────────────────── */
 .team-cards-section {
     padding: 7rem 0 0;
 }
-
 .team-cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
 }
-
 .member-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -27,14 +20,12 @@
     box-shadow: var(--shadow-glass);
     backdrop-filter: blur(16px);
 }
-
 .member-card:hover {
     transform: translateY(-10px);
     background: var(--glass-bg-hover);
     border-color: rgba(0, 229, 204, 0.25);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 30px rgba(0, 229, 204, 0.1);
 }
-
 .member-avatar {
     width: 100px;
     height: 100px;
@@ -51,16 +42,13 @@
     box-shadow: 0 10px 25px var(--primary-glow);
     font-weight: 800;
 }
-
 .member-avatar--2 { background: linear-gradient(135deg, #00E5CC, #00B3A0); }
 .member-avatar--3 { background: linear-gradient(135deg, #A78BFA, #7C3AED); }
-
 .member-card h3 {
     font-size: 1.6rem;
     margin: 0;
     font-weight: 800;
 }
-
 .member-role {
     font-size: 0.82rem;
     font-weight: 800;
@@ -71,19 +59,16 @@
     padding: 0.3rem 1rem;
     border-radius: var(--radius-full);
 }
-
 .member-bio {
     font-size: 1rem;
     color: var(--text-muted);
     line-height: 1.7;
 }
-
 .member-links {
     display: flex;
     gap: 0.85rem;
     margin-top: 0.75rem;
 }
-
 .member-link {
     font-size: 0.85rem;
     font-weight: 700;
@@ -93,18 +78,14 @@
     color: var(--text-muted);
     transition: all 0.3s var(--ease-fluid);
 }
-
 .member-link:hover {
     color: var(--primary);
     border-color: rgba(0, 229, 204, 0.4);
     background: var(--primary-glow);
 }
-
-/* ── Team Table ────────────────────────────────────────────── */
 .team-table-section {
     padding: 7rem 0 10rem;
 }
-
 .table-wrapper {
     overflow-x: auto;
     border: 1px solid var(--glass-border);
@@ -113,14 +94,12 @@
     backdrop-filter: blur(16px);
     box-shadow: var(--shadow-md);
 }
-
 .team-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1rem;
     min-width: 800px;
 }
-
 .team-table caption {
     padding: 1.75rem 2rem;
     text-align: left;
@@ -129,7 +108,6 @@
     border-bottom: 1px solid var(--glass-border);
     font-weight: 700;
 }
-
 .team-table thead th {
     padding: 1.5rem 2rem;
     text-align: left;
@@ -141,29 +119,23 @@
     border-bottom: 2px solid var(--glass-border);
     background: rgba(255, 255, 255, 0.02);
 }
-
 .team-table tbody td {
     padding: 1.5rem 2rem;
     color: var(--text-main);
     border-bottom: 1px solid var(--glass-border);
 }
-
 .team-table tbody tr {
     transition: background 0.3s ease;
 }
-
 .team-table tbody tr:hover {
     background: var(--primary-glow);
 }
-
 .team-table tfoot td {
     padding: 1.25rem 2rem;
     color: var(--text-muted);
     font-size: 0.9rem;
     border-top: 1px solid var(--glass-border);
 }
-
-/* Role badges */
 .role-badge {
     display: inline-block;
     font-size: 0.78rem;
@@ -171,25 +143,19 @@
     padding: 0.35rem 0.9rem;
     border-radius: var(--radius-full);
 }
-
 .role-badge--frontend { background: rgba(0, 229, 204, 0.15); color: #5DFDE8; }
 .role-badge--backend { background: rgba(167, 139, 250, 0.15); color: #C4B5FD; }
 .role-badge--js { background: rgba(52, 211, 153, 0.15); color: #6EE7B7; }
-
 .table-link {
     color: var(--secondary);
     font-size: 0.9rem;
 }
-
 .table-link:hover {
     color: var(--primary);
 }
-
-/* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 992px) {
     .team-cards-grid { grid-template-columns: 1fr 1fr; }
 }
-
 @media (max-width: 768px) {
     .team-cards-grid { grid-template-columns: 1fr; }
 }

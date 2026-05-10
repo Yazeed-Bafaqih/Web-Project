@@ -12,7 +12,6 @@
 </head>
 <body class="page-load">
     <div class="bg-mesh"></div>
-
     <header class="site-header navbar-glass">
         <div class="header-inner">
             <a href="index.html" class="logo">
@@ -27,6 +26,7 @@
                     <li><a href="roadmap-generator.html" class="nav-link ">AI Generator</a></li>
                     <li><a href="about-us.html" class="nav-link ">About Us</a></li>
                     <li><a href="contact-us.html" class="nav-link ">Contact</a></li>
+                    <li id="auth-nav-item"><a href="login.html" class="nav-link">Login</a></li>
                 </ul>
             </nav>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -34,10 +34,7 @@
             </button>
         </div>
     </header>
-
     <main>
-
-        <!-- Track Selector -->
         <section class="page-hero stagger-item" aria-labelledby="explore-title" style="--i: 1;">
             <div class="section-inner floating">
                 <p class="hero-eyebrow">Find Your Path</p>
@@ -45,7 +42,6 @@
                 <p class="page-hero-desc">
                     Select a field, take the level assessment, and unlock resources tailored exactly to where you are right now.
                 </p>
-                <!-- Track toggle -->
                 <div class="track-toggle" role="group" aria-label="Select a tech field">
                     <button class="track-btn active" data-track="webdev" aria-pressed="true">
                         Web Development
@@ -56,15 +52,11 @@
                 </div>
             </div>
         </section>
-
-        <!-- Assessment Form -->
         <section class="assessment-section stagger-item" aria-labelledby="assessment-title" style="--i: 2;">
             <div class="section-inner assess-layout">
-
                 <div class="assess-form-wrap card-glass">
                     <h2 id="assessment-title">Level Assessment</h2>
                     <p class="assess-intro">Answer 4 quick questions honestly — the more accurate, the better your resources.</p>
-
                     <form
                         id="assessment-form"
                         action="/backend/assessment.js"
@@ -73,8 +65,6 @@
                         aria-labelledby="assessment-title"
                     >
                         <input type="hidden" id="selected-track" name="track" value="webdev" />
-
-                        <!-- Q1 -->
                         <fieldset class="quiz-question" id="q1-group">
                             <legend>
                                 <span class="q-num" aria-hidden="true">01</span>
@@ -96,8 +86,6 @@
                             </div>
                             <span class="field-error" id="q1-error" role="alert" aria-live="polite"></span>
                         </fieldset>
-
-                        <!-- Q2 -->
                         <fieldset class="quiz-question" id="q2-group">
                             <legend>
                                 <span class="q-num" aria-hidden="true">02</span>
@@ -119,8 +107,6 @@
                             </div>
                             <span class="field-error" id="q2-error" role="alert" aria-live="polite"></span>
                         </fieldset>
-
-                        <!-- Q3 -->
                         <fieldset class="quiz-question" id="q3-group">
                             <legend>
                                 <span class="q-num" aria-hidden="true">03</span>
@@ -142,8 +128,6 @@
                             </div>
                             <span class="field-error" id="q3-error" role="alert" aria-live="polite"></span>
                         </fieldset>
-
-                        <!-- Q4 -->
                         <fieldset class="quiz-question" id="q4-group">
                             <legend>
                                 <span class="q-num" aria-hidden="true">04</span>
@@ -165,8 +149,6 @@
                             </div>
                             <span class="field-error" id="q4-error" role="alert" aria-live="polite"></span>
                         </fieldset>
-
-                        <!-- Name for registration -->
                         <div class="form-group register-group">
                             <label for="learner-name" class="form-label">Your Name <span class="required" aria-hidden="true">*</span></label>
                             <input
@@ -184,43 +166,32 @@
                             />
                             <span class="field-error" id="name-error" role="alert" aria-live="polite"></span>
                         </div>
-
                         <div id="assessment-error" class="form-error-banner" role="alert" aria-live="polite" hidden></div>
-
                         <button type="submit" class="btn-primary">
                             Get My Resources &rarr;
                         </button>
                     </form>
                 </div>
-
-                <!-- Results Panel (shown after submission) -->
                 <aside class="results-panel" id="results-panel" aria-live="polite" aria-label="Assessment results" hidden>
                     <div class="results-inner">
                         <p class="results-eyebrow">Your Level</p>
                         <h2 id="results-level" class="results-level">Beginner</h2>
                         <p id="results-desc" class="results-desc"></p>
-
                         <div id="resources-list" aria-label="Recommended resources">
-                            <!-- Populated by JS -->
                         </div>
-
                         <button class="btn-secondary" id="retake-btn" onclick="retakeAssessment()">
                             Retake Assessment
                         </button>
                     </div>
                 </aside>
-
             </div>
         </section>
-
     </main>
-
     <footer class="site-footer">
         <div class="footer-inner" style="text-align: center; justify-content: center; padding-bottom: 2rem;">
             <p class="footer-copy" style="margin: 0; color: var(--text-muted);">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
         </div>
     </footer>
-
     <script src="../js/main.js"></script>
     <script src="../js/assessment.js"></script>
 </body>

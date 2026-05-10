@@ -1,5 +1,4 @@
-const API_BASE_URL = 'http://localhost:3000/api'; // Change if deployed
-
+const API_BASE_URL = 'http://localhost:3000/api'; 
 function ensureRoadmapSessionId() {
   const key = 'techpath_roadmap_session';
   let id = localStorage.getItem(key);
@@ -9,37 +8,29 @@ function ensureRoadmapSessionId() {
   }
   return id;
 }
-
 function buildRoadmapsListUrl(emailFromInput) {
   const params = new URLSearchParams();
   const email = (typeof emailFromInput === 'string' ? emailFromInput : '')
     .trim();
-
   if (email && email.includes('@')) {
     params.set('email', email);
   } else {
     const sid = ensureRoadmapSessionId();
     params.set('sessionId', sid);
   }
-
   return `${API_BASE_URL}/roadmap/my-roadmaps?${params.toString()}`;
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   ensureRoadmapSessionId();
-
   const emailInput = document.getElementById('filterEmail');
   const storedEmail = localStorage.getItem('userEmail');
-
   if (emailInput && storedEmail) {
     emailInput.value = storedEmail;
   }
-
   const firstFilter = emailInput?.value?.trim?.() || '';
   loadUserRoadmaps(
     firstFilter.includes('@') ? firstFilter : undefined
   );
-
   document.getElementById('loadRoadmapsBtn')?.addEventListener('click', () => {
     const email = document.getElementById('filterEmail').value.trim();
     if (email && email.includes('@')) {
@@ -48,30 +39,23 @@ document.addEventListener('DOMContentLoaded', () => {
     loadUserRoadmaps(email && email.includes('@') ? email : undefined);
   });
 });
-
 async function loadUserRoadmaps(email) {
   const loading = document.getElementById('loading-roadmaps');
   const grid = document.getElementById('roadmaps-grid');
   const emptyState = document.getElementById('empty-state');
-
   loading.style.display = 'block';
   grid.style.display = 'none';
   emptyState.style.display = 'none';
   grid.innerHTML = '';
-
   try {
     const url =
       typeof email === 'string' && email.includes('@')
         ? buildRoadmapsListUrl(email)
         : buildRoadmapsListUrl('');
-
     const response = await fetch(url);
     const result = await response.json();
-
     if (!result.success) throw new Error('Failed to fetch roadmaps');
-
     const roadmaps = result.roadmaps;
-
     if (roadmaps.length === 0) {
       emptyState.style.display = 'block';
     } else {
@@ -88,15 +72,12 @@ async function loadUserRoadmaps(email) {
     loading.style.display = 'none';
   }
 }
-
 function createRoadmapCard(roadmap) {
   const card = document.createElement('div');
   card.className = 'dashboard-card card-glass stagger-item';
   card.style.setProperty('--i', Math.random());
-
   const dateStr = new Date(roadmap.createdAt).toLocaleDateString();
   const progress = roadmap.progress || 0;
-
   card.innerHTML = `
     <div class="card-header" style="display: flex; justify-content: space-between; margin-bottom: 12px;">
       <span class="badge badge-primary">${roadmap.level}</span>
@@ -120,16 +101,13 @@ function createRoadmapCard(roadmap) {
   `;
   return card;
 }
-
 window.deleteRoadmap = async function (id) {
   if (!confirm('Are you sure you want to delete this roadmap?')) return;
-
   try {
     const response = await fetch(`${API_BASE_URL}/roadmap/${id}`, {
       method: 'DELETE',
     });
     const result = await response.json();
-
     if (result.success) {
       const email = document.getElementById('filterEmail').value.trim();
       loadUserRoadmaps(email && email.includes('@') ? email : undefined);

@@ -1,12 +1,6 @@
-/* ============================================================
-   TechPath — roadmap.css (Roadmap Feature — Dark Glassmorphism)
-   ============================================================ */
-
-/* ── 1. Generator Form ─────────────────────────────────────── */
 .generator-section {
     padding: 3rem 0 6rem;
 }
-
 .generator-container {
     max-width: 720px;
     margin: 0 auto;
@@ -17,13 +11,11 @@
     box-shadow: var(--shadow-md);
     backdrop-filter: blur(16px);
 }
-
 .roadmap-form {
     display: flex;
     flex-direction: column;
     gap: 1.75rem;
 }
-
 .form-range-header {
     display: flex;
     align-items: baseline;
@@ -31,7 +23,6 @@
     gap: 1rem;
     margin-bottom: 0.5rem;
 }
-
 .form-range-value {
     font-family: var(--font-main);
     font-weight: 700;
@@ -40,7 +31,6 @@
     min-width: 2.25ch;
     text-align: right;
 }
-
 .form-range {
     width: 100%;
     height: 0.55rem;
@@ -49,7 +39,6 @@
     accent-color: var(--primary);
     cursor: pointer;
 }
-
 .form-range-labels {
     display: flex;
     justify-content: space-between;
@@ -57,15 +46,12 @@
     font-size: 0.78rem;
     color: var(--clr-muted);
 }
-
 .form-hint {
     margin-top: 0.45rem;
     font-size: 0.85rem;
     color: var(--clr-muted);
     line-height: 1.4;
 }
-
-/* Spinner */
 .spinner {
     border: 3px solid rgba(255,255,255,0.15);
     border-radius: 50%;
@@ -77,12 +63,10 @@
     display: inline-block;
     vertical-align: middle;
 }
-
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
 .loading-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -101,7 +85,6 @@
     border-width: 4px;
     border-top-color: var(--clr-accent);
 }
-
 .error-notification {
     position: fixed;
     bottom: 2rem;
@@ -115,23 +98,18 @@
     display: none;
     transition: opacity 0.3s ease;
 }
-
-/* ── 2. Roadmap View Header & Overview ─────────────────────── */
 .roadmap-view-main {
     padding-bottom: 6rem;
 }
-
 .roadmap-header {
     background: var(--glass-bg);
     border-bottom: 1px solid var(--glass-border);
     padding: 3.5rem 0 2.5rem;
 }
-
 .header-top {
     text-align: center;
     margin-bottom: 2.5rem;
 }
-
 #roadmap-topic {
     font-size: clamp(2rem, 4vw, 3rem);
     margin: 1rem 0;
@@ -140,7 +118,6 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
-
 .badge {
     display: inline-block;
     padding: 0.3rem 0.85rem;
@@ -150,30 +127,25 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
 }
-
 .badge-accent { background: rgba(0, 229, 204, 0.15); color: var(--primary); }
 .badge-success { background: rgba(52, 211, 153, 0.15); color: var(--clr-success); }
 .badge-warning { background: rgba(251, 191, 36, 0.15); color: var(--clr-warning); }
 .badge-danger { background: rgba(248, 113, 113, 0.15); color: var(--clr-danger); }
-
 .roadmap-actions {
     display: flex;
     justify-content: center;
     gap: 1.25rem;
     flex-wrap: wrap;
 }
-
 .roadmap-overview {
     padding: 2.5rem 0;
 }
-
 .overview-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     margin-bottom: 2.5rem;
 }
-
 .stat-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -185,7 +157,6 @@
     gap: 0.6rem;
     backdrop-filter: blur(12px);
 }
-
 .stat-num {
     font-size: 2.5rem;
     font-weight: 900;
@@ -195,7 +166,6 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
-
 .stat-label {
     color: var(--clr-muted);
     font-size: 0.85rem;
@@ -203,7 +173,6 @@
     letter-spacing: 0.08em;
     font-weight: 700;
 }
-
 .progress-container {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -211,45 +180,37 @@
     padding: 2rem;
     backdrop-filter: blur(12px);
 }
-
 .progress-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.25rem;
 }
-
 .progress-bar-bg {
     height: 12px;
     background: rgba(255, 255, 255, 0.06);
     border-radius: 999px;
     overflow: hidden;
 }
-
 .progress-bar-fill {
     height: 100%;
     background: var(--gradient-primary);
     transition: width 0.5s ease, background-color 0.3s ease;
     border-radius: 999px;
 }
-
-/* ── 3. Roadmap Details (Timeline & Sidebar) ───────────────── */
 .roadmap-details {
     padding: 2.5rem 0;
 }
-
 .details-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 3rem;
     align-items: start;
 }
-
 .phases-column h2 {
     margin-bottom: 2.5rem;
     font-size: 1.8rem;
 }
-
 .timeline-container {
     display: flex;
     flex-direction: column;
@@ -264,7 +225,6 @@
     background: var(--glass-border);
     z-index: 0;
 }
-
 .phase-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -284,12 +244,10 @@
     border: 2px solid var(--primary);
     border-radius: 50%;
 }
-
 .phase-card:hover {
     box-shadow: var(--shadow-sm), 0 0 15px rgba(0, 229, 204, 0.06);
     border-color: rgba(0, 229, 204, 0.25);
 }
-
 .phase-header {
     padding: 1.5rem 2rem;
     cursor: pointer;
@@ -298,30 +256,25 @@
     align-items: center;
     gap: 1.25rem;
 }
-
 .phase-number {
     font-family: var(--font-main);
     color: var(--primary);
     font-weight: 700;
     font-size: 0.9rem;
 }
-
 .phase-title-group {
     display: flex;
     flex-direction: column;
 }
-
 .phase-name {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.2rem;
 }
-
 .phase-duration {
     font-size: 0.85rem;
     color: var(--clr-muted);
 }
-
 .toggle-btn {
     background: none;
     border: none;
@@ -331,7 +284,6 @@
     transition: transform 0.3s ease, color var(--transition);
 }
 .phase-header:hover .toggle-btn { color: var(--primary); }
-
 .phase-content {
     padding: 0 2rem 2rem;
     border-top: 1px solid var(--glass-border);
@@ -340,30 +292,25 @@
 .phase-content.collapsed {
     display: none;
 }
-
 .phase-description {
     color: var(--clr-text);
     margin: 1.25rem 0;
     font-size: 0.95rem;
     line-height: 1.7;
 }
-
 .phase-section {
     margin-top: 2rem;
 }
-
 .phase-section h4 {
     font-size: 1rem;
     color: var(--secondary);
     margin-bottom: 1rem;
 }
-
 .topics-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
 }
-
 .topic-tag {
     background: rgba(0, 229, 204, 0.1);
     color: var(--primary);
@@ -372,13 +319,11 @@
     font-size: 0.8rem;
     border: 1px solid rgba(0, 229, 204, 0.15);
 }
-
 .resources-list {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
 }
-
 .resource-item {
     display: flex;
     align-items: flex-start;
@@ -387,7 +332,6 @@
     background: rgba(255, 255, 255, 0.02);
     border-radius: var(--radius-sm);
 }
-
 .resource-type {
     font-size: 0.7rem;
     text-transform: uppercase;
@@ -402,7 +346,6 @@
 .type-course { background: rgba(52, 211, 153, 0.15); color: #6EE7B7; }
 .type-book { background: rgba(251, 191, 36, 0.15); color: #FCD34D; }
 .type-other { background: rgba(255, 255, 255, 0.08); color: var(--text-muted); }
-
 .resource-item a {
     font-size: 0.95rem;
     color: var(--clr-text);
@@ -411,14 +354,11 @@
     transition: text-decoration-color var(--transition);
 }
 .resource-item a:hover { text-decoration-color: var(--primary); }
-
 .milestones-list {
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
 }
-
-/* Custom Checkbox */
 .custom-checkbox {
     display: flex;
     align-items: flex-start;
@@ -426,7 +366,6 @@
     cursor: pointer;
     position: relative;
 }
-
 .custom-checkbox input {
     position: absolute;
     opacity: 0;
@@ -434,7 +373,6 @@
     height: 0;
     width: 0;
 }
-
 .checkmark {
     height: 22px;
     width: 22px;
@@ -445,16 +383,13 @@
     position: relative;
     transition: all var(--transition);
 }
-
 .custom-checkbox:hover input ~ .checkmark {
     border-color: var(--primary);
 }
-
 .custom-checkbox input:checked ~ .checkmark {
     background-color: var(--clr-success);
     border-color: var(--clr-success);
 }
-
 .checkmark:after {
     content: "";
     position: absolute;
@@ -467,22 +402,18 @@
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
-
 .custom-checkbox input:checked ~ .checkmark:after {
     display: block;
 }
-
 .custom-checkbox input:checked ~ .milestone-text {
     text-decoration: line-through;
     color: var(--clr-muted);
 }
-
 .milestone-text {
     font-size: 0.95rem;
     line-height: 1.5;
     transition: color var(--transition);
 }
-
 .exercises-list li {
     display: flex;
     align-items: flex-start;
@@ -490,21 +421,17 @@
     margin-bottom: 0.6rem;
     font-size: 0.95rem;
 }
-
 .phase-footer {
     margin-top: 2rem;
     padding-top: 1.25rem;
     border-top: 1px solid var(--glass-border);
     text-align: right;
 }
-
 .estimated-hours {
     font-size: 0.85rem;
     color: var(--clr-muted);
     font-family: var(--font-main);
 }
-
-/* ── 4. Sidebar ────────────────────────────────────────────── */
 .sidebar-column {
     display: flex;
     flex-direction: column;
@@ -512,7 +439,6 @@
     position: sticky;
     top: 100px;
 }
-
 .sidebar-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -520,21 +446,18 @@
     padding: 2rem;
     backdrop-filter: blur(12px);
 }
-
 .sidebar-card h3 {
     font-size: 1.15rem;
     margin-bottom: 1.25rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--glass-border);
 }
-
 .schedule-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
     margin-bottom: 1.25rem;
 }
-
 .schedule-stat {
     display: flex;
     flex-direction: column;
@@ -543,24 +466,20 @@
     padding: 1.25rem;
     border-radius: var(--radius-md);
 }
-
 .schedule-value {
     font-size: 1.6rem;
     font-weight: 800;
     color: var(--primary);
 }
-
 .schedule-days-section {
     margin-top: 1.25rem;
 }
-
 .days-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 0.6rem;
 }
-
 .day-tag {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--glass-border);
@@ -569,35 +488,29 @@
     font-size: 0.8rem;
     color: var(--clr-text);
 }
-
 .sidebar-list {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
 }
-
 .sidebar-list li {
     font-size: 0.9rem;
     color: var(--clr-text);
     padding-left: 1.5rem;
     position: relative;
 }
-
 .check-list li::before {
     content: '✓';
     position: absolute;
     left: 0;
     color: var(--clr-success);
 }
-
 .arrow-list li::before {
     content: '→';
     position: absolute;
     left: 0;
     color: var(--primary);
 }
-
-/* Responsive */
 @media (max-width: 992px) {
     .details-grid {
         grid-template-columns: 1fr;
@@ -606,7 +519,6 @@
         position: static;
     }
 }
-
 @media (max-width: 576px) {
     .generator-container { padding: 2rem 1.5rem; }
     .phase-card { margin-left: 2rem; }
@@ -615,25 +527,20 @@
     .phase-header { grid-template-columns: 1fr auto; }
     .phase-number { grid-column: 1 / -1; }
 }
-
-/* ══ FORCE DARK DROPDOWN ═══════════════════════════════════ */
 select.form-select {
     background-color: #0A0A0A !important;
     color: #F0F0F0 !important;
 }
-
 select.form-select option {
     background-color: #0A0A0A !important;
     color: #F0F0F0 !important;
     padding: 10px !important;
 }
-
 select.form-select optgroup {
     background-color: #050505 !important;
     color: #00E5CC !important;
     font-weight: bold !important;
 }
-
 select.form-select optgroup option {
     background-color: #0A0A0A !important;
     color: #F0F0F0 !important;

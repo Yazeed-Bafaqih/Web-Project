@@ -1,79 +1,55 @@
 const API_BASE_URL = 'http://localhost:3000/api';
-
 document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const roadmapId = urlParams.get('id');
-  
   if (!roadmapId) {
     window.location.href = 'roadmap-generator.html';
     return;
   }
-  
   document.getElementById('loading-overlay').style.display = 'flex';
   await loadRoadmap(roadmapId);
   setupEventListeners();
 });
-
 async function loadRoadmap(id) {
   try {
     const response = await fetch(`${API_BASE_URL}/roadmap/${id}`);
     const result = await response.json();
-    
     if (!result.success) {
       throw new Error('Failed to load roadmap');
     }
-    
     const roadmap = result.roadmap;
     renderRoadmap(roadmap);
-    
     document.getElementById('loading-overlay').style.display = 'none';
     document.getElementById('roadmap-content').style.display = 'block';
-    
-    // Calculate initial progress
     updateProgressUI(roadmap.progress || 0);
-
   } catch (error) {
     console.error('Error:', error);
     showError('Failed to load roadmap');
     document.getElementById('loading-overlay').innerHTML = `<p style="color:var(--clr-danger)">Failed to load roadmap. <a href="roadmap-generator.html">Go back</a></p>`;
   }
 }
-
 function renderRoadmap(roadmap) {
   const data = roadmap.roadmapData;
-  
-  // Render header
   document.getElementById('roadmap-topic').textContent = data.topic;
   document.getElementById('total-duration').textContent = `${data.total_duration_weeks || '-'} weeks`;
   document.getElementById('difficulty-level').textContent = `Difficulty: ${data.difficulty_rating || '-'}/10`;
-  
-  // Render overview cards
   document.getElementById('total-phases').textContent = data.phases ? data.phases.length : 0;
   document.getElementById('total-hours').textContent = calculateTotalHours(data);
   document.getElementById('weekly-hours').textContent = `${roadmap.hoursPerWeek} hrs/week`;
-  
-  // Render phases
   const phasesContainer = document.getElementById('phases-container');
   phasesContainer.innerHTML = '';
-  
   if (data.phases && data.phases.length > 0) {
     data.phases.forEach((phase, index) => {
-      // Check if this phase was previously completed
-      // For simplicity here we just render all checkboxes. 
-      // In a real scenario we'd check `roadmap.completedMilestones`
       const phaseCard = createPhaseCard(phase, index);
       phasesContainer.appendChild(phaseCard);
     });
   } else {
     phasesContainer.innerHTML = '<p>No phases found in this roadmap.</p>';
   }
-  
-  // Render sidebar items
   if(data.weekly_schedule) renderWeeklySchedule(data.weekly_schedule);
   if(data.prerequisites) renderPrerequisites(data.prerequisites);
   if(data.next_steps) renderNextSteps(data.next_steps);
 }
-
 function createPhaseCard(phase, index) {
   const card = document.createElement('div');
   card.className = 'phase-card';
@@ -90,7 +66,6 @@ function createPhaseCard(phase, index) {
     </div>
     <div class="phase-content collapsed" id="phase-${index}">
       <p class="phase-description">${phase.description || ''}</p>
-      
       ${phase.topics && phase.topics.length > 0 ? `
       <div class="phase-section">
         <h4>Key Topics</h4>
@@ -98,7 +73,6 @@ function createPhaseCard(phase, index) {
           ${phase.topics.map(topic => `<span class="topic-tag">${topic}</span>`).join('')}
         </div>
       </div>` : ''}
-      
       ${phase.resources && phase.resources.length > 0 ? `
       <div class="phase-section">
         <h4>Resources</h4>
@@ -111,7 +85,6 @@ function createPhaseCard(phase, index) {
           `).join('')}
         </ul>
       </div>` : ''}
-      
       ${phase.milestones && phase.milestones.length > 0 ? `
       <div class="phase-section">
         <h4>Milestones</h4>
@@ -127,7 +100,6 @@ function createPhaseCard(phase, index) {
           `).join('')}
         </ul>
       </div>` : ''}
-      
       ${phase.exercises && phase.exercises.length > 0 ? `
       <div class="phase-section">
         <h4>Exercises & Practice</h4>
@@ -135,20 +107,16 @@ function createPhaseCard(phase, index) {
           ${phase.exercises.map(exercise => `<li><span class="exercise-icon">💪</span> ${exercise}</li>`).join('')}
         </ul>
       </div>` : ''}
-      
       <div class="phase-footer">
         <span class="estimated-hours">⏱️ ${phase.estimated_hours || '-'} hours estimated</span>
       </div>
     </div>
   `;
-  
   return card;
 }
-
 window.togglePhase = function(index) {
   const content = document.getElementById(`phase-${index}`);
   const btn = content.previousElementSibling.querySelector('.toggle-btn');
-  
   if (content.classList.contains('collapsed')) {
     content.classList.remove('collapsed');
     btn.style.transform = 'rotate(180deg)';
@@ -157,7 +125,6 @@ window.togglePhase = function(index) {
     btn.style.transform = 'rotate(0deg)';
   }
 }
-
 function renderWeeklySchedule(schedule) {
   const container = document.getElementById('weekly-schedule');
   container.innerHTML = `
@@ -172,7 +139,6 @@ function renderWeeklySchedule(schedule) {
         <span class="schedule-label">Practice Hrs</span>
       </div>
     </div>
-    
     ${schedule.suggested_days ? `
     <div class="schedule-days-section">
       <span class="schedule-label">Suggested Days:</span>
@@ -182,7 +148,6 @@ function renderWeeklySchedule(schedule) {
     </div>` : ''}
   `;
 }
-
 function renderPrerequisites(prereqs) {
   const container = document.getElementById('prerequisites');
   if (prereqs && prereqs.length > 0) {
@@ -196,7 +161,6 @@ function renderPrerequisites(prereqs) {
     container.style.display = 'none';
   }
 }
-
 function renderNextSteps(steps) {
   const container = document.getElementById('next-steps');
   if (steps && steps.length > 0) {
@@ -210,29 +174,22 @@ function renderNextSteps(steps) {
     container.style.display = 'none';
   }
 }
-
 function calculateTotalHours(data) {
   if (!data.phases) return 0;
   return data.phases.reduce((total, phase) => total + (phase.estimated_hours || 0), 0);
 }
-
 function setupEventListeners() {
   document.getElementById('save-btn').addEventListener('click', saveRoadmapLocally);
   document.getElementById('share-btn').addEventListener('click', shareRoadmap);
   document.getElementById('print-btn').addEventListener('click', () => window.print());
 }
-
 window.handleMilestoneChange = async function() {
   const checkboxes = document.querySelectorAll('.milestone-item input[type="checkbox"]');
   if(checkboxes.length === 0) return;
-  
   const totalMilestones = checkboxes.length;
   const completedMilestones = document.querySelectorAll('.milestone-item input[type="checkbox"]:checked').length;
   const progress = Math.round((completedMilestones / totalMilestones) * 100);
-  
   updateProgressUI(progress);
-  
-  // Save to backend
   const roadmapId = new URLSearchParams(window.location.search).get('id');
   if (roadmapId) {
     try {
@@ -246,14 +203,12 @@ window.handleMilestoneChange = async function() {
     }
   }
 }
-
 function updateProgressUI(progress) {
   const bar = document.getElementById('progress-bar');
   const text = document.getElementById('progress-text');
   if(bar && text) {
     bar.style.width = `${progress}%`;
     text.textContent = `${progress}% Complete`;
-    
     if(progress === 100) {
       bar.style.backgroundColor = 'var(--clr-success)';
     } else {
@@ -261,7 +216,6 @@ function updateProgressUI(progress) {
     }
   }
 }
-
 function saveRoadmapLocally() {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get('id');
@@ -272,10 +226,8 @@ function saveRoadmapLocally() {
   }
   alert('Roadmap saved locally! You can access it from the My Roadmaps page.');
 }
-
 async function shareRoadmap() {
   const shareUrl = window.location.href;
-  
   try {
     await navigator.clipboard.writeText(shareUrl);
     alert('Link copied to clipboard!');
@@ -283,7 +235,6 @@ async function shareRoadmap() {
     prompt('Copy this link:', shareUrl);
   }
 }
-
 function showError(message) {
   let errorDiv = document.querySelector('.error-notification');
   if (!errorDiv) {
@@ -293,7 +244,6 @@ function showError(message) {
   }
   errorDiv.textContent = message;
   errorDiv.style.display = 'block';
-  
   setTimeout(() => {
     errorDiv.style.opacity = '0';
     setTimeout(() => errorDiv.remove(), 300);

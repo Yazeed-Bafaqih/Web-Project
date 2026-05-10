@@ -12,7 +12,6 @@
 </head>
 <body class="page-load">
     <div class="bg-mesh"></div>
-
     <header class="site-header navbar-glass">
         <div class="header-inner">
             <a href="index.html" class="logo">
@@ -27,6 +26,7 @@
                     <li><a href="roadmap-generator.html" class="nav-link ">AI Generator</a></li>
                     <li><a href="about-us.html" class="nav-link ">About Us</a></li>
                     <li><a href="contact-us.html" class="nav-link active">Contact</a></li>
+                    <li id="auth-nav-item"><a href="login.html" class="nav-link">Login</a></li>
                 </ul>
             </nav>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -34,9 +34,7 @@
             </button>
         </div>
     </header>
-
     <main>
-
         <section class="page-hero stagger-item" aria-labelledby="contact-title" style="--i: 1;">
             <div class="section-inner floating">
                 <p class="hero-eyebrow">We'd Love to Hear From You</p>
@@ -47,11 +45,8 @@
                 </p>
             </div>
         </section>
-
         <section class="contact-section stagger-item" aria-labelledby="form-title" style="--i: 2;">
             <div class="section-inner contact-layout">
-
-                <!-- Contact Info Aside -->
                 <aside class="contact-info card-glass" aria-label="Contact information">
                     <h2 id="contact-info-title">Get in Touch</h2>
                     <ul class="info-list">
@@ -78,16 +73,12 @@
                         </li>
                     </ul>
                 </aside>
-
-                <!-- Contact Form -->
                 <div class="form-container card-glass">
                     <h2 id="form-title" class="sr-only">Contact Form</h2>
-
                     <div id="form-success" class="form-success" role="alert" aria-live="polite" style="display: none;">
                         <span aria-hidden="true">&#10003;</span>
                         <p>Your message has been sent successfully! We'll be in touch soon.</p>
                     </div>
-
                     <form
                         id="contact-form"
                         action="/backend/contact.js"
@@ -95,9 +86,7 @@
                         novalidate
                         aria-labelledby="form-title"
                     >
-
                         <div class="form-row">
-                            <!-- First Name -->
                             <div class="form-group">
                                 <label for="first-name">First Name <span class="required" aria-hidden="true">*</span></label>
                                 <input
@@ -115,8 +104,6 @@
                                 />
                                 <span class="field-error" id="first-name-error" role="alert" aria-live="polite"></span>
                             </div>
-
-                            <!-- Last Name -->
                             <div class="form-group">
                                 <label for="last-name">Last Name <span class="required" aria-hidden="true">*</span></label>
                                 <input
@@ -135,8 +122,6 @@
                                 <span class="field-error" id="last-name-error" role="alert" aria-live="polite"></span>
                             </div>
                         </div>
-
-                        <!-- Gender -->
                         <fieldset class="form-group form-fieldset">
                             <legend>Gender <span class="required" aria-hidden="true">*</span></legend>
                             <div class="radio-group" role="radiogroup" aria-required="true" aria-describedby="gender-error">
@@ -155,8 +140,6 @@
                             </div>
                             <span class="field-error" id="gender-error" role="alert" aria-live="polite"></span>
                         </fieldset>
-
-                        <!-- Mobile -->
                         <div class="form-group">
                             <label for="mobile">Mobile Number <span class="required" aria-hidden="true">*</span></label>
                             <input
@@ -173,8 +156,6 @@
                             />
                             <span class="field-error" id="mobile-error" role="alert" aria-live="polite"></span>
                         </div>
-
-                        <!-- Date of Birth -->
                         <div class="form-group">
                             <label for="dob">Date of Birth <span class="required" aria-hidden="true">*</span></label>
                             <input
@@ -190,8 +171,6 @@
                             />
                             <span class="field-error" id="dob-error" role="alert" aria-live="polite"></span>
                         </div>
-
-                        <!-- Email -->
                         <div class="form-group">
                             <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
                             <input
@@ -207,8 +186,6 @@
                             />
                             <span class="field-error" id="email-error" role="alert" aria-live="polite"></span>
                         </div>
-
-                        <!-- Language -->
                         <div class="form-group">
                             <label for="language">Preferred Language <span class="required" aria-hidden="true">*</span></label>
                             <select
@@ -226,8 +203,6 @@
                             </select>
                             <span class="field-error" id="language-error" role="alert" aria-live="polite"></span>
                         </div>
-
-                        <!-- Message -->
                         <div class="form-group">
                             <label for="message">Your Message <span class="required" aria-hidden="true">*</span></label>
                             <textarea
@@ -246,25 +221,19 @@
                                 <span class="char-count" id="message-count" aria-live="polite">0 / 1000</span>
                             </div>
                         </div>
-
                         <button type="submit" class="btn-primary">
                             Send Message &rarr;
                         </button>
-
                     </form>
                 </div>
-
             </div>
         </section>
-
     </main>
-
     <footer class="site-footer">
         <div class="footer-inner" style="text-align: center; justify-content: center; padding-bottom: 2rem;">
             <p class="footer-copy" style="margin: 0; color: var(--text-muted);">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
         </div>
     </footer>
-
     <script src="../js/main.js"></script>
     <script src="../js/contact-validation.js"></script>
 </body>

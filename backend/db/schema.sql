@@ -1,6 +1,3 @@
--- TechPath local SQLite schema (reference).
--- Applied automatically on server start via backend/db/sqlite.js
-
 CREATE TABLE IF NOT EXISTS roadmaps (
   id TEXT PRIMARY KEY,
   topic TEXT NOT NULL,
@@ -14,7 +11,6 @@ CREATE TABLE IF NOT EXISTS roadmaps (
   share_token TEXT NOT NULL UNIQUE,
   created_at TEXT NOT NULL
 );
-
 CREATE INDEX IF NOT EXISTS idx_roadmaps_session ON roadmaps(session_id);
 CREATE INDEX IF NOT EXISTS idx_roadmaps_email ON roadmaps(user_email);
 CREATE INDEX IF NOT EXISTS idx_roadmaps_share ON roadmaps(share_token);

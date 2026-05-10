@@ -13,7 +13,6 @@
 </head>
 <body class="page-load">
     <div class="bg-mesh"></div>
-
     <header class="site-header navbar-glass">
         <div class="header-inner">
             <a href="index.html" class="logo">
@@ -28,6 +27,7 @@
                     <li><a href="roadmap-generator.html" class="nav-link ">AI Generator</a></li>
                     <li><a href="about-us.html" class="nav-link ">About Us</a></li>
                     <li><a href="contact-us.html" class="nav-link ">Contact</a></li>
+                    <li id="auth-nav-item"><a href="login.html" class="nav-link">Login</a></li>
                 </ul>
             </nav>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -35,7 +35,6 @@
             </button>
         </div>
     </header>
-
     <main>
         <section class="page-hero stagger-item" aria-labelledby="hero-title" style="--i: 1;">
             <div class="section-inner floating">
@@ -49,7 +48,6 @@
                 </div>
             </div>
         </section>
-
         <section class="dashboard-section stagger-item" style="--i: 2;">
             <div class="section-inner">
                 <div class="email-filter form-group" style="max-width: 540px; margin-bottom: 2.5rem;">
@@ -63,16 +61,12 @@
                         <button type="button" id="loadRoadmapsBtn" class="btn-secondary">Load</button>
                     </div>
                 </div>
-
                 <div id="loading-roadmaps" style="display: none; text-align: center; padding: 3rem;">
                     <div class="loader-primary" style="margin: 0 auto;"></div>
                     <p style="color: var(--text-muted); margin-top: 1.25rem;">Loading roadmaps...</p>
                 </div>
-
                 <div id="roadmaps-grid" class="roadmaps-grid">
-                    <!-- Cards will be dynamically injected here -->
                 </div>
-
                 <div id="empty-state" class="empty-state card-glass" style="display: none;">
                     <p>You haven't generated any roadmaps yet.</p>
                     <a href="roadmap-generator.html" class="btn-secondary">Create your first roadmap</a>
@@ -80,13 +74,11 @@
             </div>
         </section>
     </main>
-
     <footer class="site-footer">
         <div class="footer-inner" style="text-align: center; justify-content: center; padding-bottom: 2rem;">
             <p class="footer-copy" style="margin: 0; color: var(--text-muted);">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
         </div>
     </footer>
-
     <script src="../js/main.js"></script>
     <script src="../js/my-roadmaps.js"></script>
 </body>

@@ -1,19 +1,16 @@
 const fs = require('fs');
 const path = require('path');
-
 const dataDir = path.join(__dirname, '..', '..', 'data');
 const dbPath = process.env.SQLITE_PATH || path.join(dataDir, 'roadmaps.json');
-
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
 }
-
-let db = { roadmaps: [] };
-
+let db = { roadmaps: [], users: [] };
 function loadDb() {
   if (fs.existsSync(dbPath)) {
     try {
       db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+      if (!db.users) db.users = [];
     } catch (e) {
       console.error('Failed to parse DB:', e);
       db = { roadmaps: [] };
@@ -22,13 +19,10 @@ function loadDb() {
     saveDb();
   }
 }
-
 function saveDb() {
   fs.writeFileSync(dbPath, JSON.stringify(db, null, 2), 'utf8');
 }
-
 loadDb();
-
 function rowToClient(row) {
   if (!row) return null;
   return {
@@ -45,7 +39,6 @@ function rowToClient(row) {
     shareToken: row.share_token,
   };
 }
-
 function insertRoadmap(doc) {
   const createdAt = doc.createdAt instanceof Date ? doc.createdAt.toISOString() : doc.createdAt;
   const row = {
@@ -61,7 +54,6 @@ function insertRoadmap(doc) {
     share_token: doc.shareToken,
     created_at: createdAt,
   };
-  
   const existingIndex = db.roadmaps.findIndex(r => r.id === row.id);
   if (existingIndex >= 0) {
     db.roadmaps[existingIndex] = row;
@@ -70,31 +62,26 @@ function insertRoadmap(doc) {
   }
   saveDb();
 }
-
 function findById(id) {
   const row = db.roadmaps.find(r => r.id === id);
   return rowToClient(row);
 }
-
 function findByShareToken(token) {
   const row = db.roadmaps.find(r => r.share_token === token);
   return rowToClient(row);
 }
-
 function listBySession(sessionId) {
   const rows = db.roadmaps
     .filter(r => r.session_id === sessionId)
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   return rows.map(rowToClient);
 }
-
 function listByEmail(email) {
   const rows = db.roadmaps
     .filter(r => r.user_email === email)
     .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   return rows.map(rowToClient);
 }
-
 function updateProgress(id, progress) {
   const row = db.roadmaps.find(r => r.id === id);
   if (row) {
@@ -104,7 +91,6 @@ function updateProgress(id, progress) {
   }
   return false;
 }
-
 function deleteById(id) {
   const initialLen = db.roadmaps.length;
   db.roadmaps = db.roadmaps.filter(r => r.id !== id);
@@ -114,7 +100,19 @@ function deleteById(id) {
   }
   return false;
 }
-
+function getUserByEmail(email) {
+  return db.users.find(u => u.email === email);
+}
+function createUser(userData) {
+  const newUser = {
+    id: 'user-' + Date.now(),
+    ...userData,
+    createdAt: new Date().toISOString()
+  };
+  db.users.push(newUser);
+  saveDb();
+  return newUser;
+}
 module.exports = {
   dbPath,
   insertRoadmap,
@@ -124,4 +122,6 @@ module.exports = {
   listByEmail,
   updateProgress,
   deleteById,
+  getUserByEmail,
+  createUser
 };

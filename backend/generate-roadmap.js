@@ -1,20 +1,13 @@
 const fetch = require('node-fetch');
-
 const DEFAULT_MODEL =
   process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001';
-
 const SYSTEM_PROMPT = `You are TechPath's roadmap generator for students. Respond with ONE valid JSON object only.
 Rules: No markdown fences, no code blocks, no explanations before or after the JSON.
 Use UTF-8, double-quoted strings, valid JSON escapes. Numbers must not be quoted.`;
-
-/**
- * Clamp model output into the shape and constraints expected by the TechPath UI.
- */
 function allocatePhaseWeeks(durationWeeks, rawWeights) {
   const w = rawWeights.map((r) => Math.max(1, Math.floor(Number(r)) || 1));
   const sumW = w.reduce((a, b) => a + b, 0);
   let alloc = w.map((x) => Math.max(1, Math.round((x / sumW) * durationWeeks)));
-
   let s = alloc.reduce((a, b) => a + b, 0);
   while (s > durationWeeks) {
     const maxI = alloc.indexOf(Math.max(...alloc));
@@ -29,47 +22,37 @@ function allocatePhaseWeeks(durationWeeks, rawWeights) {
     alloc[2]++;
     s++;
   }
-
   const final = alloc.reduce((a, b) => a + b, 0);
   if (final !== durationWeeks) {
     alloc[alloc.length - 1] += durationWeeks - final;
   }
-
   alloc = alloc.map((x) => Math.max(1, x));
   if (alloc.reduce((a, b) => a + b, 0) !== durationWeeks) {
     const diff = durationWeeks - alloc.reduce((a, b) => a + b, 0);
     alloc[2] += diff;
   }
-
   return alloc.map((x) => Math.max(1, x));
 }
-
 function normalizeRoadmap(result, constraints) {
   const { topic, level, hours, durationWeeks } = constraints;
-
   if (!result || typeof result !== 'object') {
     throw new Error('Roadmap payload must be a JSON object');
   }
-
   const phasesIn = Array.isArray(result.phases) ? result.phases : null;
   if (!phasesIn || phasesIn.length < 3) {
     throw new Error('Roadmap must include exactly 3 phases');
   }
-
   const sorted = [...phasesIn]
     .sort(
       (a, b) =>
         (Number(a.phase_number) || 0) - (Number(b.phase_number) || 0)
     )
     .slice(0, 3);
-
   const rawWeights = sorted.map((p) => {
     const w = Number(p.duration_weeks);
     return Number.isFinite(w) && w >= 1 ? Math.floor(w) : 1;
   });
-
   const weeksAlloc = allocatePhaseWeeks(durationWeeks, rawWeights);
-
   const fixed = sorted.map((p, idx) => {
     const phase = { ...p };
     phase.phase_number = idx + 1;
@@ -81,7 +64,6 @@ function normalizeRoadmap(result, constraints) {
         : Math.max(1, est);
     return phase;
   });
-
   let study = Number(result?.weekly_schedule?.study_hours);
   let practice = Number(result?.weekly_schedule?.practice_hours);
   if (!(study >= 0) || !(practice >= 0) || study + practice !== hours) {
@@ -92,10 +74,8 @@ function normalizeRoadmap(result, constraints) {
       study = Math.max(0, hours - practice);
     }
   }
-
   const levelRating =
     level === 'Beginner' ? 3 : level === 'Intermediate' ? 6 : level === 'Advanced' ? 8 : 5;
-
   return {
     ...result,
     topic: typeof result.topic === 'string' && result.topic.trim() ? result.topic.trim() : topic,
@@ -115,16 +95,13 @@ function normalizeRoadmap(result, constraints) {
     },
   };
 }
-
 function buildUserPrompt(topic, level, hours, durationWeeks) {
   return `You produce learning roadmaps for individual learners.
-
 LEARNER INPUT (obey strictly):
 • Subject to learn: ${topic}
 • Current level: ${level} (Beg/Int/Adv — match depth and jargon to this)
 • Study time budget: ${hours} hours each week (integer)
 • Plan length: ${durationWeeks} weeks total across all stages
-
 CONTENT RULES:
 1. Exactly THREE phases / stages — "phase_number" must be 1, 2, and 3 in order.
 2. Each phase spans part of the ${durationWeeks} weeks; the THREE "duration_weeks" fields MUST be integers ≥ 1 and MUST sum exactly to ${durationWeeks}.
@@ -133,9 +110,7 @@ CONTENT RULES:
 5. "resources": at least two items per phase with valid-looking https URLs where possible (real publishers, docs, universities, reputable courses).
 6. "weekly_schedule": split the ${hours} weekly hours across study_hours + practice_hours (non-negative integers, sum equals ${hours}).
 7. "prerequisites", "next_steps", "career_paths": concise, topic-specific arrays of strings.
-
 Return exactly this JSON shape (replace values; keep keys):
-
 {
   "topic": "",
   "total_duration_weeks": ${durationWeeks},
@@ -194,7 +169,6 @@ Return exactly this JSON shape (replace values; keep keys):
   "career_paths": []
 }`;
 }
-
 function extractAssistantText(payload) {
   if (!payload.content || !Array.isArray(payload.content)) return '';
   return payload.content
@@ -203,24 +177,19 @@ function extractAssistantText(payload) {
     .join('')
     .trim();
 }
-
 async function generateRoadmap(topic, level, hours, durationWeeks) {
   const constraints = { topic: topic.trim(), level, hours, durationWeeks };
   console.log('📝 Generating roadmap:', constraints);
-
   if (!process.env.ANTHROPIC_API_KEY) {
     throw new Error('ANTHROPIC_API_KEY is not set in environment variables');
   }
-
   const userPrompt = buildUserPrompt(
     constraints.topic,
     constraints.level,
     constraints.hours,
     constraints.durationWeeks
   );
-
   console.log('🤖 Calling Anthropic Claude Haiku — model:', DEFAULT_MODEL);
-
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -235,15 +204,12 @@ async function generateRoadmap(topic, level, hours, durationWeeks) {
       messages: [{ role: 'user', content: userPrompt }],
     }),
   });
-
   const responseBody = await response.text();
   console.log('📡 Anthropic status:', response.status, response.statusText);
-
   if (!response.ok) {
     console.error('❌ Anthropic error body:', responseBody);
     throw new Error(`Anthropic API error (${response.status}): ${responseBody}`);
   }
-
   let data;
   try {
     data = JSON.parse(responseBody);
@@ -251,22 +217,18 @@ async function generateRoadmap(topic, level, hours, durationWeeks) {
     console.error('❌ Failed to parse Anthropic response JSON:', parseError);
     throw new Error('Invalid JSON envelope from Anthropic API');
   }
-
   const combined = extractAssistantText(data);
-
   const jsonStr = combined
     .replace(/^\uFEFF/, '')
     .replace(/```(?:json)?\s*/gi, '')
     .replace(/```\s*$/gm, '')
     .trim();
-
   const braceStart = jsonStr.indexOf('{');
   const braceEnd = jsonStr.lastIndexOf('}');
   const slice =
     braceStart !== -1 && braceEnd > braceStart
       ? jsonStr.slice(braceStart, braceEnd + 1)
       : jsonStr;
-
   let roadmapJSON;
   try {
     roadmapJSON = JSON.parse(slice);
@@ -275,10 +237,8 @@ async function generateRoadmap(topic, level, hours, durationWeeks) {
     console.error('Raw snippet:', slice.slice(0, 500));
     throw new Error('Model did not return parseable roadmap JSON');
   }
-
   const normalized = normalizeRoadmap(roadmapJSON, constraints);
   console.log('✅ Roadmap normalized (3 phases, weeks reconciled)');
   return normalized;
 }
-
 module.exports = generateRoadmap;

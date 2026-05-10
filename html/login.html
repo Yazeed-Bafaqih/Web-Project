@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — TechPath</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        .auth-container {
+            min-height: calc(100vh - 160px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 450px;
+            padding: 3rem;
+            text-align: center;
+        }
+        .auth-header {
+            margin-bottom: 2.5rem;
+        }
+        .auth-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: left;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            color: white;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.1);
+        }
+        .auth-toggle {
+            margin-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .auth-toggle a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="page-load">
+    <div class="bg-mesh"></div>
+    <header class="site-header navbar-glass">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#9670;</span>
+                <span class="logo-text">TechPath</span>
+            </a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="field.html" class="nav-link">Explore</a></li>
+                    <li><a href="my-roadmaps.html" class="nav-link">My Roadmaps</a></li>
+                    <li><a href="roadmap-generator.html" class="nav-link">AI Generator</a></li>
+                    <li><a href="about-us.html" class="nav-link">About Us</a></li>
+                    <li><a href="contact-us.html" class="nav-link">Contact</a></li>
+                    <li id="auth-nav-item"><a href="login.html" class="nav-link active">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="auth-container">
+        <div class="auth-card card-glass stagger-item">
+            <div class="auth-header">
+                <h1 id="auth-title" class="gradient-text">Welcome Back</h1>
+                <p id="auth-subtitle">Log in to track your progress</p>
+            </div>
+            <div id="error-box" class="error-message"></div>
+            <form id="auth-form" class="auth-form">
+                <div class="form-group" id="name-group" style="display: none;">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-input" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-input" placeholder="name@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" id="submit-btn" class="btn-primary btn-large">Login</button>
+            </form>
+            <div class="auth-toggle">
+                <span id="toggle-text">Don't have an account?</span>
+                <a href="#" id="toggle-auth">Sign Up</a>
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-inner" style="text-align: center; justify-content: center; padding-bottom: 2rem;">
+            <p class="footer-copy" style="margin: 0; color: var(--text-muted);">&copy; 2026 TechPath &mdash; University of Jeddah</p>
+        </div>
+    </footer>
+    <script src="../js/login.js"></script>
+</body>
+</html>

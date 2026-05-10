@@ -12,7 +12,6 @@
 </head>
 <body class="page-load">
     <div class="bg-mesh"></div>
-
     <header class="site-header navbar-glass">
         <div class="header-inner">
             <a href="index.html" class="logo">
@@ -27,6 +26,7 @@
                     <li><a href="roadmap-generator.html" class="nav-link active">AI Generator</a></li>
                     <li><a href="about-us.html" class="nav-link ">About Us</a></li>
                     <li><a href="contact-us.html" class="nav-link ">Contact</a></li>
+                    <li id="auth-nav-item"><a href="login.html" class="nav-link">Login</a></li>
                 </ul>
             </nav>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -34,7 +34,6 @@
             </button>
         </div>
     </header>
-
     <main>
         <section class="page-hero stagger-item" aria-labelledby="hero-title" style="--i: 1;">
             <div class="section-inner floating">
@@ -45,7 +44,6 @@
                 </p>
             </div>
         </section>
-
         <section class="generator-section stagger-item" style="--i: 2;">
             <div class="section-inner">
                 <div class="generator-container card-glass">
@@ -73,7 +71,6 @@
                     <div class="form-group" id="custom-topic-group" style="display: none; opacity: 0; transition: opacity 0.2s ease;">
                         <input type="text" id="custom-topic" name="customTopic" class="form-input" placeholder="e.g., Blockchain, Cybersecurity, Game Development..." aria-label="Custom Topic" />
                     </div>
-
                         <div class="form-group">
                             <label for="level" class="form-label">Current skill level <span class="required">*</span></label>
                             <select id="level" name="level" class="form-select" required>
@@ -83,7 +80,6 @@
                                 <option value="Advanced">Advanced</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <div class="form-range-header">
                                 <label for="hours" id="hours-label" class="form-label">Hours available per week <span class="required">*</span></label>
@@ -92,13 +88,11 @@
                             <input type="range" id="hours" name="hours" class="form-range" min="1" max="15" step="1" value="8" required aria-valuemin="1" aria-valuemax="15" aria-valuenow="8" aria-labelledby="hours-label hours-value">
                             <div class="form-range-labels"><span>1 hr</span><span>15 hr</span></div>
                         </div>
-
                         <div class="form-group">
                             <label for="durationWeeks" class="form-label">Roadmap duration (weeks) <span class="required">*</span></label>
                             <input type="number" id="durationWeeks" name="durationWeeks" class="form-input" min="3" max="52" value="12" required inputmode="numeric">
                             <p class="form-hint">Total timeline for all three phases (3–52 weeks).</p>
                         </div>
-
                         <button type="submit" class="btn-primary submit-btn" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
                             <span class="btn-text">Generate Roadmap &rarr;</span>
                         </button>
@@ -107,13 +101,11 @@
             </div>
         </section>
     </main>
-
     <footer class="site-footer">
         <div class="footer-inner" style="text-align: center; justify-content: center; padding-bottom: 2rem;">
             <p class="footer-copy" style="margin: 0; color: var(--text-muted);">&copy; 2026 TechPath &mdash; University of Jeddah, CCSW321</p>
         </div>
     </footer>
-
     <script src="../js/main.js"></script>
     <script src="../js/roadmap-generator.js"></script>
 </body>

@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
-
 const RoadmapSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: false // Optional for non-authenticated users
+    required: false 
   },
   userEmail: {
     type: String,
@@ -78,16 +77,11 @@ const RoadmapSchema = new mongoose.Schema({
     default: Date.now
   }
 });
-
-// Indexes for performance
 RoadmapSchema.index({ userId: 1, createdAt: -1 });
 RoadmapSchema.index({ shareToken: 1 });
 RoadmapSchema.index({ topic: 'text' });
-
-// Update timestamp on save
 RoadmapSchema.pre('save', function(next) {
   this.updatedAt = Date.now();
   next();
 });
-
 module.exports = mongoose.model('Roadmap', RoadmapSchema);

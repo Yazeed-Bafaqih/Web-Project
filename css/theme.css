@@ -1,51 +1,29 @@
-/* ============================================================
-   TechPath — theme.css (Modern SaaS Design System)
-   ============================================================ */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
 :root {
-  /* ── Primary Accent: Olive Green ──────────────────────────── */
   --primary: #5C6B4A;
   --primary-hover: #4A553B;
   --primary-light: #E8EDE4;
   --primary-glow: rgba(92, 107, 74, 0.25);
-
-  /* ── Secondary Accent ─────────────────────────────────────── */
   --secondary: #475569;
   --secondary-glow: rgba(71, 85, 105, 0.2);
-
-  /* ── Background & Surfaces (Light SaaS Mode) ──────────────── */
   --bg-main: #F8FAFC;
   --bg-deep: #F1F5F9;
   --bg-elevated: #FFFFFF;
   --bg-mesh: none;
-
-  /* ── Solid/Framed Surfaces ────────────────────────────────── */
   --glass-bg: #FFFFFF;
   --glass-bg-hover: #F8FAFC;
   --glass-border: #E2E8F0;
   --glass-border-dark: #CBD5E1;
-
-  /* ── Typography Colors ────────────────────────────────────── */
   --text-main: #0F172A;
   --text-muted: #64748B;
   --text-inverse: #FFFFFF;
-
-  /* ── Status Colors ────────────────────────────────────────── */
   --success: #10B981;
   --warning: #F59E0B;
   --error: #EF4444;
-
-  /* ── Gradients ────────────────────────────────────────────── */
   --gradient-primary: linear-gradient(135deg, #5C6B4A 0%, #3D4A30 100%);
   --gradient-glass: none;
   --gradient-glow: none;
-
-  /* ── Typography Config (Global Standardization) ───────────── */
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-
-  /* ── Spacing (Updated to 24px-32px gaps typically) ────────── */
   --spacing-xs: 8px;
   --spacing-sm: 16px;
   --spacing-md: 24px;
@@ -53,25 +31,18 @@
   --spacing-xl: 40px;
   --spacing-2xl: 48px;
   --spacing-3xl: 64px;
-
-  /* ── Border Radius ────────────────────────────────────────── */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 9999px;
-
-  /* ── Shadows (Soft, Elegant Box Shadows) ──────────────────── */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
   --shadow-glass: var(--shadow-lg);
   --shadow-glow: 0 0 20px rgba(92, 107, 74, 0.15);
-
-  /* ── Animation Easing ─────────────────────────────────────── */
   --ease-fluid: cubic-bezier(0.25, 1, 0.5, 1);
 }
-
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
@@ -83,7 +54,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 h1,
 h2,
 h3,
@@ -96,18 +66,14 @@ h6 {
   margin-top: 0;
   letter-spacing: -0.01em;
 }
-
 a {
   color: var(--primary);
   text-decoration: none;
   transition: all 0.2s var(--ease-fluid);
 }
-
 a:hover {
   color: var(--primary-hover);
 }
-
-/* Gradient Text Utility (Subtle now) */
 .gradient-text {
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -115,25 +81,19 @@ a:hover {
   background-clip: text;
   display: inline-block;
 }
-
-/* ── Scrollbar Customization ────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: var(--bg-main);
 }
-
 ::-webkit-scrollbar-thumb {
   background: var(--glass-border-dark);
   border-radius: var(--radius-full);
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
-
 ::selection {
   background: var(--primary-light);
   color: var(--primary);

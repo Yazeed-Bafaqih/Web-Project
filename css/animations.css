@@ -1,33 +1,22 @@
-/* ============================================================
-   TechPath — animations.css (Dark Glassmorphism Animations)
-   ============================================================ */
-
-/* ── Page Load & Transitions ────────────────────────────────── */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes staggerFade {
   0% { opacity: 0; transform: translateY(24px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-
 .page-load {
   animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-
 .stagger-item {
   opacity: 0;
   animation: staggerFade 0.6s var(--ease-fluid) forwards;
   animation-delay: calc(var(--i, 0) * 0.12s);
 }
-
-/* ── Spinners & Loaders ─────────────────────────────────────── */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-
 .loader-primary {
   width: 48px;
   height: 48px;
@@ -37,8 +26,6 @@
   animation: spin 0.9s linear infinite;
   display: inline-block;
 }
-
-/* ── Skeleton Loading with Shimmer ──────────────────────────── */
 .skeleton {
   background: linear-gradient(90deg,
     rgba(255, 255, 255, 0.04) 25%,
@@ -48,55 +35,38 @@
   animation: shimmer 1.5s infinite;
   border-radius: var(--radius-sm);
 }
-
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
-
-/* ── Pulse Effects ──────────────────────────────────────────── */
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 12px var(--primary-glow); }
   50% { transform: scale(1.04); opacity: 0.92; box-shadow: 0 0 28px var(--primary-glow); }
 }
-
 .pulse {
   animation: pulse 2.5s infinite;
 }
-
-/* ── Floating Animation ─────────────────────────────────────── */
-/* Floating disabled for cleaner look */
 .floating {
   animation: none;
 }
-
-/* ── Background Mesh (disabled) ─────────────────────────────── */
 .bg-mesh {
   display: none;
 }
-
-/* ── Glow Pulse (for accent elements) ───────────────────────── */
 @keyframes glowPulse {
   0%, 100% { box-shadow: 0 0 20px rgba(0, 229, 204, 0.15); }
   50% { box-shadow: 0 0 40px rgba(0, 229, 204, 0.3); }
 }
-
-/* ── Message Enter Animation ────────────────────────────────── */
 @keyframes messageSlide {
   from { opacity: 0; transform: translateX(-20px); }
   to { opacity: 1; transform: translateX(0); }
 }
-
 .message-new {
   animation: messageSlide 0.3s ease forwards;
 }
-
-/* ── Typing Indicator ───────────────────────────────────────── */
 @keyframes typingBounce {
   0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
   40% { transform: scale(1.2); opacity: 1; }
 }
-
 .typing-dots span {
   display: inline-block;
   width: 8px;
@@ -106,23 +76,17 @@
   margin: 0 2px;
   animation: typingBounce 1.4s infinite ease-in-out;
 }
-
 .typing-dots span:nth-child(1) { animation-delay: 0s; }
 .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
 .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-/* ── Streak Fire Animation ──────────────────────────────────── */
 @keyframes fireFlicker {
   from { transform: scale(1); opacity: 1; }
   to { transform: scale(1.2); opacity: 0.8; }
 }
-
 .streak-fire {
   display: inline-block;
   animation: fireFlicker 0.5s infinite alternate;
 }
-
-/* ── Card Shine Sweep ───────────────────────────────────────── */
 @keyframes shineSweep {
   0% { left: -100%; }
   100% { left: 100%; }
