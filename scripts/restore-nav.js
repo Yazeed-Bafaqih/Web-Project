@@ -24,7 +24,7 @@ for (const file of files) {
   
   const newNav = `<nav class="main-nav" aria-label="Main navigation">
                 <ul>${navLinks}
-                    <li><a href="contact-us.html" class="btn-primary" style="padding: 0.5rem 1.2rem; color: white;">Contact</a></li>
+                    <li><a href="contact-us.html" class="nav-link ${file === 'contact-us.html' ? 'active' : ''}">Contact</a></li>
                 </ul>
             </nav>`;
 
