@@ -240,6 +240,7 @@ function validateGender() {
         var successBanner = document.getElementById("form-success");
         if (successBanner) {
             successBanner.hidden = false;
+            successBanner.style.display = "flex";
             successBanner.scrollIntoView({ behavior: "smooth", block: "center" });
         }
 
